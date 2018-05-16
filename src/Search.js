@@ -7,7 +7,11 @@ class Search extends React.Component {
       gender: '',
       minAge: '',
       maxAge: '',
-      languages: [],
+      languages: {
+        french: false,
+        english: false,
+        other: false,
+      },
       city: '',
       education: '',
       smoker: '',
@@ -21,7 +25,7 @@ class Search extends React.Component {
     //     gender: gender,
     //     minAge: minAge,
     //     maxAge: maxAge,
-    //     languages: languages,
+    //     languages: Object.keys(this.state.languages).filter(key => this.state.languages[key])),
     //     city: city,
     //     education: education,
     //     smoker: smoker,
@@ -33,9 +37,6 @@ class Search extends React.Component {
     console.log(event.target.value);
     this.setState({ gender: event.target.value });
   }
-  handleLanguage = event => {
-    this.setState({})
-  }
   handleMinAge = event => {
     console.log(event.target.value);
     this.setState({minAge: event.target.value})
@@ -43,6 +44,18 @@ class Search extends React.Component {
   handleMaxAge = event => {
     console.log(event.target.value);
     this.setState({maxAge: event.target.value})
+  }
+  handleLanguages = event => {
+    const languages = {...this.state.languages};
+    if(event.target.value === 'French'){
+      languages.french = !languages.french;
+    } else if(event.target.value === 'English'){
+      languages.english = !languages.english;
+    } else {
+      languages.other = !languages.other;
+    }
+    this.setState({ languages: languages })
+    console.log(this.state);
   }
   handleCity = event => {
     console.log(event.target.value);
@@ -79,11 +92,9 @@ class Search extends React.Component {
           </div>
           <div>
             Languages:
-            <select name="languages" onChange={this.handleLanguage}>
-              <option value="None selected">Please select below</option>
-              <option>French</option>
-              <option>English</option>
-            </select>
+            <input type="checkbox" name="languages" value="French" onChange={this.handleLanguages}/> French
+            <input type="checkbox" name="languages" value="English" onChange={this.handleLanguages}/> English
+            <input type="checkbox" name="languages" value="Other" onChange={this.handleLanguages}/> Other
           </div>
           <div>
             City:
@@ -125,5 +136,6 @@ class Search extends React.Component {
     );
   }
 }
+
 
 export default Search;
