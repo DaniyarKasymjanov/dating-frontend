@@ -31,6 +31,12 @@ class App extends Component {
   renderUserProfile = () => {
     return(<Profile/>)
   }
+  renderRegister = () => {
+    return(<Register/>)
+  }
+  renderEvaluation = () => {
+    return(<EvaluationQuestions/>)
+  }
 
   render() {
     return (
@@ -40,6 +46,8 @@ class App extends Component {
       <Route exact path="/" render={this.renderHome}/>
       <Route exact path="/search" render={this.renderSearch}/>
       <Route exact path="/profile" render={this.renderUserProfile}/>
+      <Route exact path="/register" render={this.renderRegister}/>
+      <Route exact path="/evaluation" render={this.renderEvaluation}/>
       </div>
     );
   }
