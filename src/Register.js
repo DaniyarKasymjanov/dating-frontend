@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-class Register extends Component {
+class Register extends React.Component {
   constructor() {
     super()
     this.state = {
