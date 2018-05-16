@@ -7,9 +7,7 @@ class Spotlight extends React.Component{
   render(){
     return(
       <div>
-        <div>Name</div>
-        <div>img</div>
-        <div>favorites</div>
+        <h1>35%</h1>
       </div>
     )
   }

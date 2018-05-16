@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Link } from 'react-router-dom';
+import styled from 'styled-components';
 import NavBar from './NavBar.js'
 import Login from './Login.js'
 import Register from './Register.js'
@@ -8,7 +9,24 @@ import Home from './Home.js'
 import Search from './Search.js'
 import Profile from './Profile.js'
 import Favorites from './Favorites.js'
+import Spotlight from './Spotlight.js';
+import fontawesome from '@fortawesome/fontawesome'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-rows: auto 1fr;
+`;
+
+const MainGrid = styled.div`
+  display: grid;
+  grid-template-columns: 30% 70%;
+  margin: 0 5%;
+  grid-gap: 10px;
+`;
 
 class App extends Component {
 
@@ -37,17 +55,28 @@ class App extends Component {
   renderEvaluation = () => {
     return(<EvaluationQuestions/>)
   }
+  renderSpotLight = () => {
+    return(<Spotlight/>)
+  }
 
   render() {
     return (
       <div className="App">
-      <Route exact path="/navbar" render={this.renderNavBar}/>
       <Route exact path="/login" render={this.renderLogin}/>
-      <Route exact path="/" render={this.renderHome}/>
-      <Route exact path="/search" render={this.renderSearch}/>
-      <Route exact path="/profile" render={this.renderUserProfile}/>
-      <Route exact path="/register" render={this.renderRegister}/>
-      <Route exact path="/evaluation" render={this.renderEvaluation}/>
+      <Grid>
+        <Route path={/^\/(?!(login|register)).*$/} render={this.renderNavBar}/>
+        <MainGrid>
+          <div>
+            <Route exact path="/spotlight" render={this.renderSpotLight}/>
+            <Route exact path="/profile" render={this.renderUserProfile}/>
+            <Route exact path="/register" render={this.renderRegister}/>
+            <Route exact path="/evaluation" render={this.renderEvaluation}/>
+          </div>
+          <div>
+            <Route exact path="/" render={this.renderHome}/>
+          </div>
+        </MainGrid>
+      </Grid>
       </div>
     );
   }

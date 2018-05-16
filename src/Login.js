@@ -1,4 +1,5 @@
 import React,{Component}  from 'react'
+import {Button} from 'reactstrap'
 
 class Login extends React.Component{
   constructor(){
@@ -24,16 +25,13 @@ class Login extends React.Component{
   }
   render(){
     return(
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUserName}></input>
-          <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}></input>
-          <div>
-            <input type="submit"/>
-          </div>
-        </form>
-
-      </div>
+     <form onSubmit={this.handleSubmit}>
+        <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUserName}></input>
+        <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}></input>
+        <div>
+          <input type="submit"/>
+        </div>
+      </form>
     )
   }
 }

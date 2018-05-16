@@ -98,13 +98,7 @@ class Search extends React.Component {
           </div>
           <div>
             City:
-            <select name="city" onChange={this.handleCity}>
-              <option value="None selected">Please select below</option>
-              <option>Montreal</option>
-              <option>Laval</option>
-              <option>Trois-Riviere</option>
-              <option>Quebec</option>
-            </select>
+            <input type="text" name="city" value={this.state.city} onChange={this.handleCity}/>
           </div>
           <div>
             Education:
@@ -126,10 +120,6 @@ class Search extends React.Component {
             Drinker:
             <input type="radio" name="drinker" value="drinker" onChange={this.handleDrinker}/> Yes
             <input type="radio" name="drinker" value="notdrinker" onChange={this.handleDrinker}/> No
-          </div>
-          <div />
-          <div>
-            <input type="submit" />
           </div>
         </form>
       </div>

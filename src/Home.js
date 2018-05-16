@@ -20,10 +20,10 @@ class Home extends React.Component{
   render(){
     return(
       <div>
-        <div>
-          <h1>Recent Members</h1>
+      <div>
+        <h1> 65% </h1>
           {this.state.recentMembers.map((obj)=> <div>{obj.username}, {obj.profileImage}, {obj.city}, {obj.age}</div>)}
-        </div>
+      </div>
       </div>
     )
   }
