@@ -7,16 +7,7 @@ class Results extends React.Component{
       searchedMembers: []
     }
   }
-  handleSearched = () => {
-    // fetch('/home')
-    // .then( res => res.json())
-    // .then(resJSON => {
-    //   this.setState({searchedMembers:  resJSON})
-    // })
-  }
-  componentDidMount(){
-    this.handleSearched()
-  }
+  
   render(){
     return(
       <div>

@@ -15,7 +15,6 @@ class Login extends React.Component{
     this.setState({password: event.target.value})
   }
   handleSubmit = event => {
-    console.log(this.state)
     event.preventDefault()
     // fetch('/login', {
     //   method: POST,
@@ -29,8 +28,11 @@ class Login extends React.Component{
         <form onSubmit={this.handleSubmit}>
           <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUserName}></input>
           <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}></input>
-          <input type="submit" />
+          <div>
+            <input type="submit"/>
+          </div>
         </form>
+
       </div>
     )
   }

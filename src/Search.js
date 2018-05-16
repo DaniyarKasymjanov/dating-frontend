@@ -71,7 +71,7 @@ class Search extends React.Component {
   }
   handleDrinker = event => {
     console.log(event.target.value);
-    this.setState({smoker: event.target.value})  
+    this.setState({drinker: event.target.value})  
   }
 
   render() {

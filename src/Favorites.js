@@ -8,7 +8,7 @@ class Favorites extends React.Component{
     }
   }
   handleFavorite = () => {
-    // fetch('/favorites')
+    // fetch('/favorite?username=') + this.props.username
     // .then( res => res.json())
     // .then(resJSON => {
     //   this.setState({favoriteMembers:  resJSON})
