@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Route, Redirect, Link } from 'react-router-dom';
 import NavBar from './NavBar.js'
 import Login from './Login.js'
-import Register from './Register.js'
-import EvaluationQuestions from './EvaluationQuestions.js'
+import Onboarding from './Onboarding';
 import Home from './Home.js'
 import Search from './Search.js'
 import Profile from './Profile.js'
@@ -31,12 +30,6 @@ class App extends Component {
   renderUserProfile = () => {
     return(<Profile/>)
   }
-  renderRegister = () => {
-    return(<Register/>)
-  }
-  renderEvaluation = () => {
-    return(<EvaluationQuestions/>)
-  }
 
   render() {
     return (
@@ -46,8 +39,7 @@ class App extends Component {
       <Route exact path="/" render={this.renderHome}/>
       <Route exact path="/search" render={this.renderSearch}/>
       <Route exact path="/profile" render={this.renderUserProfile}/>
-      <Route exact path="/register" render={this.renderRegister}/>
-      <Route exact path="/evaluation" render={this.renderEvaluation}/>
+      <Onboarding/>
       </div>
     );
   }

@@ -1,60 +1,59 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route, Redirect, Link } from 'react-router-dom';
 import './App.css';
+import EvaluationQuestions from './EvaluationQuestions';
 
 class Register extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      username: '',
-      password: '',
-      birthday: '',
-      city: '',
-      gender: '',
-      questions: {}
-    }
-  }
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     username: '',
+  //     password: '',
+  //     birthday: '',
+  //     city: '',
+  //     gender: ''
+  //   }
+  // }
   handleUsername = event => {
     event.preventDefault()
-    this.setState({ username: event.target.value })
+    this.props.setRegister('username', event.target.value)
   }
   handlePassword = event => {
     event.preventDefault()
-    this.setState({ password: event.target.value })
+    this.props.setRegister('password', event.target.value)
   }
   handleBirthday = event => {
     event.preventDefault()
-    this.setState({ birthday: event.target.value })
+    this.props.setRegister('birthday', event.target.value)
   }
   handleCity = event => {
     event.preventDefault()
-    this.setState({ city: event.target.value })
+    this.props.setRegister('city', event.target.value)
   }
   handleGender = event => {
     event.preventDefault()
-    this.setState({ gender: event.target.value })
+    // this.setState({ gender: event.target.value })
+    this.props.setRegister('gender', event.target.value);
   }
-  handleSubmit = event => {
-    event.preventDefault()
-    console.log(this.state)
+  stepTwo = event => {
+    this.props.history.push('/evaluation');
   }
 
   render() {
     return (
       <div>
-        <form>
-          <input required type="text" placeholder="Create a Username" value={this.state.username} onChange={this.handleUsername}></input>
-          <input required type="text" placeholder="Create a Password" value={this.state.password} onChange={this.handlePassword}></input>
-          <input required type="date" name="birthday" value={this.state.birthday} onChange={this.handleBirthday}></input>
-          <input required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
-          <select required value={this.state.gender} onChange={this.handleGender}>
+        <form onSubmit={this.stepTwo}>
+          <input required type="text" placeholder="Create a Username" value={this.props.register.username} onChange={this.handleUsername}></input>
+          <input required type="text" placeholder="Create a Password" value={this.props.register.password} onChange={this.handlePassword}></input>
+          <input required type="date" name="birthday" value={this.props.register.birthday} onChange={this.handleBirthday}></input>
+          <input required type="text" placeholder="Choose Your City" value={this.props.register.city} onChange={this.handleCity}></input>
+          <select required value={this.props.register.gender} onChange={this.handleGender}>
             <option value="">--Select One--</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
-          <input type="Submit" onClick={this.handleSubmit}/>
+          <button type="submit">Next Step</button>
         </form>
-
       </div>
 
 
