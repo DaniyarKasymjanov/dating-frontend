@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class Favorite extends React.Component{
+class Favorites extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -8,11 +8,11 @@ class Favorite extends React.Component{
     }
   }
   handleFavorite = () => {
-    fetch('/favorites')
-    .then( res => res.json())
-    .then(resJSON => {
-      this.setState({favoriteMembers:  resJSON})
-    })
+    // fetch('/favorites')
+    // .then( res => res.json())
+    // .then(resJSON => {
+    //   this.setState({favoriteMembers:  resJSON})
+    // })
   }
   componentDidMount(){
     this.handleFavorite()
@@ -29,4 +29,4 @@ class Favorite extends React.Component{
   }
 }
 
-export default Home
+export default Favorites

@@ -17,7 +17,16 @@ class Search extends React.Component {
   handleSearch = event => {
     // fetch('/search', {
     //   method: POST,
-    //   body: JSON.stringify()
+    //   body: JSON.stringify({
+    //     gender: gender,
+    //     minAge: minAge,
+    //     maxAge: maxAge,
+    //     languages: languages,
+    //     city: city,
+    //     education: education,
+    //     smoker: smoker,
+    //     drinker: drinker
+    //   })
     // })
   }
   handleGender = event => {
@@ -64,9 +73,9 @@ class Search extends React.Component {
           <div>
             Age:
             from:
-              <input type="number" name="age"  min="18" max="100" onChange={this.setState.minAge}/>
+              <input type="number" name="age"  min="18" max="100" onChange={this.handleMinAge}/>
             to:
-              <input type="number" name="age" min="18" max="100" onChange={this.setState.maxAge}/>
+              <input type="number" name="age" min="18" max="100" onChange={this.handleMaxAge}/>
           </div>
           <div>
             Languages:

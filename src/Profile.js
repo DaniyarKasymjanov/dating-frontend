@@ -4,8 +4,18 @@ class Profile extends React.Component{
   render(){
     return(
       <div>
-        <div></div>
-        <div></div>
+        <div>background img</div>
+        <div>
+          <div>
+            Personal info
+          </div>
+          <div>
+            cluster of images
+          </div>
+          <div>
+            About me
+          </div>
+        </div>
       </div>
     )
   }
