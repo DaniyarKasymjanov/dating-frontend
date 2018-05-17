@@ -12,10 +12,16 @@ const MainGrid = styled.div`
 
 const LandingGrid = styled.div`
   display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+`
+
+const LandingReg = styled.div`
+  display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 0 5%;
   grid-gap: 30px;
 `
+
 const SpotlightGrid = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
@@ -27,4 +33,4 @@ const SpotlightGrid = styled.div`
 //   padding: 20px;
 // `
 
-export { MainGrid, SpotlightGrid }
+export { MainGrid, LandingGrid, LandingReg, SpotlightGrid }

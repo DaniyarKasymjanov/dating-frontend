@@ -9,9 +9,9 @@ class Profile extends React.Component{
   }
 
   componentDidMount() {
-    fetch('/getProfile?username=' + this.props.username)
-    .then(res => res.json())
-    .then(res => {this.setState({res})})
+    // fetch('/getProfile?username=' + this.props.username)
+    // .then(res => res.json())
+    // .then(res => {this.setState({res})})
   }
 
   render(){

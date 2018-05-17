@@ -12,6 +12,7 @@ import Favorites from './Favorites.js'
 import Spotlight from './Spotlight.js';
 import Register from './Register.js'
 import SearchResults from './SearchResults.js'
+import LandingPage from './LandingPage.js'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import fontawesome from '@fortawesome/fontawesome'
@@ -61,10 +62,6 @@ class App extends Component {
     return(<Login/>)
   }
 
-  // renderNavBar = () => {
-  //   return(<NavBar/>)
-  // }
-
   renderUserProfile = (routerData) => {
     let username = routerData.match.params.username
     return(<Profile username={username}/>)
@@ -86,21 +83,26 @@ class App extends Component {
   renderSearchResults = () => {
     return(<SearchResults/>)
   }
+  
+  renderLandingPage = () => {
+    return(<LandingPage/>)
+  }
 
   render() {
     console.log(this.props)
     return (
       <div className="App">
-      <Route exact path="/login" render={this.renderLogin}/>
       <Route exact path="/searchresults" render={this.renderSearchResults}/>
       <Route exact path="/search" render={this.renderSearch}/>
       <Grid>
-        {(this.props.location.pathname !== '/login' && this.props.location.pathname !== '/register') && (<NavBar username={this.state.username}/>)}
+      <Route exact path="/" render={this.renderLandingPage}/>
+        {(this.props.location.pathname !== '/' && this.props.location.pathname !== '/register') && (<NavBar username={this.state.username}/>)}
           <div>
+          <Route exact path="/login" render={this.renderLogin}/>
             <Route exact path="/favorites" render={this.renderFavorites}/>
             <Route exact path="/spotlight" render={this.renderSpotLight}/>
             <Route exact path="/profile/:username" render={this.renderUserProfile}/>
-            <Route exact path="/" render={this.renderHome}/>
+            <Route exact path="/main" render={this.renderHome}/>
             <Onboarding />
           </div>
       </Grid>
