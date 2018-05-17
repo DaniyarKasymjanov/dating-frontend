@@ -77,7 +77,7 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSearch}>
+        <form>
           <div>
             Gender:
             <input type="radio" name="gender" value="male" onChange={this.handleGender}/>Male

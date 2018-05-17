@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect, Link } from 'react-router-dom';
+import { Route, Redirect, Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from './NavBar.js'
 import Login from './Login.js'
@@ -9,6 +9,8 @@ import Search from './Search.js'
 import Profile from './Profile.js'
 import Favorites from './Favorites.js'
 import Spotlight from './Spotlight.js';
+import Register from './Register.js'
+import SearchResults from './SearchResults.js'
 import fontawesome from '@fortawesome/fontawesome'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import './App.css';
@@ -18,13 +20,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Grid = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
-`;
-
-const MainGrid = styled.div`
-  display: grid;
-  grid-template-columns: 30% 70%;
-  margin: 0 5%;
-  grid-gap: 10px;
 `;
 
 class App extends Component {
@@ -41,9 +36,9 @@ class App extends Component {
     return(<Login/>)
   }
 
-  renderNavBar = () => {
-    return(<NavBar/>)
-  }
+  // renderNavBar = () => {
+  //   return(<NavBar/>)
+  // }
 
   renderUserProfile = () => {
     return(<Profile/>)
@@ -58,27 +53,33 @@ class App extends Component {
     return(<Spotlight/>)
   }
 
+  renderFavorites = () => {
+    return(<Favorites/>)
+  }
+
+  renderSearchResults = () => {
+    return(<SearchResults/>)
+  }
+
   render() {
+    console.log(this.props)
     return (
       <div className="App">
       <Route exact path="/login" render={this.renderLogin}/>
       <Grid>
-        <Route path={/^\/(?!(login|register)).*$/} render={this.renderNavBar}/>
-        <MainGrid>
-          <div>
-            <Route exact path="/spotlight" render={this.renderSpotLight}/>
-            <Route exact path="/profile" render={this.renderUserProfile}/>
-            <Route exact path="/register" render={this.renderRegister}/>
-            <Route exact path="/evaluation" render={this.renderEvaluation}/>
-          </div>
-          <div>
-            <Route exact path="/" render={this.renderHome}/>
-          </div>
-        </MainGrid>
+        {(this.props.location.pathname !== '/login' && this.props.location.pathname !== '/register') && (
+          <NavBar/>
+        )}
+        <Route exact path="/profile" render={this.renderUserProfile}/>
+        <Route exact path="/register" render={this.renderRegister}/>
+        <Route exact path="/evaluation" render={this.renderEvaluation}/>
+        <Route exact path="/favorites" render={this.renderFavorites}/>
+        <Route exact path="/" render={this.renderHome}/>
+        <Route exact path="/searchedResults" render={this.renderSearchResults}/>
       </Grid>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
