@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Link} from 'react-router-dom';
+import LandingPage from './LandingPage.js';
 import Register from './Register';
 import EvaluationQuestions from './EvaluationQuestions';
 
@@ -94,7 +95,11 @@ class Onboarding extends React.Component {
 
         renderRegister = (routeProps) => {
             console.log(this.state.register)
-            return (<Register register={this.state.register} history={routeProps.history} setRegister={this.setRegister} />)
+            return (
+                <LandingPage>
+                    <Register register={this.state.register} history={routeProps.history} setRegister={this.setRegister} />
+                </LandingPage>
+            )
         }
         renderEvaluation = (routeProps) => {
             return (<EvaluationQuestions evaluation={this.state.evaluation} submitOnboarding={this.submitOnboarding} history={routeProps.history} setEvaluation={this.setEvaluation} />)
@@ -103,7 +108,7 @@ class Onboarding extends React.Component {
         render() {
             return (
                 <div>
-                    <Route exact path="/register" render={this.renderRegister} />
+                    <Route exact path="/" render={this.renderRegister} />
                     <Route exact path="/evaluation" render={this.renderEvaluation} />
                 </div>
             );

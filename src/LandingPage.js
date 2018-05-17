@@ -7,7 +7,6 @@ import {
   NavItem,
   Button
 } from 'reactstrap';
-import Register from './Register.js'
 import Onboarding from './Onboarding.js'
 import EvaluationQuestions from './EvaluationQuestions.js'
 import { LandingGrid, LandingReg } from './Styled';
@@ -29,7 +28,7 @@ class LandingPage extends React.Component{
         </Navbar>
         <LandingReg>
           <h1>Welcome to the next biggest dating site.</h1>
-          <Onboarding/>
+          {this.props.children}
         </LandingReg>
         <div>
           <h1>Some Tags</h1>

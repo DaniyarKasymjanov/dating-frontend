@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from './NavBar.js'
 import Login from './Login.js'
@@ -10,7 +10,6 @@ import Search from './Search.js'
 import Profile from './Profile.js'
 import Favorites from './Favorites.js'
 import Spotlight from './Spotlight.js';
-import Register from './Register.js'
 import SearchResults from './SearchResults.js'
 import LandingPage from './LandingPage.js'
 import './App.css';
@@ -66,9 +65,6 @@ class App extends Component {
     let username = routerData.match.params.username
     return(<Profile username={username}/>)
   }
-  renderRegister = () => {
-    return(<Register/>)
-  }
   renderEvaluation = () => {
     return(<EvaluationQuestions/>)
   }
@@ -84,26 +80,25 @@ class App extends Component {
     return(<SearchResults username={this.state.username}/>)
   }
   
-  renderLandingPage = () => {
-    return(<LandingPage/>)
-  }
+  // renderLandingPage = () => {
+  //   return(<LandingPage/>)
+  // }
 
   render() {
     console.log(this.props)
     return (
       <div className="App">
-      <Route exact path="/searchresults" render={this.renderSearchResults}/>
       <Route exact path="/search" render={this.renderSearch}/>
+      {this.props.location.pathname !== '/' && (<NavBar username={this.state.username}/>)}
       <Grid>
-      <Route exact path="/" render={this.renderLandingPage}/>
-        {(this.props.location.pathname !== '/' && this.props.location.pathname !== '/register') && (<NavBar username={this.state.username}/>)}
+          <Onboarding/>
           <div>
           <Route exact path="/login" render={this.renderLogin}/>
             <Route exact path="/favorites" render={this.renderFavorites}/>
             <Route exact path="/spotlight" render={this.renderSpotLight}/>
             <Route exact path="/profile/:username" render={this.renderUserProfile}/>
             <Route exact path="/main" render={this.renderHome}/>
-            <Onboarding />
+            <Route exact path="/searchresults" render={this.renderSearchResults}/>
           </div>
       </Grid>
       </div>

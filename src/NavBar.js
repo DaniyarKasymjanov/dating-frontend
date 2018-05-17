@@ -46,28 +46,28 @@ class NavBar extends React.Component{
                 <Search/>
               </ModalBody>
               <ModalFooter>
-                <Button size="sm"color="light" onClick={this.toggle} onSubmit={this.props.handleSearch} className="navBtn">Search</Button>{' '}
-                <Button size="sm"color="light" onClick={this.toggle} className="navBtn">Cancel</Button>
+                <Button size="sm" color="primary" onClick={this.toggle} onSubmit={this.props.handleSearch} className="navBtn">Search</Button>{' '}
+                <Button size="sm" color="primary" onClick={this.toggle} className="navBtn">Cancel</Button>
               </ModalFooter>
               </Modal>
               </NavItem>
               <NavItem>
-                <Button size="sm"outline color="light" className="navBtn">
+                <Button size="sm" outline color="light" className="navBtn">
                   <Link to="/">Home</Link>
                 </Button>
               </NavItem>
               <NavItem>
-                <Button size="sm"outline color="light" className="navBtn">
+                <Button size="sm" outline color="light" className="navBtn">
                   <Link to="/">Messages</Link>
                 </Button>
               </NavItem>
               <NavItem>
-                <Button size="sm"outline color="light" className="navBtn">
+                <Button size="sm" outline color="light" className="navBtn">
                   <Link to="/">Notification</Link>
                 </Button>
               </NavItem>
               <NavItem>
-                <Button size="sm"outline color="light" className="navBtn">
+                <Button size="sm" outline color="light" className="navBtn">
                   <Link to="/">Logout</Link>
                 </Button>
               </NavItem>
