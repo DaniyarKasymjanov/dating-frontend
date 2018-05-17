@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import NavBar from './NavBar.js'
 import Login from './Login.js'
 import Onboarding from './Onboarding';
+import Register from './Register'
+import EvaluationQuestions from './EvaluationQuestions'
 import Home from './Home.js'
 import Search from './Search.js'
 import Profile from './Profile.js'
@@ -68,8 +70,7 @@ class App extends Component {
           <div>
             <Route exact path="/spotlight" render={this.renderSpotLight}/>
             <Route exact path="/profile" render={this.renderUserProfile}/>
-            <Route exact path="/register" render={this.renderRegister}/>
-            <Route exact path="/evaluation" render={this.renderEvaluation}/>
+            <Onboarding />
           </div>
           <div>
             <Route exact path="/" render={this.renderHome}/>
