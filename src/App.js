@@ -12,10 +12,16 @@ import Favorites from './Favorites.js'
 import Spotlight from './Spotlight.js';
 import Register from './Register.js'
 import SearchResults from './SearchResults.js'
-import fontawesome from '@fortawesome/fontawesome'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import fontawesome from '@fortawesome/fontawesome'
+import faUser from '@fortawesome/fontawesome-free-solid/faUser'
+import faCircle from '@fortawesome/fontawesome-free-regular/faCircle'
+import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook'
+
+fontawesome.library.add(faUser)
+fontawesome.library.add(faCircle)
+fontawesome.library.add(faFacebook)
 
 
 const Grid = styled.div`

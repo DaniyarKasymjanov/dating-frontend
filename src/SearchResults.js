@@ -10,6 +10,14 @@ class Results extends React.Component{
     }
   }
   
+  handleSeachedResults = () => {
+    // fetch('/search')
+    // .then(res => res.json())
+    // .then(resJSON => {
+    //   this.setState({searchedMembers: resJSON })
+    // })
+  }
+  
   render(){
     return(
       <MainGrid>

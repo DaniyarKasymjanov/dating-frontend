@@ -5,14 +5,14 @@ class Spotlight extends Component{
   constructor(){
     super();
     this.state = {
-
     }
   }
   render(){
     return(
       <div>
           <h1>Spotlight</h1>
-          <Link to="/profile">Username</Link>
+          <h3>img</h3>
+          <Link to="/profile">{this.props.username}</Link>
           <div>
             <Link to="/favorites"> Favorites</Link>
           </div>
