@@ -22,7 +22,7 @@ class Favorites extends React.Component{
   render(){
     return(
       <MainGrid>
-        <Spotlight/>
+        <Spotlight username={this.props.username}/>
         <div>
           <h1>Favorite Members</h1>
           {this.state.favoriteMembers.map((obj)=> <div>{obj.username}, {obj.profileImage}, {obj.city}, {obj.age}</div>)}

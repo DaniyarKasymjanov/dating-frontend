@@ -22,7 +22,7 @@ class Home extends React.Component{
   render(){
     return(
       <MainGrid>
-        <Spotlight/>
+        <Spotlight username={this.props.username}/>
         <h1> Recent Members </h1>
           {this.state.recentMembers.map((obj)=> <div>{obj.username}, {obj.profileImage}, {obj.city}, {obj.age}</div>)}
       </MainGrid>

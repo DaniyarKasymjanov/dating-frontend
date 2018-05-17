@@ -21,7 +21,7 @@ class Results extends React.Component{
   render(){
     return(
       <MainGrid>
-        <Spotlight/>
+        <Spotlight username={this.props.username}/>
         <div>
           <h1>Searched Results</h1>
           {this.state.searchedMembers.map((obj)=> <div>{obj.username}, {obj.profileImage}, {obj.city}, {obj.age}</div>)}

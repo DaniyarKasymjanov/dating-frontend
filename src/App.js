@@ -50,7 +50,7 @@ class App extends Component {
   // }
 
   renderHome = () => {
-    return(<Home/>)
+    return(<Home username={this.state.username}/>)
   }
 
   renderSearch = () => {
@@ -80,11 +80,11 @@ class App extends Component {
   }
 
   renderFavorites = () => {
-    return(<Favorites/>)
+    return(<Favorites username={this.state.username}/>)
   }
 
   renderSearchResults = () => {
-    return(<SearchResults/>)
+    return(<SearchResults username={this.state.username}/>)
   }
 
   render() {
