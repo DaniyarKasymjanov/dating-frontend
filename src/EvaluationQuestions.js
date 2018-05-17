@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { Route, Redirect, Link } from 'react-router-dom';
 import './App.css';
+import Register from './Register'
+import Onboarding from './Onboarding'
 
 class EvaluationQuestions extends React.Component {
   // constructor() {
@@ -20,7 +23,7 @@ class EvaluationQuestions extends React.Component {
     //this.setState({ q3Type: type })
   }
   q4Type = (type) => {
-    this.props.setEvaluation('q3Type', type)
+    this.props.setEvaluation('q4Type', type)
     //this.setState({ q4Type: type })
   }
   setAnswers = (event, idx, q) => {
@@ -32,17 +35,6 @@ class EvaluationQuestions extends React.Component {
   submitEvaluation = (event) => {
     event.preventDefault()
     this.props.submitOnboarding();
-    //console.log(this.state)
-      // fetch('/evaluation', {
-      //   method: "POST",
-      //   body: JSON.stringify({questions: [
-      //   {
-      //     title: this.state.q1Title,
-      //     a
-      //   }
-      // ]})
-      // })
-      //   .then(res => res.json())
   }
 
   renderQuestion1 = () => {

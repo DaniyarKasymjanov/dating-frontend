@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect, Link} from 'react-router-dom';
 import Register from './Register';
 import EvaluationQuestions from './EvaluationQuestions';
+
 
 class Onboarding extends React.Component {
     constructor() {
@@ -48,11 +49,51 @@ class Onboarding extends React.Component {
         }
 
         submitOnboarding = () => {
-            //fetch
-            console.log(this.state);
+            //event.preventDefault();
+            fetch('/register', {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: this.state.register.username,
+                    password: this.state.register.password,
+                    birthday: this.state.register.birthday,
+                    city: this.state.register.city,
+                    gender: this.state.register.gender,
+                    questions: [
+                        {
+                        title: this.state.evaluation.q1Title,
+                        answers: this.state.evaluation.q1Answers,
+                        type: this.state.evaluation.q1Type,
+                        answer: this.state.evaluation.q1Correct
+                    },
+                    {
+                        title: this.state.evaluation.q2Title,
+                        answers: this.state.evaluation.q2Answers,
+                        type: this.state.evaluation.q2Type,
+                        answer: this.state.evaluation.q2Correct
+                    },
+                    {
+                        title: this.state.evaluation.q3Title,
+                        answers: this.state.evaluation.q3Answers,
+                        type: this.state.evaluation.q3Type,
+                        answer: this.state.evaluation.q3Correct
+                    },
+                    {
+                        title: this.state.evaluation.q4Title,
+                        answers: this.state.evaluation.q4Answers,
+                        type: this.state.evaluation.q4Type,
+                        answer: this.state.evaluation.q4Correct
+                    }
+                ]
+                })  
+            })
+            .then(res => res.json())
+            .then(res => console.log(res))
+   
         }
+        
 
         renderRegister = (routeProps) => {
+            console.log(this.state.register)
             return (<Register register={this.state.register} history={routeProps.history} setRegister={this.setRegister} />)
         }
         renderEvaluation = (routeProps) => {

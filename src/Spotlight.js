@@ -11,7 +11,11 @@ class Spotlight extends Component{
   render(){
     return(
       <div>
-          <h1>spotlight</h1>
+          <h1>Spotlight</h1>
+          <Link to="/profile">Username</Link>
+          <div>
+            <Link to="/favorites"> Favorites</Link>
+          </div>
       </div>
     )
   }

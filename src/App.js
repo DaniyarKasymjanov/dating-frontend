@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Redirect, Link, withRouter } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from './NavBar.js'
 import Login from './Login.js'
 import Onboarding from './Onboarding';
+import EvaluationQuestions from './EvaluationQuestions'
 import Home from './Home.js'
 import Search from './Search.js'
 import Profile from './Profile.js'
@@ -66,16 +67,17 @@ class App extends Component {
     return (
       <div className="App">
       <Route exact path="/login" render={this.renderLogin}/>
+      <Route exact path="/searchresults" render={this.renderSearchResults}/>
+      <Route exact path="/search" render={this.renderSearch}/>
       <Grid>
-        {(this.props.location.pathname !== '/login' && this.props.location.pathname !== '/register') && (
-          <NavBar/>
-        )}
-        <Route exact path="/profile" render={this.renderUserProfile}/>
-        <Route exact path="/register" render={this.renderRegister}/>
-        <Route exact path="/evaluation" render={this.renderEvaluation}/>
-        <Route exact path="/favorites" render={this.renderFavorites}/>
-        <Route exact path="/" render={this.renderHome}/>
-        <Route exact path="/searchedResults" render={this.renderSearchResults}/>
+        {(this.props.location.pathname !== '/login' && this.props.location.pathname !== '/register') && (<NavBar/>)}
+          <div>
+            <Route exact path="/favorites" render={this.renderFavorites}/>
+            <Route exact path="/spotlight" render={this.renderSpotLight}/>
+            <Route exact path="/profile" render={this.renderUserProfile}/>
+            <Route exact path="/" render={this.renderHome}/>
+            <Onboarding />
+          </div>
       </Grid>
       </div>
     );

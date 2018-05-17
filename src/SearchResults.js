@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Spotlight from './Spotlight';
-import { MainGrid } from './Styled';
+import {MainGrid} from './Styled';
 
 class Results extends React.Component{
   constructor(props){

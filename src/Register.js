@@ -44,7 +44,7 @@ class Register extends React.Component {
       <div>
         <form onSubmit={this.stepTwo}>
           <input required type="text" placeholder="Create a Username" value={this.props.register.username} onChange={this.handleUsername}></input>
-          <input required type="text" placeholder="Create a Password" value={this.props.register.password} onChange={this.handlePassword}></input>
+          <input required type="password" placeholder="Create a Password" value={this.props.register.password} onChange={this.handlePassword}></input>
           <input required type="date" name="birthday" value={this.props.register.birthday} onChange={this.handleBirthday}></input>
           <input required type="text" placeholder="Choose Your City" value={this.props.register.city} onChange={this.handleCity}></input>
           <select required value={this.props.register.gender} onChange={this.handleGender}>
@@ -55,8 +55,6 @@ class Register extends React.Component {
           <button type="submit">Next Step</button>
         </form>
       </div>
-
-
     );
   }
 }
