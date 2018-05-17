@@ -12,7 +12,7 @@ class Spotlight extends Component{
       <div>
           <h1>Spotlight</h1>
           <h3>img</h3>
-          <Link to="/profile">{this.props.username}</Link>
+          <Link to={"/profile/" + this.props.username}>test{this.props.username}</Link>
           <div>
             <Link to="/favorites"> Favorites</Link>
           </div>

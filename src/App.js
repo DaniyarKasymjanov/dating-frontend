@@ -30,6 +30,24 @@ const Grid = styled.div`
 `;
 
 class App extends Component {
+  constructor() {
+    super() 
+    this.state = {
+      username : "adam"
+    }
+  }
+
+  // componentDidMount = () => {
+  //   fetch('/session', {
+  //     credentials: 'same-origin'
+  //   })
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       console.log(res);
+  //       this.setState({ username: res.username });
+  //     });
+
+  // }
 
   renderHome = () => {
     return(<Home/>)
@@ -47,8 +65,9 @@ class App extends Component {
   //   return(<NavBar/>)
   // }
 
-  renderUserProfile = () => {
-    return(<Profile/>)
+  renderUserProfile = (routerData) => {
+    let username = routerData.match.params.username
+    return(<Profile username={username}/>)
   }
   renderRegister = () => {
     return(<Register/>)
@@ -57,7 +76,7 @@ class App extends Component {
     return(<EvaluationQuestions/>)
   }
   renderSpotLight = () => {
-    return(<Spotlight/>)
+    return(<Spotlight username={this.state.username}/>)
   }
 
   renderFavorites = () => {
@@ -76,11 +95,11 @@ class App extends Component {
       <Route exact path="/searchresults" render={this.renderSearchResults}/>
       <Route exact path="/search" render={this.renderSearch}/>
       <Grid>
-        {(this.props.location.pathname !== '/login' && this.props.location.pathname !== '/register') && (<NavBar/>)}
+        {(this.props.location.pathname !== '/login' && this.props.location.pathname !== '/register') && (<NavBar username={this.state.username}/>)}
           <div>
             <Route exact path="/favorites" render={this.renderFavorites}/>
             <Route exact path="/spotlight" render={this.renderSpotLight}/>
-            <Route exact path="/profile" render={this.renderUserProfile}/>
+            <Route exact path="/profile/:username" render={this.renderUserProfile}/>
             <Route exact path="/" render={this.renderHome}/>
             <Onboarding />
           </div>

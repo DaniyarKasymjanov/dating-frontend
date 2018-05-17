@@ -107,6 +107,8 @@ class Register extends React.Component {
           <button type="submit">Next Step</button>
         </form>
       </div>
+
+
     );
   }
 }
