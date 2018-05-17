@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import { MainGrid } from './Styled';
+import Spotlight from './Spotlight';
 
 class Favorites extends React.Component{
   constructor(props){
@@ -19,12 +21,13 @@ class Favorites extends React.Component{
   }
   render(){
     return(
-      <div>
+      <MainGrid>
+        <Spotlight/>
         <div>
           <h1>Favorite Members</h1>
           {this.state.favoriteMembers.map((obj)=> <div>{obj.username}, {obj.profileImage}, {obj.city}, {obj.age}</div>)}
         </div>
-      </div>
+      </MainGrid>
     )
   }
 }
