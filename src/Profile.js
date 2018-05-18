@@ -57,29 +57,41 @@ return age
   }
   likeSwitch = () => {
     this.setState({isLiked: !this.state.isLiked})
-    fetch('/getProfile?username=' + this.props.username), {
+    fetch('/isLiked?username=' + this.state.username), {
+      credentials: 'same-origin',
       method: "POST",
       body: JSON.stringify({isLiked: this.state.isLiked})//still need to send my username and the clicked username
     }
   }
 
+  handleProfileImage = (x) => {
+    var filename = x.name;
+    var fileExtension = filename.split('.').pop();
+    fetch('/uploadProfileImage?extension=' + fileExtension, { method: "POST", body: x })
+        .then(res => res.json())
+        .then((res) => this.setState({ profileImg: res.profileImg }))
+}
+
   render(){
     return(
       <div>
         <ProfileImages extraImages={this.state.extraImages}/>
+        <form onSubmit={this.updateProfile}>
         <div>{this.state.backgrounImage ? <img src={'/' + this.state.backgrounImage} /> : null}</div>
+        <div>{this.state.profileImg}</div>
         <div>{this.state.profileImg ? <img src={'/' + this.state.profileImg} /> : null}</div>
-        <div>{this.state.username}</div>
+        <input type="file" onChange={e => this.handleProfileImage(e.target.files[0])} />
+        <div></div>
         <input type="checkbox" name="Like" title="Select All" onclick={this.likeSwitch}></input>
-        <div>{this.state.city}</div>
+        <div><input value={this.state.city} onChange={this.editCity}/></div>
         <div>{this.state.gender}</div>
-        <div>{this.calculateAge}</div>
-        <div>{this.state.education}</div>
+        <div>{this.calculateAge()}</div>
+        <div><input value={this.state.education} onChange={this.editEducation}/></div>
         <div>{this.renderLanguages()}</div>
-        <div>{this.state.aboutMe}</div>
-        <div>{this.state.lookingFor}</div>
+        <div><input value={this.state.aboutMe} onChange={this.editAboutMe}/></div>
+        <div><input value={this.state.lookingFor} onChange={this.editLookingFor}/></div>
         <div>{this.renderImages()}</div>
-
+        </form>
 
 
 

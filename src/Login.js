@@ -18,7 +18,7 @@ class Login extends React.Component{
     event.preventDefault()
     // fetch('/login', {
     //   method: POST,
-    //   body: JSON.stringify({username: username, password: password})
+    //   body: JSON.stringify({username: this.state.username, password: this.state.password})
     // })
 
   }
