@@ -3,8 +3,8 @@ import { MainGrid, MainContentGrid } from './Styled';
 import Spotlight from './Spotlight';
 
 class Favorites extends React.Component{
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     this.state = {
       favoriteMembers: []
     }

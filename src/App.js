@@ -12,6 +12,8 @@ import Favorites from './Favorites.js'
 import Spotlight from './Spotlight.js';
 import SearchResults from './SearchResults.js'
 import LandingPage from './LandingPage.js'
+import Messages from './Messages.js'
+import ChatHistory from './ChatHistory.js'
 import {Grid} from './Styled.js'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -30,6 +32,7 @@ class App extends Component {
     super() 
     this.state = {
       username : "adam",
+      password: "",
       searchResults: []
     }
   }
@@ -54,6 +57,9 @@ class App extends Component {
     // .then(res => res.json())
     // .then(resJON => this.setState({ searchResults: resJON }))
   }
+  setUsername = (username, password) => {
+    this.setState({username:username, password: password})
+  }
 
   renderHome = () => {
     return(<Home username={this.state.username}/>)
@@ -65,7 +71,7 @@ class App extends Component {
 
   renderUserProfile = (routerData) => {
     let username = routerData.match.params.username
-    return(<Profile username={username} own={username === this.state.username}/>)
+    return(<Profile username={username} ownProfile={username === this.state.username}/>)
   }
   renderEvaluation = () => {
     return(<EvaluationQuestions/>)
@@ -81,10 +87,10 @@ class App extends Component {
   renderSearchResults = () => {
     return(<SearchResults searchResults={this.state.searchResults} username={this.state.username}/>)
   }
-  
-  // renderLandingPage = () => {
-  //   return(<LandingPage/>)
-  // }
+
+  renderMessages = () => {
+    return(<Messages/>)
+  }
 
   render() {
     console.log(this.props)
@@ -101,6 +107,7 @@ class App extends Component {
             <Route exact path="/profile/:username" render={this.renderUserProfile}/>
             <Route exact path="/main" render={this.renderHome}/>
             <Route exact path="/searchresults" render={this.renderSearchResults}/>
+            <Route exact path="/messages" render={this.renderMessages}/>
           </div>
       </Grid>
       </div>

@@ -10,7 +10,7 @@ class Home extends React.Component{
     }
   }
   handleRecent = () => {
-    // fetch('/home')
+    // fetch('/main')
     // .then( res => res.json())
     // .then(resJSON => {
     //   this.setState({recentMembers:  resJSON})

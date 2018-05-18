@@ -1,11 +1,14 @@
 import React,{Component}  from 'react'
+import {Redirect} from 'react-router-dom'
+import {login} from './Requests.js'
 
 class Login extends React.Component{
   constructor(){
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      redirect: false
     }
   }
   handleUserName = event => {
@@ -16,26 +19,30 @@ class Login extends React.Component{
   }
   handleSubmit = event => {
     event.preventDefault()
-    // fetch('/login', {
-    //   method: POST,
-    //   body: JSON.stringify({username: username, password: password})
-    // })
-
+    login(this.state.username, this.state.password).then(res=>{
+      if(res.success){
+        this.props.setUsername(this.state.username);
+        this.setState({username: "", password: "", redirect: true})
+      }
+    })
   }
   render(){
-    return(
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUserName}></input>
+    if(this.state.redirect === true)  
+      return <Redirect to="/"/>
+    if(this.state.redirect === false)
+      return(
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUserName}></input>
+            </div>
+          <div>
+            <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}></input>
           </div>
-        <div>
-          <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePassword}></input>
-        </div>
-        <div>
-          <input type="submit"/>
-        </div>
-      </form>
-    )
+          <div>
+            <input type="submit"/>
+          </div>
+        </form>
+      )
   }
 }
 
