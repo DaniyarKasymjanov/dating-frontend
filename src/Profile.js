@@ -1,146 +1,91 @@
 import React from 'react'
+import ProfileImages from './ProfileImages.js'
 
 class Profile extends React.Component{
   constructor() {
     super();
-    this.state = {
-
+    this.state = {            
+      username: 'a',
+      password: 'a',
+      birthday: '1908-12-12',
+      city: 'a',
+      gender: 'a',
+      interstedIn: "a",
+      smoking: "a",
+      drinking: "a",
+      education: "a",
+      languages: ["s"],
+      questions: [],
+      aboutMe: "a",
+      lookingFor: "a",
+      profileImg: "a",
+      backgrounImage: "a",
+      extraImages: [""],
+      isLiked: false
     }
   }
 
   componentDidMount() {
     fetch('/getProfile?username=' + this.props.username)
-    .then(res => res.json())
-    .then(res => this.setState(res))
+    // .then(res => res.json())
+    // .then(res => this.setState(res))
+  }
+
+  calculateAge = () => {
+    var str= this.state.birthday;
+    var dob = str.replace(/-/g, "")
+      var year = Number(dob.substr(0, 4));
+      var month = Number(dob.substr(4, 2)) - 1;
+      var day = Number(dob.substr(6, 2));
+      var today = new Date();
+      var age = today.getFullYear() - year;
+      if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
+        age--;
+}
+return age
+  }
+
+  renderLanguages = () => {
+    if(this.state.languages.length >= 1){
+        return (this.state.languages.map(x => <li>{x}</li>))
+    }
+  }
+  renderImages = () => {
+    if(this.state.extraImages.length >= 1){
+        return (this.state.extraImages.map(x => <li><img src={'/'+ x}></img></li>))
+    }
+  }
+  likeSwitch = () => {
+    this.setState({isLiked: !this.state.isLiked})
+    fetch('/getProfile?username=' + this.props.username), {
+      method: "POST",
+      body: JSON.stringify({isLiked: this.state.isLiked})//still need to send my username and the clicked username
+    }
   }
 
   render(){
     return(
       <div>
-        <div>background img</div>
-        <div>
-          <div>
-            {/* {this.props.info.name} */}
-          </div>
-          <div>
-            cluster of images
-          </div>
-          <div>
-            About me
-          </div>
+        <ProfileImages extraImages={this.state.extraImages}/>
+        <div>{this.state.backgrounImage ? <img src={'/' + this.state.backgrounImage} /> : null}</div>
+        <div>{this.state.profileImg ? <img src={'/' + this.state.profileImg} /> : null}</div>
+        <div>{this.state.username}</div>
+        <input type="checkbox" name="Like" title="Select All" onclick={this.likeSwitch}></input>
+        <div>{this.state.city}</div>
+        <div>{this.state.gender}</div>
+        <div>{this.calculateAge}</div>
+        <div>{this.state.education}</div>
+        <div>{this.renderLanguages()}</div>
+        <div>{this.state.aboutMe}</div>
+        <div>{this.state.lookingFor}</div>
+        <div>{this.renderImages()}</div>
+
+
+
+
         </div>
-      </div>
     )
   }
 }
 
 export default Profile 
-
-// import React, { Component } from 'react';
-// import { Route, Redirect, Link} from 'react-router-dom';
-// import Register from './Register';
-// import EvaluationQuestions from './EvaluationQuestions';
-
-
-// class Profile extends React.Component {
-//     constructor() {
-//         super()
-//         this.state = {
-//             info {
-//                 username: '',
-//                 password: '',
-//                 birthday: '',
-//                 city: '',
-//                 gender: ''
-//                smoking: '',
-//             },
-//             questions: {
-//                 q1Type: "",
-//                 q1Title: "",
-//                 q1Answers: [],
-//                 q1Correct: "",
-//                 q2Type: "",
-//                 q2Title: "",
-//                 q2Answers: [],
-//                 q2Correct: "",
-//                 q3Type: "",
-//                 q3Title: "",
-//                 q3Answers: [],
-//                 q3Correct: "",
-//                 q4Type: "",
-//                 q4Title: "",
-//                 q4Answers: [],
-//                 q4Correct: "",
-//             }
-//         }
-//     }
-
-//         setRegister = (key, val) => {
-//             const registerCopy = { ...this.state.register };
-//             registerCopy[key] = val;
-//             this.setState({ register: registerCopy });
-//         }
-
-//         setEvaluation = (key, val) => {
-//             const evaluationCopy = { ...this.state.evaluation };
-//             evaluationCopy[key] = val;
-//             this.setState({ evaluation: evaluationCopy });
-//         }
-
-//         submitOnboarding = () => {
-//             //event.preventDefault();
-//             fetch('/register', {
-//                 method: 'POST',
-//                 body: JSON.stringify({
-//                     username: this.state.register.username,
-//                     password: this.state.register.password,
-//                     birthday: this.state.register.birthday,
-//                     city: this.state.register.city,
-//                     gender: this.state.register.gender,
-//                     questions: [
-//                         {
-//                         title: this.state.evaluation.q1Title,
-//                         answers: this.state.evaluation.q1Answers,
-//                         type: this.state.evaluation.q1Type,
-//                         answer: this.state.evaluation.q1Correct
-//                     },
-//                     {
-//                         title: this.state.evaluation.q2Title,
-//                         answers: this.state.evaluation.q2Answers,
-//                         type: this.state.evaluation.q2Type,
-//                         answer: this.state.evaluation.q2Correct
-//                     },
-//                     {
-//                         title: this.state.evaluation.q3Title,
-//                         answers: this.state.evaluation.q3Answers,
-//                         type: this.state.evaluation.q3Type,
-//                         answer: this.state.evaluation.q3Correct
-//                     },
-//                     {
-//                         title: this.state.evaluation.q4Title,
-//                         answers: this.state.evaluation.q4Answers,
-//                         type: this.state.evaluation.q4Type,
-//                         answer: this.state.evaluation.q4Correct
-//                     }
-//                 ]
-//                 })  
-//             })
-//             .then(res => res.json())
-//             .then(res => console.log(res))
-   
-//         }
-        
-
-
-
-//         render() {
-//             return (
-//                 <div>
-//                     <ProfileInfo info={this.state.info}/>
-//                     {this.state.isEditable ? <EvaluationQuestion/> : null}
-//                 </div>
-//             );
-//         }
-//     }
-
-//     export default Profile;

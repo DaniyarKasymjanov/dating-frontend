@@ -11,24 +11,26 @@ class Register extends React.Component {
       password: "",
       password2: "",
       verifyUsername: "",
-      passwordMatch: ""
+      passwordMatch: "",
+      birthday: '',
+      city: '',
+      gender: ''
     }
   }
 
   handleUsername = event => {
     event.preventDefault()
     this.setState({username: event.target.value})
-    this.props.setRegister('username', event.target.value)
   }
   verifyUsername = () => {
     console.log("verifyUsername")
-    fetch('/verifyusername', {
+    fetch('/verifyUsername', {
       method: 'POST',
       body: JSON.stringify({username: this.state.username})
     })
     .then(res => res.json())
     .then(res => {
-      if (res === {success:true}) {
+      if (res.success) {
         this.setState({verifyUsername: true})
       }
       else {
@@ -48,7 +50,6 @@ class Register extends React.Component {
     handlePassword = event => {
     event.preventDefault()
     this.setState({password: event.target.value})
-    this.props.setRegister('password', event.target.value)
   }
   handlePassword2 = event => {
     event.preventDefault()
@@ -57,6 +58,8 @@ class Register extends React.Component {
   passwordMatch = () => {
     if(this.state.password2 !== this.state.password) {
       this.setState({passwordMatch:false})
+    } else {
+      this.setState({passwordMatch:true})
     }
   }
   renderPasswordValidation = () => {
@@ -73,18 +76,19 @@ class Register extends React.Component {
 
   handleBirthday = event => {
     event.preventDefault()
-    this.props.setRegister('birthday', event.target.value)
+    this.setState({birthday: event.target.value});
   }
   handleCity = event => {
     event.preventDefault()
-    this.props.setRegister('city', event.target.value)
+    this.setState({city: event.target.value});
   }
   handleGender = event => {
     event.preventDefault()
     // this.setState({ gender: event.target.value })
-    this.props.setRegister('gender', event.target.value);
+    this.setState({gender: event.target.value});;
   }
   stepTwo = event => {
+    this.props.setRegister(this.state)
     this.props.history.push('/evaluation');
   }
 
@@ -92,14 +96,14 @@ class Register extends React.Component {
     return (
       <div>
         <form onSubmit={this.stepTwo}>
-          <input required type="text" placeholder="Create a Username" value={this.props.register.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
+          <input required type="text" placeholder="Create a Username" value={this.state.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
           {this.renderValidInvalidUsername()}
-          <input required type="password" placeholder="Create a Password" value={this.props.register.password} onChange={this.handlePassword}></input>
+          <input required type="password" placeholder="Create a Password" value={this.state.password} onChange={this.handlePassword}></input>
           <input required type="password" placeholder="Re-Enter Password" value={this.state.password2} onChange={this.handlePassword2} onBlur={this.passwordMatch}></input>
           {this.renderPasswordValidation()}
-          <input required type="date" name="birthday" value={this.props.register.birthday} onChange={this.handleBirthday}></input>
-          <input required type="text" placeholder="Choose Your City" value={this.props.register.city} onChange={this.handleCity}></input>
-          <select required value={this.props.register.gender} onChange={this.handleGender}>
+          <input required type="date" name="birthday" value={this.state.birthday} onChange={this.handleBirthday}></input>
+          <input required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
+          <select required value={this.state.gender} onChange={this.handleGender}>
             <option value="">--Select One--</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
