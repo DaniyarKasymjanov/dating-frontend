@@ -7,31 +7,25 @@ class Search extends React.Component {
       gender: '',
       minAge: '',
       maxAge: '',
-      languages: {
-        french: false,
-        english: false,
-        other: false,
-      },
       city: '',
       education: '',
       smoker: '',
       drinker: ''
     }
   }
+  // languages: Object.keys(this.state.languages).filter(key => this.state.languages[key]))
   handleSearch = event => {
-    // fetch('/search', {
-    //   method: POST,
-    //   body: JSON.stringify({
-    //     gender: gender,
-    //     minAge: minAge,
-    //     maxAge: maxAge,
-    //     languages: Object.keys(this.state.languages).filter(key => this.state.languages[key])),
-    //     city: city,
-    //     education: education,
-    //     smoker: smoker,
-    //     drinker: drinker
-    //   })
-    // })
+    this.props.handleSearch(
+      // {
+      //   gender: gender,
+      //   minAge: minAge,
+      //   maxAge: maxAge,
+      //   city: city,
+      //   education: education,
+      //   smoker: smoker,
+      //   drinker: drinker
+      // }
+    )
   }
   handleGender = event => {
     console.log(event.target.value);
@@ -44,18 +38,6 @@ class Search extends React.Component {
   handleMaxAge = event => {
     console.log(event.target.value);
     this.setState({maxAge: event.target.value})
-  }
-  handleLanguages = event => {
-    const languages = {...this.state.languages};
-    if(event.target.value === 'French'){
-      languages.french = !languages.french;
-    } else if(event.target.value === 'English'){
-      languages.english = !languages.english;
-    } else {
-      languages.other = !languages.other;
-    }
-    this.setState({ languages: languages })
-    console.log(this.state);
   }
   handleCity = event => {
     console.log(event.target.value);
@@ -89,12 +71,6 @@ class Search extends React.Component {
               <input type="number" name="age"  min="18" max="100" onChange={this.handleMinAge}/>
             to:
               <input type="number" name="age" min="18" max="100" onChange={this.handleMaxAge}/>
-          </div>
-          <div>
-            Languages:
-            <input type="checkbox" name="languages" value="French" onChange={this.handleLanguages}/> French
-            <input type="checkbox" name="languages" value="English" onChange={this.handleLanguages}/> English
-            <input type="checkbox" name="languages" value="Other" onChange={this.handleLanguages}/> Other
           </div>
           <div>
             City:

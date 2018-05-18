@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Link } from 'react-router-dom';
-import './App.css';
 import EvaluationQuestions from './EvaluationQuestions';
+import {Button} from 'reactstrap'
 
 class Register extends React.Component {
   constructor() {
@@ -92,19 +92,33 @@ class Register extends React.Component {
     return (
       <div>
         <form onSubmit={this.stepTwo}>
+        <div>
           <input required type="text" placeholder="Create a Username" value={this.props.register.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
           {this.renderValidInvalidUsername()}
+        </div>
+        <div>
           <input required type="password" placeholder="Create a Password" value={this.props.register.password} onChange={this.handlePassword}></input>
+        </div>
+        <div>  
           <input required type="password" placeholder="Re-Enter Password" value={this.state.password2} onChange={this.handlePassword2} onBlur={this.passwordMatch}></input>
           {this.renderPasswordValidation()}
+        </div>
+        <div>
           <input required type="date" name="birthday" value={this.props.register.birthday} onChange={this.handleBirthday}></input>
+        </div>
+        <div>
           <input required type="text" placeholder="Choose Your City" value={this.props.register.city} onChange={this.handleCity}></input>
+        </div>
+        <div>
           <select required value={this.props.register.gender} onChange={this.handleGender}>
             <option value="">--Select One--</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
-          <button type="submit">Next Step</button>
+        </div>
+        <div>
+          <Button size="sm" outline color="primary" type="submit">Next Step</Button>
+        </div>
         </form>
       </div>
 

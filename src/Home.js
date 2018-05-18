@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { MainGrid } from './Styled';
+import { MainGrid, MainContentGrid } from './Styled';
 import Spotlight from './Spotlight';
 
 class Home extends React.Component{
@@ -23,8 +23,10 @@ class Home extends React.Component{
     return(
       <MainGrid>
         <Spotlight username={this.props.username}/>
+        <MainContentGrid>
         <h1> Recent Members </h1>
           {this.state.recentMembers.map((obj)=> <div>{obj.username}, {obj.profileImage}, {obj.city}, {obj.age}</div>)}
+        </MainContentGrid>
       </MainGrid>
     )
   }

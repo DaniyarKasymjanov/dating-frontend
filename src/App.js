@@ -12,6 +12,7 @@ import Favorites from './Favorites.js'
 import Spotlight from './Spotlight.js';
 import SearchResults from './SearchResults.js'
 import LandingPage from './LandingPage.js'
+import {Grid} from './Styled.js'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import fontawesome from '@fortawesome/fontawesome'
@@ -24,16 +25,12 @@ fontawesome.library.add(faCircle)
 fontawesome.library.add(faFacebook)
 
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-rows: auto 1fr;
-`;
-
 class App extends Component {
   constructor() {
     super() 
     this.state = {
-      username : "adam"
+      username : "adam",
+      searchResults: []
     }
   }
 
@@ -49,12 +46,17 @@ class App extends Component {
 
   // }
 
-  renderHome = () => {
-    return(<Home username={this.state.username}/>)
+  handleSearch = (searchObj) => {
+    // fetch('/search', {
+    //   method: POST,
+    //   body: JSON.stringify(searchObj)
+    // })
+    // .then(res => res.json())
+    // .then(resJON => this.setState({ searchResults: resJON }))
   }
 
-  renderSearch = () => {
-    return(<Search/>)
+  renderHome = () => {
+    return(<Home username={this.state.username}/>)
   }
 
   renderLogin = () => {
@@ -77,7 +79,7 @@ class App extends Component {
   }
 
   renderSearchResults = () => {
-    return(<SearchResults username={this.state.username}/>)
+    return(<SearchResults searchResults={this.state.searchResults} username={this.state.username}/>)
   }
   
   // renderLandingPage = () => {
@@ -89,7 +91,7 @@ class App extends Component {
     return (
       <div className="App">
       <Route exact path="/search" render={this.renderSearch}/>
-      {this.props.location.pathname !== '/' && (<NavBar username={this.state.username}/>)}
+      {this.props.location.pathname !== '/' && (<NavBar username={this.state.username} handleSearch={this.handleSearch} />)}
       <Grid>
           <Onboarding/>
           <div>

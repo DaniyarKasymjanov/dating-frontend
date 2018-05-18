@@ -10,7 +10,7 @@ class Spotlight extends Component{
     return(
       <SpotlightGrid>
           <h1>Spotlight</h1>
-          <h3>img</h3>
+          <div>User's quick info: City, Age, Gender</div>
           <Link to={"/profile/" + this.props.username}>{this.props.username}</Link>
           <div>
             <Link to="/favorites"> Favorites</Link>
