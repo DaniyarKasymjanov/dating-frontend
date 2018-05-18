@@ -65,7 +65,7 @@ class App extends Component {
 
   renderUserProfile = (routerData) => {
     let username = routerData.match.params.username
-    return(<Profile username={username}/>)
+    return(<Profile username={username} own={username === this.state.username}/>)
   }
   renderEvaluation = () => {
     return(<EvaluationQuestions/>)

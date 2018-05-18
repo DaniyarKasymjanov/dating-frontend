@@ -9,13 +9,7 @@ class Onboarding extends React.Component {
     constructor() {
         super()
         this.state = {
-            register: {
-                username: '',
-                password: '',
-                birthday: '',
-                city: '',
-                gender: ''
-            },
+            register: {},
             evaluation: {
                 q1Type: "",
                 q1Title: "",
@@ -37,10 +31,8 @@ class Onboarding extends React.Component {
         }
     }
 
-        setRegister = (key, val) => {
-            const registerCopy = { ...this.state.register };
-            registerCopy[key] = val;
-            this.setState({ register: registerCopy });
+        setRegister = (registerObj) => {
+            this.setState({ register: registerObj });
         }
 
         setEvaluation = (key, val) => {
@@ -97,7 +89,7 @@ class Onboarding extends React.Component {
             console.log(this.state.register)
             return (
                 <LandingPage>
-                    <Register register={this.state.register} history={routeProps.history} setRegister={this.setRegister} />
+                    <Register history={routeProps.history} setRegister={this.setRegister} />
                 </LandingPage>
             )
         }
