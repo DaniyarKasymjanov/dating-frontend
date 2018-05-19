@@ -56,11 +56,13 @@ class LandingPage extends React.Component {
             </Navbar>
             <LandingReg>
               <div>
-                <h1 style={{color:"white"}}>Welcome to the next biggest dating site. 
-                Lorem ipsum dolor sit amet, mauris mattis nec non, scelerisque nullam placerat ante tincidunt, 
-                curabitur vitae neque lacus velit et congue, tempor ipsum. Dictum scelerisque laoreet euismod velit et illum. 
-                Molestie morbi ipsum nullam nam curabitur. 
-                </h1>
+                <div style={{color:"white", textAlign:"left"}}>
+                  <h1>Welcome to the next biggest dating site.</h1>
+                  <div> 
+                    Lorem ipsum dolor sit amet, mauris mattis nec non, scelerisque nullam placerat ante tincidunt, 
+                    curabitur vitae neque lacus velit et congue, tempor ipsum. Dictum scelerisque laoreet euismod velit et illum. 
+                  </div>
+                </div>
               </div>
               {this.props.children}
             </LandingReg>

@@ -39,6 +39,16 @@
 .LandingBackground{
   background-image: url(http://farm1.static.flickr.com/157/413149404_f5ebc842a6.jpg);
   position: relative;
+  background-repeat: repeat-x;
+  animation: animate 11s linear infinite;
+}
+@keyframes animate{
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
 }
 
 .profileImg{

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from 'react-router-dom'
 import {FooterCSS} from './Styled'
 
 class Footer extends Component {
@@ -6,7 +7,7 @@ class Footer extends Component {
     return (
       <FooterCSS>
         <h1>Some Tags</h1>
-        About FAQ Contact
+        <Link to="/termofservices">Term of Services </Link> FAQ Contact
       </FooterCSS>
     );
   }

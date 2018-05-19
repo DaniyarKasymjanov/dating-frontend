@@ -27,7 +27,7 @@ const ProfileDisplayGrid = styled.div`
 const LandingGrid = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
-  /* background-color: rgba(248, 31, 103, 0.691); */
+  background-color: rgba(248, 31, 103, 0.691);
   min-height: 85vh;
 `;
 

@@ -123,7 +123,7 @@ class Register extends React.Component {
           </select>
         </div>
         <div>
-            <Button size="sm" outline color="primary" type="submit">Next Step</Button>
+            <Button size="sm" outline color="light" type="submit">Next Step</Button>
         </div>
         </form>
       </div>

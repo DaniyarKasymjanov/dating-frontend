@@ -14,6 +14,7 @@ import SearchResults from './SearchResults.js'
 import LandingPage from './LandingPage.js'
 import Messages from './Messages.js'
 import ChatHistory from './ChatHistory.js'
+import ToS from './ToS.js'
 import {Grid} from './Styled.js'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -103,6 +104,9 @@ class App extends Component {
   renderMessages = () => {
     return(<Messages/>)
   }
+  renderToS = () => {
+    return(<ToS/>)
+  }
 
   render() {
     console.log(this.props)
@@ -118,6 +122,7 @@ class App extends Component {
             <Route exact path="/spotlight" render={this.renderSpotLight}/>
             <Route exact path="/profile/:username" render={this.renderUserProfile}/>
             <Route exact path="/main" render={this.renderHome}/>
+            <Route exact path="/termofservices" render={this.renderToS}/>
             <Route exact path="/searchresults" render={this.renderSearchResults}/>
             <Route exact path="/messages" render={this.renderMessages}/>
           </div>
