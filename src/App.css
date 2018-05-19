@@ -2,7 +2,11 @@
   text-align: center;
 }
 
-.App-logo {
+.capitalize::first-letter {
+  text-transform: capitalize;
+}
+
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
@@ -25,4 +29,18 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+} */
+
+/* div{
+  border: 1px solid black;
+  margin: 5px;
+} */
+
+.LandingBackground{
+  background-image: url(http://farm1.static.flickr.com/157/413149404_f5ebc842a6.jpg);
+  position: relative;
+}
+
+.profileImg{
+  width: 100%
 }
