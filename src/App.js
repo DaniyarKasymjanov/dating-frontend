@@ -39,16 +39,16 @@ class App extends Component {
     }
   }
 
-  // componentDidMount = () => {
-  //   fetch('/session', {
-  //     credentials: 'same-origin'
-  //   })
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       console.log(res);
-  //       this.setState({ username: res.username });
-  //     });
-  // }
+  componentDidMount = () => {
+    fetch('/session', {
+      credentials: 'same-origin'
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        if(res.success) this.setState({ username: res.user.username });
+      });
+  }
 
   handleSearch = (searchObj) => {
     fetch('/search', {
