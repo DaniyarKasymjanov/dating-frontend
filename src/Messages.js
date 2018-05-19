@@ -8,8 +8,8 @@ class Messages extends Component{
       <ChatGrid>
         <ChatHistory/>
         <MainContentGrid>
-          <h1>Title</h1>
-          <h1>Messages</h1>
+          <h1>Messages Box</h1>
+          <h1>Input box</h1>
         </MainContentGrid>
       </ChatGrid>
     )

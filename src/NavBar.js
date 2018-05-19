@@ -67,7 +67,7 @@ class NavBar extends React.Component{
               </NavItem>
               <NavItem>
                 <Button size="sm" outline color="light" className="navBtn">
-                  <Link to="/">Messages</Link>
+                  <Link to="/messages">Messages</Link>
                 </Button>
               </NavItem>
               <NavItem>

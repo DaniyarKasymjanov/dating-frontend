@@ -4,7 +4,6 @@ class Edit extends Component{
   constructor(){
     super();
     this.state = {
-
     }
   }
   render(){

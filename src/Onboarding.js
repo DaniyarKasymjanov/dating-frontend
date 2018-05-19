@@ -88,7 +88,7 @@ class Onboarding extends React.Component {
         renderRegister = (routeProps) => {
             console.log(this.state.register)
             return (
-                <LandingPage>
+                <LandingPage handleLogin={this.props.handleLogin}>
                     <Register history={routeProps.history} setRegister={this.setRegister} />
                 </LandingPage>
             )

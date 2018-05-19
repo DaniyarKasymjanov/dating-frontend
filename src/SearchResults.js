@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Spotlight from './Spotlight';
 import {MainGrid, MainContentGrid} from './Styled';
+import Footer from './Footer'
 
 class Results extends React.Component{
   constructor(props){
@@ -11,22 +12,25 @@ class Results extends React.Component{
   }
   
   handleSeachedResults = () => {
-    // fetch('/search')
-    // .then(res => res.json())
-    // .then(resJSON => {
-    //   this.setState({searchedMembers: resJSON })
-    // })
+    fetch('/search')
+    .then(res => res.json())
+    .then(resJSON => {
+      this.setState({searchedMembers: resJSON })
+    })
   }
   
   render(){
     return(
+      <div>
       <MainGrid>
         <Spotlight username={this.props.username}/>
-        <diMainContentGrid>
+        <MainContentGrid>
           <h1>Searched Results</h1>
           {this.state.searchedMembers.map((obj)=> <div>{obj.username}, {obj.profileImage}, {obj.city}, {obj.age}</div>)}
-        </diMainContentGrid>
+        </MainContentGrid>
       </MainGrid>
+      <Footer/>
+      </div>
     )
   }
 }

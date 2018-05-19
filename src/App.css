@@ -35,3 +35,12 @@
   border: 1px solid black;
   margin: 5px;
 } */
+
+.LandingBackground{
+  background-image: url(http://farm1.static.flickr.com/157/413149404_f5ebc842a6.jpg);
+  position: relative;
+}
+
+.profileImg{
+  width: 100%
+}
