@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import Onboarding from "./Onboarding.js";
 import { Link } from "react-router-dom";
 import Login from './Login'
+import Footer from './Footer'
 import EvaluationQuestions from "./EvaluationQuestions.js";
 import { LandingGrid, LandingReg, ModalHeaderFix } from "./Styled";
 
@@ -36,30 +37,37 @@ class LandingPage extends React.Component {
 
   render() {
     return (
-      <LandingGrid>
-        <Navbar light expand="md">
-          <NavbarBrand>Dating</NavbarBrand>
-          <Nav className="ml-auto" navbar>
-          <NavItem>
-            <Button size="sm" outline color="primary" onClick={this.toggle} className="navBtn">Login</Button>
-              <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-              <ModalHeaderFix toggle={this.toggle}>Register</ModalHeaderFix>
-              <ModalBody>
-                <Login/>
-              </ModalBody>
-              </Modal>
-              </NavItem>
-          </Nav>
-        </Navbar>
-        <LandingReg>
-          <h1>Welcome to the next biggest dating site.</h1>
-          {this.props.children}
-        </LandingReg>
-        <div>
-          <h1>Some Tags</h1>
-          About FAQ Contact
+      <div>
+        <div className="LandingBackground">
+          <LandingGrid >
+            <Navbar light expand="md">
+              <h3 style={{color:"white"}}>Dating</h3>
+              <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <Button size="sm" outline color="light" onClick={this.toggle} className="navBtn">Login</Button>
+                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                      <ModalHeaderFix toggle={this.toggle}>Login</ModalHeaderFix>
+                      <ModalBody>
+                        <Login handleLogin={this.props.handleLogin}/>
+                      </ModalBody>
+                    </Modal>
+                  </NavItem>
+              </Nav>
+            </Navbar>
+            <LandingReg>
+              <div>
+                <h1 style={{color:"white"}}>Welcome to the next biggest dating site. 
+                Lorem ipsum dolor sit amet, mauris mattis nec non, scelerisque nullam placerat ante tincidunt, 
+                curabitur vitae neque lacus velit et congue, tempor ipsum. Dictum scelerisque laoreet euismod velit et illum. 
+                Molestie morbi ipsum nullam nam curabitur. 
+                </h1>
+              </div>
+              {this.props.children}
+            </LandingReg>
+          </LandingGrid>
         </div>
-      </LandingGrid>
+          <Footer/>
+      </div>
     );
   }
 }

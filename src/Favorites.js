@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { MainGrid, MainContentGrid } from './Styled';
 import Spotlight from './Spotlight';
+import Footer from './Footer'
 
 class Favorites extends React.Component{
   constructor(){
@@ -21,6 +22,7 @@ class Favorites extends React.Component{
   }
   render(){
     return(
+      <div>
       <MainGrid>
         <Spotlight username={this.props.username}/>
         <MainContentGrid>
@@ -28,6 +30,8 @@ class Favorites extends React.Component{
           {this.state.favoriteMembers.map((obj)=> <div>{obj.username}, {obj.profileImage}, {obj.city}, {obj.age}</div>)}
         </MainContentGrid>
       </MainGrid>
+      <Footer/>
+      </div>
     )
   }
 }

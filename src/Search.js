@@ -13,7 +13,7 @@ class Search extends React.Component {
       drinker: ''
     }
   }
-  // languages: Object.keys(this.state.languages).filter(key => this.state.languages[key]))
+  
   handleSearch = event => {
     this.props.handleSearch(
       // {

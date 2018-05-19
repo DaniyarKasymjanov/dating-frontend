@@ -32,7 +32,7 @@ class App extends Component {
     super() 
     this.state = {
       username : "adam",
-      password: "",
+      password: "123",
       searchResults: []
     }
   }
@@ -46,17 +46,29 @@ class App extends Component {
   //       console.log(res);
   //       this.setState({ username: res.username });
   //     });
-
   // }
 
   handleSearch = (searchObj) => {
-    // fetch('/search', {
-    //   method: POST,
-    //   body: JSON.stringify(searchObj)
-    // })
-    // .then(res => res.json())
-    // .then(resJON => this.setState({ searchResults: resJON }))
+    fetch('/search', {
+      method: 'POST',
+      body: JSON.stringify(searchObj)
+    })
+    .then(res => res.json())
+    .then(resJON => this.setState({ searchResults: resJON }))
   }
+
+  handleLogin = obj => {
+    fetch('/login',{
+      method: 'POST',
+      credentials: 'same-origin',
+      body: JSON.stringify( obj )
+    })
+    .then(res => res.json())
+    .then(res => {
+      if(res.success) this.setState({ username: res.username });
+    })
+  }
+
   setUsername = (username, password) => {
     this.setState({username:username, password: password})
   }
@@ -65,9 +77,9 @@ class App extends Component {
     return(<Home username={this.state.username}/>)
   }
 
-  renderLogin = () => {
-    return(<Login/>)
-  }
+  // renderLogin = () => {
+  //   return(<Login/>)
+  // }
 
   renderUserProfile = (routerData) => {
     let username = routerData.match.params.username
@@ -99,7 +111,7 @@ class App extends Component {
       <Route exact path="/search" render={this.renderSearch}/>
       {this.props.location.pathname !== '/' && (<NavBar username={this.state.username} handleSearch={this.handleSearch} />)}
       <Grid>
-          <Onboarding/>
+          <Onboarding handleLogin={this.handleLogin}/>
           <div>
           <Route exact path="/login" render={this.renderLogin}/>
             <Route exact path="/favorites" render={this.renderFavorites}/>

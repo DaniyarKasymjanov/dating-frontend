@@ -1,6 +1,6 @@
 import React,{Component}  from 'react'
 import {Redirect} from 'react-router-dom'
-import {login} from './Requests.js'
+
 
 class Login extends React.Component{
   constructor(){
@@ -19,16 +19,15 @@ class Login extends React.Component{
   }
   handleSubmit = event => {
     event.preventDefault()
-    login(this.state.username, this.state.password).then(res=>{
-      if(res.success){
-        this.props.setUsername(this.state.username);
-        this.setState({username: "", password: "", redirect: true})
-      }
+    this.props.handleLogin({
+      username: this.state.username,
+      password: this.state.password
     })
+    this.setState({redirect: true})
   }
   render(){
     if(this.state.redirect === true)  
-      return <Redirect to="/"/>
+      return <Redirect to="/main"/>
     if(this.state.redirect === false)
       return(
         <form onSubmit={this.handleSubmit}>
