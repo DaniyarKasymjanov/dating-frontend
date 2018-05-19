@@ -4,6 +4,7 @@ class Search extends React.Component {
   constructor(){
     super();
     this.state = {
+      searchInput:'',
       gender: '',
       minAge: '',
       maxAge: '',
@@ -16,16 +17,24 @@ class Search extends React.Component {
   
   handleSearch = event => {
     this.props.handleSearch(
-      // {
-      //   gender: gender,
-      //   minAge: minAge,
-      //   maxAge: maxAge,
-      //   city: city,
-      //   education: education,
-      //   smoker: smoker,
-      //   drinker: drinker
-      // }
+      {
+        searchInput: this.state.searchInput,
+        age: {
+          from: this.state.minAge,
+          to: this.state.maxAge,
+        },
+        fields: {
+          gender: this.state.gender,
+          city: this.state.city,
+          education: this.state.education,
+          smoker: this.state.smoker,
+          drinker: this.state.drinker
+        }
+      }
     )
+  }
+  handleSearchInput = event => {
+    this.setState({searchInput: event.target.value})
   }
   handleGender = event => {
     console.log(event.target.value);
@@ -60,6 +69,9 @@ class Search extends React.Component {
     return (
       <div>
         <form>
+          <div>
+          Search: <input type="text" placeholder="Search here" onChange={this.handleSearchInput} value={this.state.searchInput}/>
+          </div>
           <div>
             Gender:
             <input type="radio" name="gender" value="male" onChange={this.handleGender}/>Male
