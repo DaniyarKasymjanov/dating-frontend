@@ -1,5 +1,6 @@
 import React from 'react'
 import ProfileImages from './ProfileImages.js'
+import AnswerQuestions from './AnswerQuestions'
 
 class Profile extends React.Component {
   constructor() {
@@ -19,7 +20,10 @@ class Profile extends React.Component {
         lookingFor: "",
         profileImg: "",
         backgroundImage: "",
-        extraImages: [],
+        extraImages: [
+          "https://www.gettyimages.ca/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg",
+          "https://www.gettyimages.ca/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg"
+        ],
       },
       profileData: {
         username: '',
@@ -75,8 +79,14 @@ class Profile extends React.Component {
     this.setNestedState('profileData', obj);
   }
 
+  deleteExtraImage = (idx) => {
+    const extraImagesCopy = [...this.state.info.extraImages];
+    extraImagesCopy.splice(idx, 1);
+    this.setInfo({ extraImages: extraImagesCopy });
+  }
+
   calculateAge = () => {
-    var str = this.state.birthday;
+    var str = this.state.info.birthday;
     var dob = str.replace(/-/g, "")
     var year = Number(dob.substr(0, 4));
     var month = Number(dob.substr(4, 2)) - 1;
@@ -86,8 +96,8 @@ class Profile extends React.Component {
     if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
       age--;
     }
-    return age
-    this.setState({ age: age })
+    return <div>Age: {age} </div>
+    this.setProfileData({ age: age })
   }
 
   renderLanguages = () => {
@@ -96,11 +106,7 @@ class Profile extends React.Component {
     }
     return null
   }
-  renderImages = () => {
-    if (this.state.info.extraImages.length >= 1) {
-      return (this.state.info.extraImages.map(x => <li><img src={'/' + x}></img></li>))
-    }
-  }
+
   likeSwitch = () => {
     // if(this.state.isLiked === "checked") {
     this.setState({ isLiked: !this.state.isLiked })
@@ -118,56 +124,42 @@ class Profile extends React.Component {
     this.setProfileData({ isEditable });
   }
 
-  uploadProfileImage = () => {
-    let imgFile = this.state.profileData.profileImgFile;
+  uploadImage = (img, endPoint) => {
+    let imgFile = this.state.info[img];
     var fileExtension = imgFile.name.split('.').pop();
-    fetch('/uploadProfileImg?extension=' + fileExtension, { method: "POST", body: imgFile })
+    fetch('/'+endPoint+'?extension=' + fileExtension, { method: "POST", body: imgFile })
       .then(res => res.json())
-      .then((res) => this.setInfo({ profileImg: res.profileImg }))
+      .then((res) => this.setInfo({ [img]: res[img] }))
   }
 
-  handleProfileImage = (e) => {
+  handleImageChange = (e, img) => {
     let file = e.target.files[0];
-    this.setProfileData({ profileImgFile: file });
+    this.setInfo({ [img]: file });
     let fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = (e) => {
-      this.setInfo({ profileImg: e.target.result })
+      this.setInfo({ [img]: e.target.result })
     }
   }
 
-  uploadBackgroundImage = () => {
-    let imgFile = this.state.profileData.backgroundImgFile;
-    var fileExtension = imgFile.name.split('.').pop();
-    fetch('/uploadBackgroundImg?extension=' + fileExtension, { method: "POST", body: imgFile })
-      .then(res => res.json())
-      .then((res) => this.setInfo({ backgroundImage: res.profileImg }))
-  }
-
-  handleBackgroundImage = (e) => {
+  handleExtraImageChange = (e) => {
     let file = e.target.files[0];
-    this.setProfileData({ backgroundImgFile: file });
-    var fileReader = new FileReader();
-    fileReader.readAsDataURL(file)
+    this.setInfo({ extraImages: this.state.info.extraImages.push(file) });
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
     fileReader.onload = (e) => {
-      this.setInfo({ backgroundImage: e.target.result })
-    }
+      this.setInfo({ extraImages: this.state.info.extraImages.push(e.target.result) })
   }
-
-  handleExtraImages = (x) => {
-    var filename = x.name;
-    var fileExtension = filename.split('.').pop();
-    fetch('/uploadExtraImages?extension=' + fileExtension, { method: "POST", body: x })
-      .then(res => res.json())
-      .then((res) => this.setState({ extraImages: this.state.extraImages.concat(res.backgroundImg) }))
-  }
+}
   submitEdits = () => {
     // fetch('/editProfile', {
     //   method: 'POST',
     //   body: JSON.stringify(this.state)
     // })
-    if (this.state.profileData.backgroundImgFile) this.uploadBackgroundImage();
-    if (this.state.profileData.profileImgFile) this.uploadProfileImage();
+    //should this be info?????????????????????????????????????
+    if (this.state.profileData.extraImageFile) this.uploadImage("extraImages", "uploadExtraImg");
+    if (this.state.profileData.backgroundImgFile) this.uploadImage("backgroundImage", "uploadBackgroundImg");
+    if (this.state.profileData.profileImgFile) this.uploadImage("profileImg", "uploadProfileImg");
     this.toggleEditable()
   }
 
@@ -207,16 +199,17 @@ class Profile extends React.Component {
   viewProfile = () => {
     return (
       <div>
-        <div>{this.state.profileData.username}</div>
         <div>BackgroundImage:
-      <img src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://www.gettyimages.ca/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg"} />
-          {this.state.profileData.isEditable && <input type="file" onChange={this.handleBackgroundImage} />}
+      <img src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
+          {this.state.profileData.isEditable && <input type="file" onChange={(e)=> this.handleImageChange(e, "backgroundImage")} />}
         </div>
         {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
         <div>ProfileImage:
-      <img src={this.state.info.profileImg ? this.state.info.profileImg : "https://www.gettyimages.ca/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg"} />
-          {this.state.profileData.isEditable && <input type="file" onChange={this.handleProfileImage} />}
+      <img src={this.state.info.profileImg ? this.state.info.profileImg : "http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"} />
+          {this.state.profileData.isEditable && <input type="file" onChange={(e)=> this.handleImageChange(e, "profileImg")} />}
         </div>
+        <div>{this.state.profileData.username}</div>
+        <AnswerQuestions/>
         {this.props.ownProfile ?
           <div>Like<input type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}></input></div> :
           (this.state.profileData.isEditable ? (
@@ -228,20 +221,19 @@ class Profile extends React.Component {
         }
         {this.renderInfo("city")}
         {this.renderGender()}
-        {this.renderInfo("birthday")}
+        {this.calculateAge()}
         {this.renderInfo("education")}
         <div>languages:{this.renderLanguages()}</div>
         {this.renderInfo("smoking")}
         {this.renderInfo("drinking")}
         {this.renderInfo("aboutMe", "About Me")}
         {this.renderInfo("lookingFor", "Looking For")}
-        <div>add images{this.renderImages()}</div>
+        <ProfileImages handleExrtraImageChange={this.handleExtraImageChange} deleteExtraImage={this.deleteExtraImage} isEditable={this.state.profileData.isEditable} extraImages={this.state.info.extraImages} />
       </div>)
   }
 
 
   render() {
-    console.log("fdasa", this.state)
     return (
       this.viewProfile()
     )
