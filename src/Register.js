@@ -30,6 +30,7 @@ class Register extends React.Component {
     })
     .then(res => res.json())
     .then(res => {
+      console.log(res)
       if (res.success) {
         this.setState({verifyUsername: true})
       }
@@ -93,6 +94,7 @@ class Register extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div>
         <form onSubmit={this.stepTwo}>

@@ -7,7 +7,7 @@ import Onboarding from './Onboarding';
 import EvaluationQuestions from './EvaluationQuestions'
 import Home from './Home.js'
 import Search from './Search.js'
-import Profile from './Profile.js'
+import Profile from './Profile'
 import Favorites from './Favorites.js'
 import Spotlight from './Spotlight.js';
 import SearchResults from './SearchResults.js'
