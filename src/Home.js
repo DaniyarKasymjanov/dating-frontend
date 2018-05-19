@@ -14,7 +14,7 @@ class Home extends React.Component{
     fetch('/main')
     .then( res => res.json())
     .then(resJSON => {
-      this.setState({recentMembers:  resJSON})
+      if(resJSON.success) this.setState({recentMembers:  resJSON.result})
     })
   }
   componentDidMount(){
@@ -28,7 +28,7 @@ class Home extends React.Component{
         <MainContentGrid>
           <h1> Recent Members </h1>
           <ProfileDisplayGrid>
-            {(new Array(8))
+            {(new Array(4))
             .fill({ imgSrc: 'https://pbs.twimg.com/profile_images/987161597821861888/tI0h5qPB_400x400.jpg'})
             .map(imgObj => 
             <ProfileImage>

@@ -98,19 +98,33 @@ class Register extends React.Component {
     return (
       <div>
         <form onSubmit={this.stepTwo}>
+        <div>
           <input required type="text" placeholder="Create a Username" value={this.state.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
           {this.renderValidInvalidUsername()}
+        </div>
+        <div>
           <input required type="password" placeholder="Create a Password" value={this.state.password} onChange={this.handlePassword}></input>
+        </div>
+        <div> 
           <input required type="password" placeholder="Re-Enter Password" value={this.state.password2} onChange={this.handlePassword2} onBlur={this.passwordMatch}></input>
           {this.renderPasswordValidation()}
+        </div>
+        <div>  
           <input required type="date" name="birthday" value={this.state.birthday} onChange={this.handleBirthday}></input>
+        </div>
+        <div>   
           <input required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
+        </div>
+        <div>  
           <select required value={this.state.gender} onChange={this.handleGender}>
             <option value="">--Select One--</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
+        </div>
+        <div>
             <Button size="sm" outline color="primary" type="submit">Next Step</Button>
+        </div>
         </form>
       </div>
 

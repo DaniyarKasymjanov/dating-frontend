@@ -11,16 +11,20 @@ class Favorites extends React.Component{
     }
   }
   handleFavorite = () => {
-    // fetch('/favorite?username=') + this.props.username
-    // .then( res => res.json())
-    // .then(resJSON => {
-    //   this.setState({favoriteMembers:  resJSON})
-    // })
+    fetch('/favorites', {
+      credentials: 'same-origin'
+    })
+    .then( res => res.json())
+    .then(resJSON => {
+      console.log(resJSON);
+      if(resJSON.success) this.setState({favoriteMembers: resJSON.result })
+    })
   }
   componentDidMount(){
     this.handleFavorite()
   }
   render(){
+    console.log(this.state.favoriteMembers)
     return(
       <div>
       <MainGrid>
