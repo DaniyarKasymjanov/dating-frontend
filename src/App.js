@@ -44,11 +44,7 @@ class App extends Component {
       .then(res => res.json())
       .then(res => {
         console.log(res);
-<<<<<<< HEAD
-        if(res.success) this.setState({ username: res.user.username, fetchedSession: true  });
-=======
         if(res.success) this.setState({ username: res.user.username, fetchedSession: true });
->>>>>>> c6749d27162ab6ceacbf63214dfa495d3fc04c5a
       });
   }
 
