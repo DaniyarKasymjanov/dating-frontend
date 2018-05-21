@@ -30,7 +30,8 @@ class Profile extends React.Component {
         password: '',
         age: "",
         isLiked: false,
-        isEditable: false
+        isEditable: false,
+        extraImages: []
       }
     }
   }
@@ -53,6 +54,7 @@ class Profile extends React.Component {
           drinking: infoData.drinking,
           languages: ["eng"],
           lookingFor: infoData.lookingFor,
+          questions: infoData.questions
 
         })
         this.setProfileData({
@@ -125,7 +127,7 @@ class Profile extends React.Component {
   }
 
   uploadImage = (img, endPoint) => {
-    let imgFile = this.state.info[img];
+    let imgFile = this.state.profileData[img];
     var fileExtension = imgFile.name.split('.').pop();
     fetch('/'+endPoint+'?extension=' + fileExtension, { method: "POST", body: imgFile })
       .then(res => res.json())
@@ -134,7 +136,7 @@ class Profile extends React.Component {
 
   handleImageChange = (e, img) => {
     let file = e.target.files[0];
-    this.setInfo({ [img]: file });
+    this.setProfileData({ [img]: file });
     let fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = (e) => {
@@ -144,11 +146,11 @@ class Profile extends React.Component {
 
   handleExtraImageChange = (e) => {
     let file = e.target.files[0];
-    this.setInfo({ extraImages: this.state.info.extraImages.push(file) });
+    this.setProfileData({ extraImages: this.state.profileData.extraImages.concat(file) });
     let fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = (e) => {
-      this.setInfo({ extraImages: this.state.info.extraImages.push(e.target.result) })
+      this.setInfo({ extraImages: this.state.info.extraImages.concat(e.target.result) })
   }
 }
   submitEdits = () => {
@@ -209,7 +211,7 @@ class Profile extends React.Component {
           {this.state.profileData.isEditable && <input type="file" onChange={(e)=> this.handleImageChange(e, "profileImg")} />}
         </div>
         <div>{this.state.profileData.username}</div>
-        <AnswerQuestions/>
+        <AnswerQuestions questions={this.state.info.questions} isEditable={this.isEditable}/>
         {this.props.ownProfile ?
           <div>Like<input type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}></input></div> :
           (this.state.profileData.isEditable ? (
@@ -228,12 +230,13 @@ class Profile extends React.Component {
         {this.renderInfo("drinking")}
         {this.renderInfo("aboutMe", "About Me")}
         {this.renderInfo("lookingFor", "Looking For")}
-        <ProfileImages handleExrtraImageChange={this.handleExtraImageChange} deleteExtraImage={this.deleteExtraImage} isEditable={this.state.profileData.isEditable} extraImages={this.state.info.extraImages} />
+        <ProfileImages handleExtraImageChange={this.handleExtraImageChange} deleteExtraImage={this.deleteExtraImage} isEditable={this.state.profileData.isEditable} extraImages={this.state.info.extraImages} />
       </div>)
   }
 
 
   render() {
+    console.log(this.state.info.questions)
     return (
       this.viewProfile()
     )
