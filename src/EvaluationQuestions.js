@@ -5,46 +5,73 @@ import Register from './Register'
 import Onboarding from './Onboarding'
 
 class EvaluationQuestions extends React.Component {
-  // constructor() {
-  //   super()
-  //   this.state = 
-  // }
+  constructor() {
+    super()
+    this.state = {
+      q1Type: "",
+      q1Title: "",
+      q1Answers: [],
+      q1Correct: "",
+      q2Type: "",
+      q2Title: "",
+      q2Answers: [],
+      q2Correct: "",
+      q3Type: "",
+      q3Title: "",
+      q3Answers: [],
+      q3Correct: "",
+      q4Type: "",
+      q4Title: "",
+      q4Answers: [],
+      q4Correct: "",
+    } 
+  }
+  componentDidMount() {
+    // fetch('/getProfile', {
+    //   credentials: 'same-origin'
+    // })
+    // .then(res => res.json())
+    // .then(res => {
+    //   console.log(res);
+    //   // this.props.setEvaluationState(res);
+    // })
+  }
   q1Type = (type) => {
-    this.props.setEvaluation('q1Type', type)
-    //this.setState({ q1Type: type })
+    // this.setState({q1Type:  type})
+    this.setState({ q1Type: type })
   }
 
   q2Type = (type) => {
-    this.props.setEvaluation('q2Type', type)
-    //this.setState({ q2Type: type })
+    // this.setState({q2Type:  type})
+    this.setState({ q2Type: type })
   }
   q3Type = (type) => {
-    this.props.setEvaluation('q3Type', type)
-    //this.setState({ q3Type: type })
+    // this.setState({q3Type:  type})
+    this.setState({ q3Type: type })
   }
   q4Type = (type) => {
-    this.props.setEvaluation('q4Type', type)
-    //this.setState({ q4Type: type })
+    // this.setState({q4Type:  type})
+    this.setState({ q4Type: type })
   }
   setAnswers = (event, idx, q) => {
-    let answers = [...this.props.evaluation[q]];
+    let answers = [...this.state[q]];
     answers[idx] = event.target.value;
-    this.props.setEvaluation([q], answers)
+    this.setState({ [q]: answers })
   }
 
   submitEvaluation = (event) => {
     event.preventDefault()
-    this.props.submitOnboarding();
+    this.props.submitEvaluation(this.state);
   }
 
   renderQuestion1 = () => {
-    if (this.props.evaluation.q1Type === "bool") {
+    if (this.state.q1Type === "bool") {
       return (
         <div>
           <div>Question 1 True or False</div>
-          <input required type="text" value={this.props.evaluation.q1Title} onChange={(event) => this.props.setEvaluation('q1Title', event.target.value )} />
+          <input required type="text" value={this.state.q1Title} onChange={(event) => this.setState({ q1Title: event.target.value })} />
           <div>Expected answer</div>
-          <select required value={this.props.evaluation.q1Correct} onChange={(event) => this.props.setEvaluation('q1Correct', event.target.value)}>
+          <select required value={this.state.q1Correct} onChange={(event) => this.setState({ q1Correct: event.target.value })}>
             <option value="">--Select One--</option>
             <option value="True">True</option>
             <option value="False">False</option>
@@ -52,22 +79,22 @@ class EvaluationQuestions extends React.Component {
         </div>
       )
     }
-    else if (this.props.evaluation.q1Type === "multiple") {
+    else if (this.state.q1Type === "multiple") {
       return (
         <div>
           <div>Question 1 Multiple Choice</div>
-          <input required type="text" value={this.props.evaluation.q1Title} onChange={(event) => this.props.setEvaluation('q1Title', event.target.value )} />
+          <input required type="text" value={this.state.q1Title} onChange={(event) => this.setState({q1Title:  event.target.value })} />
           <div>Possible Answers</div>
-          <input required name="q11" value={this.props.evaluation.q1Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q1Answers")}></input>
-          <input required name="q11" value={this.props.evaluation.q1Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q1Answers")}></input>
-          <input required name="q11" value={this.props.evaluation.q1Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q1Answers")}></input>
-          <input name="q11" value={this.props.evaluation.q1Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q1Answers")}></input>
+          <input required name="q11" value={this.state.q1Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q1Answers")}></input>
+          <input required name="q11" value={this.state.q1Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q1Answers")}></input>
+          <input required name="q11" value={this.state.q1Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q1Answers")}></input>
+          <input name="q11" value={this.state.q1Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q1Answers")}></input>
           <div>Expected answer</div>
 
-          <input required type="radio" value="0" name="q1" onChange={(event) => this.props.setEvaluation('q1Correct', event.target.value)}/>
-          <input required type="radio" value="1" name="q1" onChange={(event) => this.props.setEvaluation('q1Correct', event.target.value)}/>
-          <input required type="radio" value="2" name="q1" onChange={(event) => this.props.setEvaluation('q1Correct', event.target.value)}/>
-          <input required type="radio" value="3" name="q1" onChange={(event) => this.props.setEvaluation('q1Correct', event.target.value)}/>
+          <input required type="radio" value="0" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
+          <input required type="radio" value="1" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
+          <input required type="radio" value="2" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
+          <input required type="radio" value="3" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
 
         </div>)
     }
@@ -75,13 +102,13 @@ class EvaluationQuestions extends React.Component {
   }
 
   renderQuestion2 = () => {
-    if (this.props.evaluation.q2Type === "bool") {
+    if (this.state.q2Type === "bool") {
       return (
         <div>
           <div>Question 2 True or False</div>
-          <input required type="text" value={this.props.evaluation.q2Title} onChange={(event) => this.props.setEvaluation('q2Title', event.target.value)} />
+          <input required type="text" value={this.state.q2Title} onChange={(event) => this.setState({q2Title:  event.target.value})} />
           <div>Expected answer</div>
-          <select required value={this.props.evaluation.q2Correct} onChange={(event) => this.props.setEvaluation('q2Correct', event.target.value )}>
+          <select required value={this.state.q2Correct} onChange={(event) => this.setState({q2Correct:  event.target.value })}>
             <option value="">--Select One--</option>
             <option value="True">True</option>
             <option value="False">False</option>
@@ -89,22 +116,22 @@ class EvaluationQuestions extends React.Component {
         </div>
       )
     }
-    else if (this.props.evaluation.q2Type === "multiple") {
+    else if (this.state.q2Type === "multiple") {
       return (
         <div>
           <div>Question 2 Multiple Choice</div>
-          <input required type="text" value={this.props.evaluation.q2Title} onChange={(event) => this.props.setEvaluation('q2Title', event.target.value )} />
+          <input required type="text" value={this.state.q2Title} onChange={(event) => this.setState({q2Title:  event.target.value })} />
           <div>Possible Answers</div>
-          <input required value={this.props.evaluation.q2Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q2Answers")}></input>
-          <input required value={this.props.evaluation.q2Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q2Answers")}></input>
-          <input required value={this.props.evaluation.q2Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q2Answers")}></input>
-          <input value={this.props.evaluation.q2Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q2Answers")}></input>
+          <input required value={this.state.q2Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q2Answers")}></input>
+          <input required value={this.state.q2Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q2Answers")}></input>
+          <input required value={this.state.q2Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q2Answers")}></input>
+          <input value={this.state.q2Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q2Answers")}></input>
           <div>Expected answer</div>
           <fieldset >
-          <input required type="radio" value="0" name="q2" onChange={(event) => this.props.setEvaluation('q2Correct', event.target.value)}/>
-          <input required type="radio" value="1" name="q2" onChange={(event) => this.props.setEvaluation('q2Correct', event.target.value)}/>
-          <input required type="radio" value="2" name="q2" onChange={(event) => this.props.setEvaluation('q2Correct', event.target.value)}/>
-          <input required type="radio" value="3" name="q2" onChange={(event) => this.props.setEvaluation('q2Correct', event.target.value)}/>
+          <input required type="radio" value="0" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
+          <input required type="radio" value="1" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
+          <input required type="radio" value="2" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
+          <input required type="radio" value="3" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
           </fieldset>
         </div>)
     }
@@ -112,13 +139,13 @@ class EvaluationQuestions extends React.Component {
   }
 
   renderQuestion3 = () => {
-    if (this.props.evaluation.q3Type === "bool") {
+    if (this.state.q3Type === "bool") {
       return (
         <div>
           <div>Question 3 True or False</div>
-          <input required type="text" value={this.props.evaluation.q3Title} onChange={(event) => this.props.setEvaluation('q3Title', event.target.value )} />
+          <input required type="text" value={this.state.q3Title} onChange={(event) => this.setState({q3Title:  event.target.value })} />
           <div>Expected answer</div>
-          <select required value={this.props.evaluation.q3Correct} onChange={(event) => this.props.setEvaluation('q3Correct', event.target.value )}>
+          <select required value={this.state.q3Correct} onChange={(event) => this.setState({q3Correct:  event.target.value })}>
             <option value="">--Select One--</option>
             <option value="True">True</option>
             <option value="False">False</option>
@@ -126,22 +153,22 @@ class EvaluationQuestions extends React.Component {
         </div>
       )
     }
-    else if (this.props.evaluation.q3Type === "multiple") {
+    else if (this.state.q3Type === "multiple") {
       return (
         <div>
           <div>Question 3 Multiple Choice</div>
-          <input required type="text" value={this.props.evaluation.q3Title} onChange={(event) => this.props.setEvaluation('q3Title', event.target.value)} />
+          <input required type="text" value={this.state.q3Title} onChange={(event) => this.setState({q3Title:  event.target.value})} />
           <div>Possible Answers</div>
-          <input required value={this.props.evaluation.q3Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q3Answers")}></input>
-          <input required value={this.props.evaluation.q3Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q3Answers")}></input>
-          <input required value={this.props.evaluation.q3Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q3Answers")}></input>
-          <input value={this.props.evaluation.q3Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q3Answers")}></input>
+          <input required value={this.state.q3Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q3Answers")}></input>
+          <input required value={this.state.q3Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q3Answers")}></input>
+          <input required value={this.state.q3Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q3Answers")}></input>
+          <input value={this.state.q3Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q3Answers")}></input>
           <div>Expected answer</div>
           <fieldset >
-          <input required type="radio" value="0" name="q3" onChange={(event) => this.props.setEvaluation('q3Correct', event.target.value)}/>
-          <input required type="radio" value="1" name="q3" onChange={(event) => this.props.setEvaluation('q3Correct', event.target.value)}/>
-          <input required type="radio" value="2" name="q3" onChange={(event) => this.props.setEvaluation('q3Correct', event.target.value)}/>
-          <input required type="radio" value="3" name="q3" onChange={(event) => this.props.setEvaluation('q3Correct', event.target.value)}/>
+          <input required type="radio" value="0" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
+          <input required type="radio" value="1" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
+          <input required type="radio" value="2" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
+          <input required type="radio" value="3" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
           </fieldset>
         </div>)
     }
@@ -149,13 +176,13 @@ class EvaluationQuestions extends React.Component {
   }
 
   renderQuestion4 = () => {
-    if (this.props.evaluation.q4Type === "bool") {
+    if (this.state.q4Type === "bool") {
       return (
         <div>
           <div>Question 4 True or False</div>
-          <input required type="text" value={this.props.evaluation.q4Title} onChange={(event) => this.props.setEvaluation('q4Title', event.target.value )} />
+          <input required type="text" value={this.state.q4Title} onChange={(event) => this.setState({q4Title:  event.target.value })} />
           <div>Expected answer</div>
-          <select required value={this.props.evaluation.q4Correct} onChange={(event) => this.props.setEvaluation('q4Correct', event.target.value )}>
+          <select required value={this.state.q4Correct} onChange={(event) => this.setState({q4Correct:  event.target.value })}>
             <option value="">--Select One--</option>
             <option value="True">True</option>
             <option value="False">False</option>
@@ -163,22 +190,22 @@ class EvaluationQuestions extends React.Component {
         </div>
       )
     }
-    else if (this.props.evaluation.q4Type === "multiple") {
+    else if (this.state.q4Type === "multiple") {
       return (
         <div>
           <div>Question 4 Multiple Choice</div>
-          <input required type="text" value={this.props.evaluation.q4Title} onChange={(event) => this.props.setEvaluation('q4Title', event.target.value)} />
+          <input required type="text" value={this.state.q4Title} onChange={(event) => this.setState({q4Title:  event.target.value})} />
           <div>Possible Answers</div>
-          <input required value={this.props.evaluation.q4Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q4Answers")}></input>
-          <input required value={this.props.evaluation.q4Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q4Answers")}></input>
-          <input required value={this.props.evaluation.q4Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q4Answers")}></input>
-          <input value={this.props.evaluation.q4Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q4Answers")}></input>
+          <input required value={this.state.q4Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q4Answers")}></input>
+          <input required value={this.state.q4Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q4Answers")}></input>
+          <input required value={this.state.q4Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q4Answers")}></input>
+          <input value={this.state.q4Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q4Answers")}></input>
           <div>Expected answer</div>
           <fieldset >
-          <input required type="radio" value="0" name="q4" onChange={(event) => this.props.setEvaluation('q4Correct', event.target.value)}/>
-          <input required type="radio" value="1" name="q4" onChange={(event) => this.props.setEvaluation('q4Correct', event.target.value)}/>
-          <input required type="radio" value="2" name="q4" onChange={(event) => this.props.setEvaluation('q4Correct', event.target.value)}/>
-          <input required type="radio" value="3" name="q4" onChange={(event) => this.props.setEvaluation('q4Correct', event.target.value)}/>
+          <input required type="radio" value="0" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
+          <input required type="radio" value="1" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
+          <input required type="radio" value="2" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
+          <input required type="radio" value="3" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
           </fieldset>
         </div>)
     }

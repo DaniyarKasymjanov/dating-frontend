@@ -32,21 +32,22 @@ class App extends Component {
   constructor() {
     super() 
     this.state = {
-      username : "",
-      password: "",
-      searchResults: []
+      username : "adam",
+      password: "123",
+      searchResults: [],
+      fetchedSession: false
     }
   }
 
   componentDidMount = () => {
-    // fetch('/session', {
-    //   credentials: 'same-origin'
-    // })
-    //   .then(res => res.json())
-    //   .then(res => {
-    //     console.log(res);
-    //     if(res.success) this.setState({ username: res.user.username });
-    //   });
+    fetch('/session', {
+      credentials: 'same-origin'
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        if(res.success) this.setState({ username: res.user.username, fetchedSession: true });
+      });
   }
 
   handleSearch = (searchObj) => {
@@ -84,7 +85,7 @@ class App extends Component {
 
   renderUserProfile = (routerData) => {
     let username = routerData.match.params.username
-    return(<Profile username={username} ownProfile={username === this.state.username}/>)
+    return(<Profile username={username} ownProfile={username === this.state.username} history={routerData.history} />)
   }
   renderEvaluation = () => {
     return(<EvaluationQuestions/>)

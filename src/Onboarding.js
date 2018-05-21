@@ -10,24 +10,6 @@ class Onboarding extends React.Component {
         super()
         this.state = {
             register: {},
-            evaluation: {
-                q1Type: "",
-                q1Title: "",
-                q1Answers: [],
-                q1Correct: "",
-                q2Type: "",
-                q2Title: "",
-                q2Answers: [],
-                q2Correct: "",
-                q3Type: "",
-                q3Title: "",
-                q3Answers: [],
-                q3Correct: "",
-                q4Type: "",
-                q4Title: "",
-                q4Answers: [],
-                q4Correct: "",
-            }
         }
     }
 
@@ -35,13 +17,13 @@ class Onboarding extends React.Component {
             this.setState({ register: registerObj });
         }
 
-        setEvaluation = (key, val) => {
-            const evaluationCopy = { ...this.state.evaluation };
-            evaluationCopy[key] = val;
-            this.setState({ evaluation: evaluationCopy });
-        }
+        // setEvaluation = (key, val) => {
+        //     const evaluationCopy = { ...this.state.evaluation };
+        //     evaluationCopy[key] = val;
+        //     this.setState({ evaluation: evaluationCopy });
+        // }
 
-        submitOnboarding = () => {
+        submitOnboarding = (questions) => {
             //event.preventDefault();
             fetch('/register', {
                 method: 'POST',
@@ -53,34 +35,35 @@ class Onboarding extends React.Component {
                     gender: this.state.register.gender,
                     questions: [
                         {
-                        title: this.state.evaluation.q1Title,
-                        answers: this.state.evaluation.q1Answers,
-                        type: this.state.evaluation.q1Type,
-                        answer: this.state.evaluation.q1Correct
+                        title: questions.q1Title,
+                        answers: questions.q1Answers,
+                        type: questions.q1Type,
+                        answer: questions.q1Correct
                     },
                     {
-                        title: this.state.evaluation.q2Title,
-                        answers: this.state.evaluation.q2Answers,
-                        type: this.state.evaluation.q2Type,
-                        answer: this.state.evaluation.q2Correct
+                        title: questions.q2Title,
+                        answers: questions.q2Answers,
+                        type: questions.q2Type,
+                        answer: questions.q2Correct
                     },
                     {
-                        title: this.state.evaluation.q3Title,
-                        answers: this.state.evaluation.q3Answers,
-                        type: this.state.evaluation.q3Type,
-                        answer: this.state.evaluation.q3Correct
+                        title: questions.q3Title,
+                        answers: questions.q3Answers,
+                        type: questions.q3Type,
+                        answer: questions.q3Correct
                     },
                     {
-                        title: this.state.evaluation.q4Title,
-                        answers: this.state.evaluation.q4Answers,
-                        type: this.state.evaluation.q4Type,
-                        answer: this.state.evaluation.q4Correct
+                        title: questions.q4Title,
+                        answers: questions.q4Answers,
+                        type: questions.q4Type,
+                        answer: questions.q4Correct
                     }
                 ]
                 })  
             })
             .then(res => res.json())
             .then(res => console.log(res))
+            // must set up redirect to recent members
    
         }
         
@@ -94,7 +77,7 @@ class Onboarding extends React.Component {
             )
         }
         renderEvaluation = (routeProps) => {
-            return (<EvaluationQuestions evaluation={this.state.evaluation} submitOnboarding={this.submitOnboarding} history={routeProps.history} setEvaluation={this.setEvaluation} />)
+            return (<EvaluationQuestions submitEvaluation={this.submitOnboarding} history={routeProps.history} />)
         }
 
         render() {
