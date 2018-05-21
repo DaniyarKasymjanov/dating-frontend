@@ -135,7 +135,7 @@ class Register extends React.Component {
           </select>
         </div>
         <div className="regBottom">
-            <Button className="regInput" size="sm" outline color="light" type="submit">Next Step</Button>
+            <Button className="regInput" size="sm" outline color="light" type="submit" disabled={!this.state.verifyUsername}>Next Step</Button>
         </div>
         </form>
       </div>
