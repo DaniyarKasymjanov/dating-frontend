@@ -9,7 +9,7 @@ const Grid = styled.div`
 
 const MainGrid = styled.div`
   display: grid;
-  grid-template-columns: auto 85%;
+  grid-template-columns: auto 80%;
   margin: 10px 5% 0;
   grid-gap: 10px;
   min-height: 85vh;
@@ -28,7 +28,7 @@ const ProfileDisplayGrid = styled.div`
 const LandingGrid = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
-  background-color: rgb(255, 128, 128, 0.691);
+  background-color: rgb(102, 204, 255, 0.7);
   min-height: 85vh;
   margin-bottom: 10px;
 `;
@@ -49,7 +49,7 @@ const SpotlightGrid = styled.div`
 `;
 const ModalHeaderFix = styled(ModalHeader)`
   && {
-    background: #ff8080;
+    background: #0088cc;
     color: white;
   }
 `;
@@ -79,8 +79,8 @@ const NavButton = styled(Button)`
     &:hover {
       color: white;
     }
-    background: #ff8080;
-    border: 2px solid #ff8080;
+    background: #0088cc;
+    border: 2px solid #0088cc;
     border-radius: 12px 0px;
   }
 `;
@@ -88,23 +88,24 @@ const NavButton = styled(Button)`
 const H1 = styled.h1`
   && {
     border-bottom: 1px solid #DDD;
+    text-align: left;
   }
 `;
 const H2 = styled.h2`
   && {
-    color: #ff8080;
+    color: #0088cc;
   }
 `;
 const H3 = styled.h3`
   && {
-    color: #ff8080;
+    color: #0088cc;
   }
 `;
 
 const StyledLink = styled(Link)`
-  color: #ff8080;
+  color: #0088cc;
   &:hover {
-    color: #ff8080;
+    color: #0088cc;
   }
 `;
 
