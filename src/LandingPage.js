@@ -16,8 +16,9 @@ import Onboarding from "./Onboarding.js";
 import { Link } from "react-router-dom";
 import Login from './Login'
 import Footer from './Footer'
+import ToS from './ToS'
 import EvaluationQuestions from "./EvaluationQuestions.js";
-import { LandingGrid, LandingReg, ModalHeaderFix } from "./Styled";
+import { LandingGrid, LandingReg, LandingLink, ModalHeaderFix, StyledLink, H3,H2 } from "./Styled";
 
 
 class LandingPage extends React.Component {
@@ -41,7 +42,7 @@ class LandingPage extends React.Component {
         <div className="LandingBackground">
           <LandingGrid >
             <Navbar light expand="md">
-              <h3 style={{color:"white"}}>Dating</h3>
+              <H3 style={{color:"white"}}>DecoDating</H3>
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   <Button size="sm" outline color="light" onClick={this.toggle} className="navBtn">Login</Button>
@@ -64,11 +65,18 @@ class LandingPage extends React.Component {
                   </div>
                 </div>
               </div>
+              <div>
               {this.props.children}
+              </div>
             </LandingReg>
           </LandingGrid>
-        </div>
-          <Footer/>
+      </div>
+      <div>
+        <h2>For more information.</h2>
+        <LandingLink to="/termofservices"> Term of Services </LandingLink>
+        <LandingLink to="/termofservices"> FAQ </LandingLink>
+        <LandingLink to="/termofservices"> Contact </LandingLink>
+      </div>
       </div>
     );
   }

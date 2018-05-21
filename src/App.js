@@ -32,21 +32,21 @@ class App extends Component {
   constructor() {
     super() 
     this.state = {
-      username : "adam",
-      password: "123",
+      username : "",
+      password: "",
       searchResults: []
     }
   }
 
   componentDidMount = () => {
-    fetch('/session', {
-      credentials: 'same-origin'
-    })
-      .then(res => res.json())
-      .then(res => {
-        console.log(res);
-        if(res.success) this.setState({ username: res.user.username });
-      });
+    // fetch('/session', {
+    //   credentials: 'same-origin'
+    // })
+    //   .then(res => res.json())
+    //   .then(res => {
+    //     console.log(res);
+    //     if(res.success) this.setState({ username: res.user.username });
+    //   });
   }
 
   handleSearch = (searchObj) => {

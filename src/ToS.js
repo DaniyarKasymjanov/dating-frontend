@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import {H2, H3} from './Styled'
 
 class ToS extends Component {
   render() {
     return (
       <div>
-        <h2>Web Site Terms and Conditions of Use</h2>
+        <H2>Web Site Terms and Conditions of Use</H2>
 
-        <h3>1. Terms</h3>
+        <H3>1. Terms</H3>
 
         <p>
           By accessing this web site, you are agreeing to be bound by these web
@@ -18,7 +19,7 @@ class ToS extends Component {
           law.
         </p>
 
-        <h3>2. Use License</h3>
+        <H3>2. Use License</H3>
 
         <ol type="a">
           <li>
@@ -56,7 +57,7 @@ class ToS extends Component {
           </li>
         </ol>
 
-        <h3>3. Disclaimer</h3>
+        <H3>3. Disclaimer</H3>
 
         <ol type="a">
           <li>
@@ -73,7 +74,7 @@ class ToS extends Component {
           </li>
         </ol>
 
-        <h3>4. Limitations</h3>
+        <H3>4. Limitations</H3>
 
         <p>
           In no event shall Swoon or its suppliers be liable for any damages
@@ -87,7 +88,7 @@ class ToS extends Component {
           apply to you.
         </p>
 
-        <h3>5. Revisions and Errata</h3>
+        <H3>5. Revisions and Errata</H3>
 
         <p>
           The materials appearing on Swoon's web site could include technical,
@@ -98,7 +99,7 @@ class ToS extends Component {
           to update the materials.
         </p>
 
-        <h3>6. Links</h3>
+        <H3>6. Links</H3>
 
         <p>
           Swoon has not reviewed all of the sites linked to its Internet web
@@ -107,7 +108,7 @@ class ToS extends Component {
           site. Use of any such linked web site is at the user's own risk.
         </p>
 
-        <h3>7. Site Terms of Use Modifications</h3>
+        <H3>7. Site Terms of Use Modifications</H3>
 
         <p>
           Swoon may revise these terms of use for its web site at any time
@@ -115,7 +116,7 @@ class ToS extends Component {
           the then current version of these Terms and Conditions of Use.
         </p>
 
-        <h3>8. Governing Law</h3>
+        <H3>8. Governing Law</H3>
 
         <p>
           Any claim relating to Swoon's web site shall be governed by the laws
@@ -125,7 +126,7 @@ class ToS extends Component {
 
         <p>General Terms and Conditions applicable to Use of a Web Site.</p>
 
-        <h2>Privacy Policy</h2>
+        <H2>Privacy Policy</H2>
 
         <p>
           Your privacy is very important to us. Accordingly, we have developed
