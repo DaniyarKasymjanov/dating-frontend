@@ -27,7 +27,6 @@ fontawesome.library.add(faUser)
 fontawesome.library.add(faCircle)
 fontawesome.library.add(faFacebook)
 
-
 class App extends Component {
   constructor() {
     super() 
@@ -38,7 +37,6 @@ class App extends Component {
       fetchedSession: false
     }
   }
-
   componentDidMount = () => {
     fetch('/session', {
       credentials: 'same-origin'
@@ -46,7 +44,11 @@ class App extends Component {
       .then(res => res.json())
       .then(res => {
         console.log(res);
+<<<<<<< HEAD
+        if(res.success) this.setState({ username: res.user.username, fetchedSession: true  });
+=======
         if(res.success) this.setState({ username: res.user.username, fetchedSession: true });
+>>>>>>> c6749d27162ab6ceacbf63214dfa495d3fc04c5a
       });
   }
 
@@ -102,8 +104,13 @@ class App extends Component {
     return(<SearchResults searchResults={this.state.searchResults} username={this.state.username}/>)
   }
 
-  renderMessages = () => {
-    return(<Messages/>)
+  renderMessagesLast = (routeProps) => {
+    return this.state.fetchedSession ? <Messages username={this.state.username} history={routeProps.history} /> : <div>Loading...</div>
+  }
+
+  renderMessages = (routeProps) => {
+    const receiverName = routeProps.match.params.receiverName;
+    return this.state.fetchedSession ? <Messages username={this.state.username} receiverName={receiverName} /> : <div>Loading...</div>
   }
   renderToS = () => {
     return(<ToS/>)
@@ -114,7 +121,7 @@ class App extends Component {
     return (
       <div className="App">
       <Route exact path="/search" render={this.renderSearch}/>
-      {this.props.location.pathname !== '/' && (<NavBar username={this.state.username} handleSearch={this.handleSearch} />)}
+      {this.props.location.pathname !== '/' && (<NavBar username={this.state.username} handleSearch={this.handleSearch} history={this.props.history}/>)}
       <Grid>
           <Onboarding handleLogin={this.handleLogin}/>
           <div>
@@ -125,7 +132,8 @@ class App extends Component {
             <Route exact path="/main" render={this.renderHome}/>
             <Route exact path="/termofservices" render={this.renderToS}/>
             <Route exact path="/searchresults" render={this.renderSearchResults}/>
-            <Route exact path="/messages" render={this.renderMessages}/>
+            <Route exact path="/messages/" render={this.renderMessagesLast}/>
+            <Route exact path="/messages/:receiverName" render={this.renderMessages}/>
           </div>
       </Grid>
       </div>

@@ -39,6 +39,15 @@ class NavBar extends React.Component{
       modal: !this.state.modal
     });
   }
+  logout = () => {
+    fetch('/logout', {
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(res => {
+      if(res.success) this.props.history.push('/');
+    })
+  }
   render(){
     return(
       <div>
@@ -61,6 +70,24 @@ class NavBar extends React.Component{
                 <Button onClick={this.toggle} className="navBtns">Cancel</Button>
               </ModalFooter>
               </NavModal>
+<<<<<<< HEAD
+              </NavItem>
+              <NavItem>
+                <Button size="sm" outline color="light" className="navBtn">
+                  <Link to="/messages">Messages</Link>
+                </Button>
+              </NavItem>
+              <NavItem>
+                <Button size="sm" outline color="light" className="navBtn">
+                  <Link to="/">Notification</Link>
+                </Button>
+              </NavItem>
+              <NavItem>
+                <Button size="sm" outline color="light" className="navBtn" onClick={this.logout}>
+                  Logout
+                </Button>
+              </NavItem>
+=======
                 <button className="navBtns">
                   <StyledLink to="/messages">Messages</StyledLink>
                 </button>
@@ -70,6 +97,7 @@ class NavBar extends React.Component{
                 <button className="navBtns">
                   <StyledLink to="/">Logout</StyledLink>
                 </button>
+>>>>>>> c6749d27162ab6ceacbf63214dfa495d3fc04c5a
             </Nav>
           </Collapse>
         </Navbar>
