@@ -34,7 +34,8 @@ class App extends Component {
     this.state = {
       username : "adam",
       password: "123",
-      searchResults: []
+      searchResults: [],
+      fetchedSession: false
     }
   }
 
@@ -45,7 +46,7 @@ class App extends Component {
       .then(res => res.json())
       .then(res => {
         console.log(res);
-        if(res.success) this.setState({ username: res.user.username });
+        if(res.success) this.setState({ username: res.user.username, fetchedSession: true });
       });
   }
 
@@ -84,7 +85,7 @@ class App extends Component {
 
   renderUserProfile = (routerData) => {
     let username = routerData.match.params.username
-    return(<Profile username={username} ownProfile={username === this.state.username}/>)
+    return(<Profile username={username} ownProfile={username === this.state.username} history={routerData.history} />)
   }
   renderEvaluation = () => {
     return(<EvaluationQuestions/>)
