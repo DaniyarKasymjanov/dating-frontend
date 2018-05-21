@@ -244,7 +244,7 @@ class Profile extends React.Component {
           <AnswerQuestions questions={this.state.info.questions} isEditable={this.isEditable} username={this.state.profileData.username}/>
         </Modal>
         <Modal isOpen={this.state.profileData.editQuestions} toggle={this.toggleEditQuestions}>
-          <EvaluationQuestions submitEvaluation={this.updateQuestions} history={this.props.history} />
+          <EvaluationQuestions questions={this.state.info.question} submitEvaluation={this.updateQuestions} history={this.props.history} />
         </Modal>
         <div>BackgroundImage:
       <img src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
