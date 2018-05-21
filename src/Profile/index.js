@@ -226,22 +226,22 @@ class Profile extends React.Component {
   }
 
   updateQuestions = (questions) => {
-    // fetch('/updateQuestions', {
-    //   credentials: 'same-origin',
-    //   method: 'POST',
-    //   body: JSON.stringify(questions)
-    // })
-    // .then(res => res.json())
-    // .then(res => {
-    //   console.log(res);
-    // })
+    fetch('/updateQuestions', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(questions)
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+    })
   } 
 
   viewProfile = () => {
     return (
       <div>
         <Modal isOpen={this.state.profileData.showQuestions} toggle={this.toggleQuestions}>
-          <AnswerQuestions questions={this.state.info.questions} isEditable={this.isEditable} username={this.state.profileData.username}/>
+          <AnswerQuestions questions={this.state.info.questions} isEditable={this.isEditable} username={this.state.profileData.username} showQuestions={this.state.profileData.showQuestions}/>
         </Modal>
         <Modal isOpen={this.state.profileData.editQuestions} toggle={this.toggleEditQuestions}>
           <EvaluationQuestions questions={this.state.info.question} submitEvaluation={this.updateQuestions} history={this.props.history} />

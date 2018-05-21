@@ -27,14 +27,14 @@ class EvaluationQuestions extends React.Component {
     } 
   }
   componentDidMount() {
-    // fetch('/getProfile', {
-    //   credentials: 'same-origin'
-    // })
-    // .then(res => res.json())
-    // .then(res => {
-    //   console.log(res);
-    //   // this.props.setEvaluationState(res);
-    // })
+    fetch('/getProfile', {
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+      // this.props.setEvaluationState(res);
+    })
   }
   q1Type = (type) => {
     // this.setState({q1Type:  type})
