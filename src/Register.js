@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Link } from 'react-router-dom';
 import EvaluationQuestions from './EvaluationQuestions';
-import {Button} from 'reactstrap'
+import {Button, Alert, Tooltip} from 'reactstrap'
 
 class Register extends React.Component {
   constructor() {
@@ -10,14 +10,17 @@ class Register extends React.Component {
       username: "",
       password: "",
       password2: "",
-      verifyUsername: "",
+      verifyUsername: true,
       passwordMatch: "",
       birthday: '',
       city: '',
-      gender: ''
+      gender: '',
+      isMounted: false,
     }
   }
-
+  componentDidMount() {
+    this.setState({ isMounted: true });
+  }
   handleUsername = event => {
     event.preventDefault()
     this.setState({username: event.target.value})
@@ -41,14 +44,14 @@ class Register extends React.Component {
   }
   renderValidInvalidUsername = () => {
     if(this.state.verifyUsername) {
-      return <p>Your username is valid</p>
+      return <Alert>Your username is valid</Alert>
     }
     else if(this.state.verifyUsername === false){
-      return <p>Your username is already taken</p>
+      return <Alert>Your username is already taken</Alert>
     }
   }
 
-    handlePassword = event => {
+  handlePassword = event => {
     event.preventDefault()
     this.setState({password: event.target.value})
   }
@@ -65,9 +68,9 @@ class Register extends React.Component {
   }
   renderPasswordValidation = () => {
     if(this.state.passwordMatch === false) {
-      return <p>Your passwords do not match</p>
-    } else if(this.state.passwordMatch === true){
-      return <div>test</div>
+      return <Tooltip placement="right" isOpen={this.state.isMounted} target="passwordInput">
+            Your password does not match.
+          </Tooltip>
     }
   }
 
@@ -85,7 +88,6 @@ class Register extends React.Component {
   }
   handleGender = event => {
     event.preventDefault()
-    // this.setState({ gender: event.target.value })
     this.setState({gender: event.target.value});;
   }
   stepTwo = event => {
@@ -97,33 +99,43 @@ class Register extends React.Component {
     console.log(this.state)
     return (
       <div>
-        <form onSubmit={this.stepTwo}>
-        <div>
-          <input required type="text" placeholder="Create a Username" value={this.state.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
-          {this.renderValidInvalidUsername()}
+        <form onSubmit={this.stepTwo} className="regForm">
+        <div className="regTop">
+          <label >First Name:</label>
+          <input id="usernameInput" className="regInput" required type="text" placeholder="Enter username" value={this.state.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
+          {!this.state.verifyUsername && (
+          <Tooltip placement="right" isOpen={this.state.isMounted} target="usernameInput">
+            Your username is already taken
+          </Tooltip>
+          )}
         </div>
-        <div>
-          <input required type="password" placeholder="Create a Password" value={this.state.password} onChange={this.handlePassword}></input>
+        <div className="regBody">
+        <label >Password:</label>
+          <input className="regInput" required type="password" placeholder="Enter Password" value={this.state.password} onChange={this.handlePassword}></input>
         </div>
-        <div> 
-          <input required type="password" placeholder="Re-Enter Password" value={this.state.password2} onChange={this.handlePassword2} onBlur={this.passwordMatch}></input>
+        <div className="regBody"> 
+        <label >Re-enter Password:</label>
+          <input id="passwordInput"className="regInput" required type="password" placeholder="Re-Enter Password" value={this.state.password2} onChange={this.handlePassword2} onBlur={this.passwordMatch}></input>
           {this.renderPasswordValidation()}
         </div>
-        <div>  
-          <input required type="date" name="birthday" value={this.state.birthday} onChange={this.handleBirthday}></input>
+        <div className="regBody">  
+        <label >Birthday:</label>
+          <input className="regInput" required type="date" name="birthday" value={this.state.birthday} onChange={this.handleBirthday}></input>
         </div>
-        <div>   
-          <input required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
+        <div className="regBody">   
+        <label >City:</label>
+          <input className="regInput" required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
         </div>
-        <div>  
-          <select required value={this.state.gender} onChange={this.handleGender}>
+        <div className="regBody">  
+        <label >Gender:</label>
+          <select className="regInput" required value={this.state.gender} onChange={this.handleGender}>
             <option value="">--Select One--</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
         </div>
-        <div>
-            <Button size="sm" outline color="primary" type="submit">Next Step</Button>
+        <div className="regBottom">
+            <Button className="regInput" size="sm" outline color="light" type="submit" disabled={!this.state.verifyUsername}>Next Step</Button>
         </div>
         </form>
       </div>

@@ -6,41 +6,108 @@
   text-transform: capitalize;
 }
 
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
-
-/* div{
-  border: 1px solid black;
-  margin: 5px;
-} */
-
 .LandingBackground{
   background-image: url(http://farm1.static.flickr.com/157/413149404_f5ebc842a6.jpg);
   position: relative;
+  background-repeat: repeat;
+  animation: animate 11s linear infinite;
+}
+@keyframes animate{
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 98% 0;
+  }
 }
 
 .profileImg{
-  width: 100%
+  width: 50%;
+  border-radius: 50%;
+  border: 0.5px solid #ddd;
+  margin: 10px;
+}
+.spotLightTop{
+  border-radius: 15px 15px 0px 0px;
+  background:#0088cc;
+  padding: 20px; 
+  width: 200px;
+  height: 45x; 
+}
+.spotLightBottom{
+  border-radius: 0px 0px 15px 15px;
+  background:#0088cc;
+  padding: 20px; 
+  width: 200px;
+  height: 45x; 
+}
+
+.navSearchBtn{
+  background-color: white;
+  color: #0088cc;
+  border: 2px solid #0088cc;
+}
+.navBtns{
+  background-color: white;
+  border: none;
+  text-decoration: none;
+  margin: 2px;
+}
+
+.navBarCSS{
+  border-bottom: 0.5px solid #0088cc;
+}
+
+.regForm{
+  display: inline-block;
+}
+.regTop{
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  border-top: 2px solid white;
+  border-radius: 15px 15px 0px 0px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+  margin: 0 5px;
+}
+.regBody{
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  border-radius: 0px 0px 0px 0px;
+  margin: 0 5px;
+}
+.regBottom{
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  border-radius: 0px 0px 15px 15px;
+  padding-bottom: 30px;
+  margin: 0 5px;
+}
+
+.regInput{
+  background: white;
+  margin: 5px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+ModalHeaderFix{
+  background:#0088cc;
+  color: white;
+}
+
+.searchDivs{
+  margin: 5px;
+}
+
+.searchInputs{
+  margin: 5px;
+  border: 0.5px solid #DDD;
+  text-align: center;
+}
+
+label{
+  color: white;
 }

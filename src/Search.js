@@ -69,28 +69,27 @@ class Search extends React.Component {
     return (
       <div>
         <form>
-          <div>
-          Search: <input type="text" placeholder="Search here" onChange={this.handleSearchInput} value={this.state.searchInput}/>
+          <div className="searchDivs">
+            Search: <input className="searchInputs" type="text" placeholder="Enter here" onChange={this.handleSearchInput} value={this.state.searchInput}/>
           </div>
-          <div>
-            Gender:
-            <input type="radio" name="gender" value="male" onChange={this.handleGender}/>Male
-            <input type="radio" name="gender" value="female" onChange={this.handleGender}/>Female
+          <div className="searchDivs">
+            Gender: 
+            <input className="searchInputs" type="radio" name="gender" value="male" onChange={this.handleGender}/>Male
+            <input className="searchInputs" type="radio" name="gender" value="female" onChange={this.handleGender}/>Female
           </div>
-          <div>
+          <div className="searchDivs">
             Age:
-            from:
-              <input type="number" name="age"  min="18" max="100" onChange={this.handleMinAge}/>
-            to:
-              <input type="number" name="age" min="18" max="100" onChange={this.handleMaxAge}/>
+              <input className="searchInputs" placeholder="from" type="number" name="age"  min="18" max="100" onChange={this.handleMinAge}/>
+              :
+              <input className="searchInputs" placeholder="to" type="number" name="age" min="18" max="100" onChange={this.handleMaxAge}/>
           </div>
-          <div>
+          <div className="searchDivs">
             City:
-            <input type="text" name="city" value={this.state.city} onChange={this.handleCity}/>
+            <input className="searchInputs" placeholder="Montreal" type="text" name="city" value={this.state.city} onChange={this.handleCity}/>
           </div>
-          <div>
+          <div className="searchDivs">
             Education:
-            <select name="education" onChange={this.handleEducation}>
+            <select className="searchInputs" name="education" onChange={this.handleEducation}>
               <option value="None selected">Please select below</option>
               <option>High School Diploma</option>
               <option>DEC</option>
@@ -99,15 +98,15 @@ class Search extends React.Component {
               <option>Doctorate</option>
             </select>
           </div>
-          <div>
+          <div className="searchDivs">
             Smoker:
-            <input type="radio" name="smoker" value="smoker" onChange={this.handleSmoker}/> Yes
-            <input type="radio" name="smoker" value="notsmoker" onChange={this.handleSmoker}/> No
+            <input className="searchInputs" type="radio" name="smoker" value="smoker" onChange={this.handleSmoker}/> Yes
+            <input className="searchInputs" type="radio" name="smoker" value="notsmoker" onChange={this.handleSmoker}/> No
           </div>
-          <div>
+          <div className="searchDivs">
             Drinker:
-            <input type="radio" name="drinker" value="drinker" onChange={this.handleDrinker}/> Yes
-            <input type="radio" name="drinker" value="notdrinker" onChange={this.handleDrinker}/> No
+            <input className="searchInputs" type="radio" name="drinker" value="drinker" onChange={this.handleDrinker}/> Yes
+            <input className="searchInputs" type="radio" name="drinker" value="notdrinker" onChange={this.handleDrinker}/> No
           </div>
         </form>
       </div>

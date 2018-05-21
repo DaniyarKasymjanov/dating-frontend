@@ -15,12 +15,12 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import Search from './Search'
-import {ModalHeaderFix} from './Styled'
+import {ModalHeaderFix, StyledLink, NavButton, H3} from './Styled'
 
 const NavModal = styled(Modal)`
   && {
-    margin: 0;
-    max-width: none;
+    /* margin: 0;
+    max-width: none; */
   }
 `;
   
@@ -51,28 +51,26 @@ class NavBar extends React.Component{
   render(){
     return(
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand>Dating</NavbarBrand>
+        <Navbar className="navBarCSS" color="white" light expand="md">
+          <H3>DecoDating</H3>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Button size="sm" outline color="light" className="navBtn">
-                  <Link to="/main">Main</Link>
-                </Button>
-              </NavItem>
-              <NavItem>
-            <Button size="sm" outline color="primary" onClick={this.toggle} className="navBtn">Search</Button>
+              <button className="navBtns">
+                <StyledLink to="/main">Main</StyledLink>
+              </button>
+            <NavButton onClick={this.toggle} className="navSearchBtn">Search</NavButton>
               <NavModal isOpen={this.state.modal} toggle={this.toggle}>
-              <ModalHeaderFix toggle={this.toggle}>Please filled in the form to find your best match!</ModalHeaderFix>
+              <ModalHeaderFix toggle={this.toggle}>Please filled in the form to find your next best match!</ModalHeaderFix>
               <ModalBody>
                 <Search handleSearch={this.props.handleSearch} />
               </ModalBody>
               <ModalFooter>
-                <Button size="sm" color="primary" onClick={this.toggle} onSubmit={this.props.handleSearch} className="navBtn">Search</Button>{' '}
-                <Button size="sm" color="primary" onClick={this.toggle} className="navBtn">Cancel</Button>
+                <NavButton onClick={this.toggle} onSubmit={this.props.handleSearch} className="navBtns">Enter</NavButton>{' '}
+                <Button onClick={this.toggle} className="navBtns">Cancel</Button>
               </ModalFooter>
               </NavModal>
+<<<<<<< HEAD
               </NavItem>
               <NavItem>
                 <Button size="sm" outline color="light" className="navBtn">
@@ -89,6 +87,17 @@ class NavBar extends React.Component{
                   Logout
                 </Button>
               </NavItem>
+=======
+                <button className="navBtns">
+                  <StyledLink to="/messages">Messages</StyledLink>
+                </button>
+                <button className="navBtns">
+                  <StyledLink to="/">Notification</StyledLink>
+                </button>
+                <button className="navBtns">
+                  <StyledLink to="/">Logout</StyledLink>
+                </button>
+>>>>>>> c6749d27162ab6ceacbf63214dfa495d3fc04c5a
             </Nav>
           </Collapse>
         </Navbar>

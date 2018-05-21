@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import {FooterCSS} from './Styled'
+import {Link} from 'react-router-dom'
+import {FooterCSS, StyledLink, H2} from './Styled'
 
 class Footer extends Component {
   render() {
     return (
       <FooterCSS>
-        <h1>Some Tags</h1>
-        About FAQ Contact
+        <H2>For more details</H2>
+        <StyledLink to="/termofservices">Term of Services </StyledLink> 
+        <StyledLink to="/termofservices">Term of Services </StyledLink>
+        <StyledLink to="/termofservices">Term of Services </StyledLink>
       </FooterCSS>
     );
   }
