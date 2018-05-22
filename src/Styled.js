@@ -16,15 +16,14 @@ const MainGrid = styled.div`
 `;
 
 const MainContentGrid = styled.div`
-  display: grid;
-  grid-template-rows: auto 1fr;
+  /* display: grid;
+  grid-template-rows: auto 1fr; */
 `;
 const ProfileDisplayGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
-  padding-left: 30px;
-  padding-top: 25px;
+  padding: 25px 20px 0px 30px;
   border: 0.5px solid #DDD;
 `;
 
@@ -83,10 +82,37 @@ const NavButton = styled(Button)`
     color: white;
     &:hover {
       color: white;
+      text-decoration: none;
     }
     background: #0088cc;
     border: 2px solid #0088cc;
     border-radius: 12px 0px;
+  }
+`;
+
+const RegButton = styled(Button)`
+  && {
+    color: white;
+    &:hover {
+      color: white;
+      background-color:#0088cc;
+      border: 2px solid #0088cc;
+    }
+    background: #0088cc;
+    border: 2px solid #0088cc;
+  }
+`;
+
+const LogoutButton = styled(Button)`
+  && {
+    color: #0088cc;
+    &:hover {
+      color: #0088cc;
+      background-color: white;
+    }
+    background: white;
+    border: none;
+    text-decoration: none;
   }
 `;
 
@@ -124,6 +150,7 @@ const StyledContent = styled.div`
   border: 0.5px solid #ddd;
 `;
 
+
 export {
   Grid,
   MainGrid,
@@ -138,6 +165,8 @@ export {
   ProfileImage,
   FooterCSS,
   NavButton,
+  RegButton,
+  LogoutButton,
   H1,
   H2,
   H3,

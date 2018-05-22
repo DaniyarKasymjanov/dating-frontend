@@ -45,7 +45,7 @@ class LandingPage extends React.Component {
               <H3L style={{color:"white"}}>DecoDating</H3L>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <Button size="sm" outline color="light" onClick={this.toggle} className="navBtn">Login</Button>
+                  <Button outline color="light" onClick={this.toggle} className="navBtn">Login</Button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                       <ModalHeaderFix toggle={this.toggle}>Login</ModalHeaderFix>
                       <ModalBody>
@@ -74,7 +74,7 @@ class LandingPage extends React.Component {
       <div>
         <h2>For more information.</h2>
         <LandingLink to="/termofservices"> Term of Services </LandingLink>
-        <LandingLink to="/faq"> FAQ </LandingLink>
+        <LandingLink to="/faq"> Frequently Ask Questions </LandingLink>
         <LandingLink to="/contacts"> Contacts </LandingLink>
       </div>
       </div>

@@ -59,18 +59,17 @@
 
 .regForm{
   padding: 20px;
-  border: 8px solid white;
+  border: 2px solid black;
   border-radius: 10px;
-  background: #ffffff7d;
-}
-.regButton{
+  background: #ffffff88;
   text-align: center;
 }
 
+
 .regInput{
   background: white;
-  margin: 5px;
-  border-radius: 15px;
+  margin: 3px;
+  border-radius: 13px;
   text-align: center;
 }
 
@@ -90,7 +89,7 @@ ModalHeaderFix{
 }
 
 label{
-  color: white;
+  font-size: 20px;
 }
 
 table{
@@ -106,4 +105,8 @@ tr > td:first-child {
 }
 .evalWrapper label {
   color: black;
+}
+
+.NavLink{
+  text-decoration: none;
 }

@@ -43,7 +43,7 @@ class Home extends React.Component{
         <MainContentGrid>
           <H1> Recent Members </H1>
           <ProfileDisplayGrid>
-            {(new Array(4))
+            {/* {(new Array(4))
             .fill({ imgSrc: 'https://pbs.twimg.com/profile_images/987161597821861888/tI0h5qPB_400x400.jpg'})
             .map(imgObj => 
             <ProfileImage>
@@ -52,8 +52,10 @@ class Home extends React.Component{
               19, Male
               
             </ProfileImage>
-            )}
-            {this.state.recentMembers.map((obj)=> <div>{obj.profileImage ? <img src = {obj.profileImage}/> : <img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/>}
+            )} */}
+
+            {this.state.recentMembers.map((obj)=>
+            <div>{ obj.profileImage ? <ProfileImage><img src = {obj.profileImage}/></ProfileImage> : <ProfileImage><img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/></ProfileImage>}
             <div>{obj.username}</div>
             <div>{obj.city}</div>
             <div>{this.calculateAge(obj.birthday)}</div>

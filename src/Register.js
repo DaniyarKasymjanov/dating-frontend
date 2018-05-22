@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Redirect, Link } from 'react-router-dom';
 import EvaluationQuestions from './EvaluationQuestions';
 import {Button, Alert, Tooltip} from 'reactstrap'
+import {RegButton} from './Styled'
 
 class Register extends React.Component {
   constructor() {
@@ -104,57 +105,67 @@ class Register extends React.Component {
             <tbody>
               <tr>
                 <td>
-                <label>First Name:</label>
+                  <label>First Name:</label>
                 </td>
                 <td>
-                <input id="usernameInput" required type="text" placeholder="Enter username" value={this.state.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
-                {!this.state.verifyUsername && (
-                  <Tooltip placement="right" isOpen={this.state.isMounted} target="usernameInput">
-                    Your username is already taken
-                  </Tooltip>
-                )}
+                  <input id="usernameInput" required type="text" placeholder="Enter username" value={this.state.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
+                    {!this.state.verifyUsername && (
+                      <Tooltip placement="right" isOpen={this.state.isMounted} target="usernameInput">
+                        Your username is already taken
+                      </Tooltip>
+                    )}
                 </td>
-             </tr>
-              <tr>
-                <label >Password:</label>
               </tr>
-              <td>
-                <input required type="password" placeholder="Enter Password" value={this.state.password} onChange={this.handlePassword}></input>
-              </td>
-                <tr>
-          <label >Re-enter Password:</label>
-          </tr>
-          <td>
-          <input id="passwordInput" required type="password" placeholder="Re-Enter Password" value={this.state.password2} onChange={this.handlePassword2} onBlur={this.passwordMatch}></input>
-          {this.renderPasswordValidation()}
-          </td>
-                <tr>
-          <label >Birthday:</label>
-          </tr>
-          <td>
-          <input required type="date" name="birthday" value={this.state.birthday} onChange={this.handleBirthday}></input>
-          </td>
-        <tr>
-          <label >City:</label>
-          </tr>
-          <td>
-          <input required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
-          </td>
-        <tr>
-          <label >Gender:</label>
-          </tr>
-          <td>
-          <select required value={this.state.gender} onChange={this.handleGender}>
-            <option value="">--Select One--</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-          </td>
-          <div>
-            <Button className="regButton" size="sm" outline color="light" type="submit" disabled={!this.state.verifyUsername}>Next Step</Button>
-            </div>  
+              <tr>
+                <td>
+                  <label >Password:</label>
+                </td>
+                <td>
+                  <input required type="password" placeholder="Enter Password" value={this.state.password} onChange={this.handlePassword}></input>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label >Re-enter Password:</label>
+                </td>
+                <td>
+                  <input id="passwordInput" required type="password" placeholder="Re-Enter Password" value={this.state.password2} onChange={this.handlePassword2} onBlur={this.passwordMatch}></input>
+                    {this.renderPasswordValidation()}
+                </td>
+              </tr>          
+              <tr>
+                <td>
+                  <label >Birthday:</label>
+                </td>
+                <td>
+                  <input required type="date" name="birthday" value={this.state.birthday} onChange={this.handleBirthday}></input>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label >City:</label>
+                </td>
+                <td>
+                  <input required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label >Gender:</label>
+                </td>
+                <td>
+                  <select required value={this.state.gender} onChange={this.handleGender}>
+                    <option value="">--Select One--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </td>
+              </tr> 
             </tbody>
           </table>
+          <div>
+            <RegButton  type="submit" disabled={!this.state.verifyUsername}>Next Step</RegButton>
+          </div> 
         </form>
       </div>
 
