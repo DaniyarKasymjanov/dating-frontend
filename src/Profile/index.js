@@ -176,7 +176,7 @@ class Profile extends React.Component {
     fetch('/editProfile', {
       method: 'POST',
       credentials:'same-origin',
-      body: JSON.stringify(this.state)//this needs to be changed so that I send all data organized
+      body: JSON.stringify(this.state.info)//this needs to be changed so that I send all data organized
     })
     if (this.state.profileData.extraImageFile) this.uploadImage("extraImages", "uploadExtraImg");
     if (this.state.profileData.backgroundImgFile) this.uploadImage("backgroundImage", "uploadBackgroundImg");
