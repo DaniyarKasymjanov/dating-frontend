@@ -16,7 +16,7 @@ const ImageWrapper = styled.div`
     right: 0;
   }
   & > img {
-    max-width: 400px;
+    max-width: 100px;
   }
 `;
 

@@ -42,10 +42,10 @@ class LandingPage extends React.Component {
         <div className="LandingBackground">
           <LandingGrid >
             <Navbar light expand="md">
-              <H3L style={{color:"white"}}>DecoDating</H3L>
+              <H3L style={{color:"white"}}> <span><i className="fas fa-heart"></i></span> DecoDating</H3L>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <Button outline color="light" onClick={this.toggle} className="navBtn">Login</Button>
+                  <Button outline color="light" onClick={this.toggle} className="navBtn">Login <span><i class="fas fa-sign-in-alt" fa-sm></i></span></Button>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                       <ModalHeaderFix toggle={this.toggle}>Login</ModalHeaderFix>
                       <ModalBody>
