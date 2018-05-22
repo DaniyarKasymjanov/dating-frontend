@@ -108,12 +108,14 @@ class Register extends React.Component {
                   <label>First Name:</label>
                 </td>
                 <td>
+                  <div className="username_reg">
                   <input className="regInput" id="usernameInput" required type="text" placeholder="Enter username" value={this.state.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
                     {!this.state.verifyUsername && (
                       <Tooltip placement="right" isOpen={this.state.isMounted} target="usernameInput">
                         Your username is already taken
                       </Tooltip>
                     )}
+                    </div>
                 </td>
               </tr>
               <tr>

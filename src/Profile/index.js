@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal } from 'reactstrap'
+import { Link } from 'react-router-dom';
 import ProfileImages from './ProfileImages.js'
 import AnswerQuestions from './AnswerQuestions'
 import EvaluationQuestions from '../EvaluationQuestions.js';
@@ -285,11 +286,16 @@ class Profile extends React.Component {
           </div>
         </div>
         {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
-        
-        <div style={{border:"1px solid black"}}>
-          <div>{this.state.profileData.username}</div>
-          {this.props.ownProfile ? <button onClick={this.toggleEditQuestions}>Edit Questions</button> : <button onClick={this.toggleQuestions}>View Questions</button>}
-          {!this.props.ownProfile ?
+        <div>ProfileImage:
+      <img src={this.state.info.profileImg ? this.state.info.profileImg : "http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"} />
+          {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "profileImg")} />}
+        </div>
+        <div>{this.state.profileData.username}</div>
+        {!this.props.ownProfile && <Link to={"/messages/" + this.state.profileData.username}>Message</Link>}
+        {this.props.ownProfile ? <button onClick={this.toggleEditQuestions}>Edit Questions</button> : <button onClick={this.toggleQuestions}>View Questions</button>}
+
+        {!this.props.ownProfile ?
+
           <div>Like
             {this.state.profileData.isLiked ? <input type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></input> : <input type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}></input>}</div> :
             (this.state.profileData.isEditable ? (
@@ -307,7 +313,6 @@ class Profile extends React.Component {
           <div>languages:{this.renderLanguages()}</div>
           {this.renderInfo("smoking")}
           {this.renderInfo("drinking")}
-        </div>
         <div>
           {this.renderInfo("aboutMe", <h1>About Me:</h1>)}
         </div>
