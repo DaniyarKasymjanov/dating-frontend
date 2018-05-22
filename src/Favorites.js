@@ -44,7 +44,7 @@ class Favorites extends React.Component {
     return (
       <div>
         <MainGrid>
-          <Spotlight username={this.props.username} gender={this.props.gender} city={this.props.city} birthday={this.props.birthday} />
+          <Spotlight profileImage={this.props.profileImage} username={this.props.username} gender={this.props.gender} city={this.props.city} birthday={this.props.birthday} />
           <MainContentGrid>
             <H1>Your Favorite Members</H1>
             <ProfileDisplayGrid>

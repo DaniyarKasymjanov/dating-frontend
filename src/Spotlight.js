@@ -30,12 +30,12 @@ class Spotlight extends Component {
     return (
       <SpotlightGrid>
         <StyledCard>
-          <CardImg top width="100%" src="https://hypb.imgix.net/image/2016/03/rich-chigga-interview-000.jpg?q=75&w=1000&fit=max&auto=compress%2Cformat" alt="Card image cap" />
+          {this.props.profileImage ? <CardImg top width="100%" src={this.props.profileImage}/> : <CardImg top width="100%" src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/>}
           <CardBody>
             <CardTitle>
               <StyledLink to={"/profile/" + this.props.username}>{this.props.username}</StyledLink>
             </CardTitle>
-            {/* <CardSubtitle>{this.calculateAge(this.props.birthday)}</CardSubtitle>  */}
+            <CardSubtitle>{this.calculateAge(this.props.birthday)}</CardSubtitle> 
           <CardText>Gender: {this.props.gender}</CardText>
             <CardText>City : {this.props.city}</CardText>
             <LogoutButton>
