@@ -46,7 +46,14 @@ class App extends Component {
       .then(res => res.json())
       .then(res => {
         console.log(res);
-        if(res.success) this.setState({ username: res.user.username, fetchedSession: true });
+        this.setState({ fetchedSession: true });
+        if (res.success) {
+          this.setState({ username: res.user.username });
+          if (this.props.location.pathname === '/') this.props.history.push('/main');
+        }
+        else if (this.props.location.pathname !== '/') {
+          this.props.history.push('/');
+        }
       });
   }
 
@@ -60,7 +67,7 @@ class App extends Component {
   }
 
   handleLogin = obj => {
-    fetch('/login',{
+    return fetch('/login',{
       method: 'POST',
       credentials: 'same-origin',
       body: JSON.stringify( obj )
@@ -68,6 +75,7 @@ class App extends Component {
     .then(res => res.json())
     .then(res => {
       if(res.success) this.setState({ username: res.username });
+      return res;
     })
   }
 
@@ -126,12 +134,13 @@ class App extends Component {
 
   render() {
     console.log(this.props)
+    if(!this.state.fetchedSession) return <div>Loading</div>;
     return (
       <div className="App">
       <Route exact path="/search" render={this.renderSearch}/>
       {this.props.location.pathname !== '/' && (<NavBar username={this.state.username} handleSearch={this.handleSearch} history={this.props.history}/>)}
       <Grid>
-          <Onboarding handleLogin={this.handleLogin}/>
+          <Onboarding handleLogin={this.handleLogin} setUsername={this.setUsername} history={this.props.history} />
           <div>
           <Route exact path="/login" render={this.renderLogin}/>
             <Route exact path="/favorites" render={this.renderFavorites}/>
