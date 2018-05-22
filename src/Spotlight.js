@@ -4,6 +4,41 @@ import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 class Spotlight extends Component{
+  constructor() {
+    super()
+    this.state = {
+      usernamme: "",
+      birthday: "",
+      gender: "",
+      city: "",
+    }
+
+
+  // componentDidMount = () => {
+  //   fetch('/spotlight', {
+  //     credentials: "same-origin"
+  //   })
+  //   .then((res) => res.json())
+  //   .then((res)=> {
+  //     this.setState({username: res.username, birthday: res.birthday, gender: res.gender, city: res.city})
+  //   })
+  // }
+
+  // calculateAge = () => {
+  //   var str =this.state.birthday;
+  //   var dob = str.replace(/-/g, "")
+  //   var year = Number(dob.substr(0, 4));
+  //   var month = Number(dob.substr(4, 2)) - 1;
+  //   var day = Number(dob.substr(6, 2));
+  //   var today = new Date();
+  //   var age = today.getFullYear() - year;
+  //   if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
+  //     age--;
+  //   }
+  //   return <div>Age: {age} </div>
+  // }
+
+  // }
   render(){
     console.log(this.props)
     return(
@@ -14,7 +49,7 @@ class Spotlight extends Component{
           <CardTitle>
             <StyledLink to={"/profile/" + this.props.username}>{this.props.username}</StyledLink>
           </CardTitle>
-          <CardSubtitle>Age</CardSubtitle>
+          {/* <CardSubtitle>{this.calculateAge()}</CardSubtitle> */}
           <CardText>Gender</CardText>
           <CardText>City</CardText>
           <LogoutButton>

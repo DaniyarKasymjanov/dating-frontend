@@ -55,7 +55,7 @@ class Home extends React.Component{
             )} */}
 
             {this.state.recentMembers.map((obj)=>
-            <div>{ obj.profileImage ? <ProfileImage><img src = {obj.profileImage}/></ProfileImage> : <ProfileImage><img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/></ProfileImage>}
+            <div>{ obj.profileImg ? <ProfileImage><img src = {obj.profileImg}/></ProfileImage> : <ProfileImage><img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/></ProfileImage>}
             <div>{obj.username}</div>
             <div>{obj.city}</div>
             <div>{this.calculateAge(obj.birthday)}</div>
