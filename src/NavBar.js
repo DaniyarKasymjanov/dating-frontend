@@ -76,8 +76,8 @@ class NavBar extends React.Component{
                 <button className="navBtns">
                   <StyledLink to="/">Notification</StyledLink>
                 </button>
-                <button className="navBtns">
-                  <StyledLink to="/">Logout</StyledLink>
+                <button className="navBtns" onClick={this.logout}>
+                  Logout
                 </button>
             </Nav>
           </Collapse>

@@ -111,3 +111,7 @@ ModalHeaderFix{
 label{
   color: white;
 }
+
+.evalWrapper label {
+  color: black;
+}
