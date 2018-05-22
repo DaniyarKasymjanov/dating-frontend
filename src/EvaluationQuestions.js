@@ -66,8 +66,7 @@ class EvaluationQuestions extends React.Component {
   submitEvaluation = (event) => {
     event.preventDefault();
     const questions = this.state;
-    this.props.submitEvaluation({
-      questions: [
+    this.props.submitEvaluation([
         {
         title: questions.q1Title,
         answers: questions.q1Answers,
@@ -92,8 +91,7 @@ class EvaluationQuestions extends React.Component {
         type: questions.q4Type,
         answer: questions.q4Correct
     }
-    ]
-    });
+    ]);
   }
 
   renderQuestion1 = () => {

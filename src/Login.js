@@ -23,7 +23,9 @@ class Login extends React.Component{
       username: this.state.username,
       password: this.state.password
     })
-    this.setState({redirect: true})
+    .then(res => {
+      if(res.success) this.setState({redirect: true});
+    })
   }
   render(){
     if(this.state.redirect === true)  
@@ -31,6 +33,7 @@ class Login extends React.Component{
     if(this.state.redirect === false)
       return(
         <form onSubmit={this.handleSubmit}>
+        <div className="login-box">
           <div>
             <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUserName}></input>
             </div>
@@ -40,9 +43,11 @@ class Login extends React.Component{
           <div>
             <input type="submit"/>
           </div>
+          </div>
         </form>
       )
   }
 }
+
 
 export default Login

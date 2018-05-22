@@ -241,7 +241,7 @@ class Profile extends React.Component {
     fetch('/updateQuestions', {
       credentials: 'same-origin',
       method: 'POST',
-      body: JSON.stringify(questions)
+      body: JSON.stringify({questions})
     })
     .then(res => res.json())
     .then(res => {
