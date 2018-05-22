@@ -17,7 +17,7 @@
     background-position: 0 0;
   }
   to {
-    background-position: 100px 0;
+    background-position: 98% 0;
   }
 }
 
@@ -120,15 +120,15 @@ label{
   font-size: 20px;
 }
 
-table{
+.TableReg{
   width: 100%;
 }
 
-tr > td {
+.TableReg tr > td {
   padding: 6px;
 }
 
-tr > td:first-child {
+.TableReg tr > td:first-child {
   text-align: left;
 }
 .evalWrapper label {
@@ -170,3 +170,52 @@ tr > td:first-child {
   border-top: 5px solid white;
   background: #ffffffdb;
 }
+
+.MiniPicGrid{
+  display:grid;
+  grid-area: mini;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 5px;
+  border: 1px solid black;
+}
+
+.ProfileQuick{
+  margin: 145px 20px 0px 67px;
+}
+
+.ProfileInfo{
+  width: 50%;
+}
+
+.AboutMe{
+  text-align: left;
+  width: 60%;
+  margin: 15px 20px;
+  position: relative;
+}
+
+.MainProfileGrid{
+  display: grid;
+  grid-template-areas: 
+    "top top"
+    "bottom mini"
+    "footer footer";
+}
+
+.TopContent{
+  grid-area: top;
+}
+
+.BottomContent{
+  grid-area: bottom;
+}
+
+.Footer{
+  grid-area: footer;
+}
+
+/* .BackgroundImage{
+  background-image: url(https://img.freepik.com/free-vector/bright-background-with-dots_1055-3132.jpg?size=338&ext=jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+} */

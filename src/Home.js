@@ -39,7 +39,7 @@ class Home extends React.Component{
   }
   render(){
     return(
-      <div>
+      <div className="BackgroundImage">
       <MainGrid>
         <Spotlight username={this.props.username} gender={this.props.gender} city={this.props.city} birthday={this.props.birthday} profileImage={this.props.profileImage}/>
         <MainContentGrid>

@@ -4,6 +4,7 @@ import ProfileImages from './ProfileImages.js'
 import AnswerQuestions from './AnswerQuestions'
 import EvaluationQuestions from '../EvaluationQuestions.js';
 import Footer from '../Footer'
+import {MiniPicGrid} from '../Styled'
 
 class Profile extends React.Component {
   constructor() {
@@ -61,7 +62,7 @@ class Profile extends React.Component {
           aboutMe: infoData.aboutMe,
           smoking: infoData.smoking,
           drinking: infoData.drinking,
-          languages: ["eng"],
+          languages: [],
           lookingFor: infoData.lookingFor,
           questions: infoData.questions,
           profileImg: infoData.profileImg,
@@ -115,13 +116,13 @@ class Profile extends React.Component {
     if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
       age--;
     }
-    return <div>Age: {age} </div>
+    return <div>Age: {age} Years old </div>
     this.setProfileData({ age: age })
   }
 
   renderLanguages = () => {
     if (this.state.info.languages.length >= 1) {
-      return (this.state.info.languages.map(x => <div>{x}</div>))
+      return (this.state.info.languages.map(x => <div>{ x }</div>))
     }
     return null
   }
@@ -225,18 +226,15 @@ class Profile extends React.Component {
 
   renderInfo = (key, str) => {
     return (
-      <div className="capitalize">{str ? str : key}:
-      {this.state.profileData.isEditable ?
-          <input value={this.state.info[key]} onChange={(e) => this.handleInfoChange(e, key)} /> :
-          this.state.info[key]
+      <div className="capitalize">{str ? str : key}{(key !== 'aboutMe' && key !== 'lookingFor') && ':'} {this.state.profileData.isEditable ?
+          <input value={this.state.info[key]} onChange={(e) => this.handleInfoChange(e, key)} /> : this.state.info[key]
         }
       </div>
     );
   }
   renderGender = () => {
     return (
-      <div className="capitalize">Gender:
-      {this.state.profileData.isEditable ?
+      <div className="capitalize">Gender: {this.state.profileData.isEditable ?
           <select value={this.state.info.gender} onChange={(e) => this.handleInfoChange(e, 'gender')}>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -269,13 +267,14 @@ class Profile extends React.Component {
 
   viewProfile = () => {
     return (
-      <div>
+      <div className="MainProfileGrid">
         <Modal isOpen={this.state.profileData.showQuestions} toggle={this.toggleQuestions}>
           <AnswerQuestions questions={this.state.info.questions} isEditable={this.isEditable} username={this.state.profileData.username} showQuestions={this.state.profileData.showQuestions} />
         </Modal>
         <Modal isOpen={this.state.profileData.editQuestions} toggle={this.toggleEditQuestions}>
           <EvaluationQuestions questions={this.state.info.questions} submitEvaluation={this.updateQuestions} history={this.props.history} />
         </Modal>
+        <div className="TopContent">
         <div className="ProfileBackground">
           <img style={{width:"100%"}}src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
           {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "backgroundImage")} />}
@@ -286,8 +285,8 @@ class Profile extends React.Component {
         </div>
         {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
         
-        <div style={{border:"1px solid black"}}>
-          <div>{this.state.profileData.username}</div>
+        <div className="ProfileQuick">
+          <div style={{display:"flex"}}><h3>{this.state.profileData.username}</h3>
           {this.props.ownProfile ? <button onClick={this.toggleEditQuestions}>Edit Questions</button> : <button onClick={this.toggleQuestions}>View Questions</button>}
           {!this.props.ownProfile ?
           <div>Like
@@ -299,23 +298,45 @@ class Profile extends React.Component {
             </div>
             ) : <button onClick={this.toggleEditable}>Edit</button>)
           }
-
-          {this.calculateAge()}
-          {this.renderGender()}
-          {this.renderInfo("city")}
-          {this.renderInfo("education")}
-          <div>languages:{this.renderLanguages()}</div>
-          {this.renderInfo("smoking")}
-          {this.renderInfo("drinking")}
+          </div>
+          <table className="ProfileInfo">
+            <tbody>
+              <tr>
+                <td>{this.calculateAge()}</td>
+                <td>{this.renderInfo("education")}</td>
+                <td>{this.renderInfo("smoking")}</td>
+              </tr>
+              <tr>
+                <td>{this.renderGender()}</td>
+                <td>{this.renderInfo("city")}</td>
+                <td>{this.renderInfo("drinking")}</td>
+              </tr>
+              <tr>
+                <td>Languages: {this.renderLanguages()}</td>
+              </tr>
+            </tbody>
+          </table>
+          {/* {this.calculateAge()} */}
+          {/* {this.renderGender()} */}
+          {/* {this.renderInfo("city")} */}
+          {/* {this.renderInfo("education")} */}
+          {/* <div>languages:{this.renderLanguages()}</div> */}
+          {/* {this.renderInfo("smoking")} */}
+          {/* {this.renderInfo("drinking")} */}
+          </div>
         </div>
-        <div>
-          {this.renderInfo("aboutMe", <h1>About Me:</h1>)}
+        <div className="BottomContent">
+        <div className="AboutMe">
+          <div className="">{this.renderInfo("aboutMe", <h3>About Me</h3>)}</div>
         </div>
-        <div>
-          {this.renderInfo("lookingFor", <h1>Looking For:</h1>)}
+        <div className="AboutMe">
+          {this.renderInfo("lookingFor", <h1>Looking For</h1>)}
         </div>
-        <ProfileImages handleExtraImageChange={this.handleExtraImageChange} deleteExtraImage={this.deleteExtraImage} isEditable={this.state.profileData.isEditable} extraImages={this.state.info.extraImages} />
-        <Footer/>
+        </div>
+        <div className="MiniPicGrid">
+          <ProfileImages handleExtraImageChange={this.handleExtraImageChange} deleteExtraImage={this.deleteExtraImage} isEditable={this.state.profileData.isEditable} extraImages={this.state.info.extraImages} />
+        </div>
+        <Footer className="Footer"/>
       </div>)
   }
 

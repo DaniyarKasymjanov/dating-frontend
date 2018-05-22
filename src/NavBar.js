@@ -76,9 +76,9 @@ class NavBar extends React.Component{
                 <button className="navBtns">
                   <StyledLink to="/messages">Messages</StyledLink>
                 </button>
-                <button className="navBtns">
+                {/* <button className="navBtns">
                   <StyledLink to="/">Notification</StyledLink>
-                </button>
+                </button> */}
                 <LogoutButton className="navBtns" onClick={this.logout}>
                   Logout
                   <span> <i class="fas fa-sign-out-alt" fa-sm></i></span>

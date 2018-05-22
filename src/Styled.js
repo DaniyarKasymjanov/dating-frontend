@@ -23,7 +23,7 @@ const ProfileDisplayGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
-  padding: 25px 20px 0px 30px;
+  padding: 25px 20px 25px 30px;
   border: 0.5px solid #DDD;
 `;
 

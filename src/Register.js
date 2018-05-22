@@ -101,7 +101,7 @@ class Register extends React.Component {
     return (
       <div>
         <form onSubmit={this.stepTwo} className="regForm">
-          <table>
+          <table className="TableReg"> 
             <tbody>
               <tr>
                 <td>
