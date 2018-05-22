@@ -38,7 +38,7 @@ class Spotlight extends Component{
   //   return <div>Age: {age} </div>
   // }
 
-  // }
+   }
   render(){
     console.log(this.props)
     return(
