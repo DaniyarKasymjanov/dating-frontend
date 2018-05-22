@@ -27,7 +27,8 @@ class AnswerQuestions extends React.Component {
     this.state = {
       response: [],
       viewPhotos: false,
-      modal: false
+      modal: false,
+      showQuestions: true
     }
   }
   setResponse = (event, index) => {
@@ -44,10 +45,12 @@ class AnswerQuestions extends React.Component {
       })
       .then(res=> {
         if(res.success) {
-          this.setState({viewPhotos: true})
+          alert("You answered all the questions correctly, you can now see this users photos")
+          this.setState({viewPhotos: true, showQuestions: false})
         }
         else if(res.success === false) {
-          this.setState({viewPhotos: false})
+          alert("You answered a question incorrectly, better luck next time")
+          this.setState({viewPhotos: false, showQuestions: false})
         }
       })
   }
@@ -60,32 +63,18 @@ class AnswerQuestions extends React.Component {
     console.log(this.props.questions)
     return this.props.questions.map((question, index) => {
       return <div>
-         {/* <Wrapper>
-          <Modal isOpen={this.state.modal} toggle={this.toggle}>
-            <img src={this.state.img}/>
-          </Modal>
-          <div>
-          {this.props.isEditable && <input type="file" onChange={(e)=> this.props.handleExtraImageChange(e)} />}
-          {this.props.extraImages.map((imgUrl, i) => 
-            <ImageWrapper>
-              {this.props.isEditable && <button onClick={() => this.props.deleteExtraImage(i)}>x</button> }
-              <img src={imgUrl} onClick={()=>this.setState({modal:true, img: imgUrl})}/>
-            </ImageWrapper>
-          )}
-
-          </div>
-        </Wrapper> */}
         <div>{question.title}</div>
-        <form>
+        <form onSubmit={this.getResults}>
           {question.type === 'bool' && (
             <div>
-              <input name={index} type="radio" value="True" onClick={(event) => this.setResponse(event, index)} />True
-              <input name={index} type="radio" value="False" onClick={(event) => this.setResponse(event, index)} />False
+              <input required name={index} type="radio" value="True" onClick={(event) => this.setResponse(event, index)} />True
+              <input required name={index} type="radio" value="False" onClick={(event) => this.setResponse(event, index)} />False
           </div>
           )}
           {question.type === 'multiple' && question.answers.map((answer, idx) => (
-            <div><input type="radio" name={index} value={idx} onClick={(event) => this.setResponse(event, index)} />{answer}</div>
+            <div><input required type="radio" name={index} value={idx} onClick={(event) => this.setResponse(event, index)} />{answer}</div>
           ))}
+          <input type="submit"/>
         </form>
       </div>
     }
@@ -98,7 +87,7 @@ class AnswerQuestions extends React.Component {
     return (<div>
 
       {this.renderQuestions()}
-      <button onSubmit={this.getResults}>Submit</button>
+      {/* <button onSubmit={this.getResults}>Submit</button> */}
     </div>
     )
   }

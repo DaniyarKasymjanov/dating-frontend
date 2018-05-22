@@ -39,6 +39,15 @@ class NavBar extends React.Component{
       modal: !this.state.modal
     });
   }
+  logout = () => {
+    fetch('/logout', {
+      credentials: 'same-origin'
+    })
+    .then(res => res.json())
+    .then(res => {
+      if(res.success) this.props.history.push('/');
+    })
+  }
   render(){
     return(
       <div>
@@ -67,8 +76,8 @@ class NavBar extends React.Component{
                 <button className="navBtns">
                   <StyledLink to="/">Notification</StyledLink>
                 </button>
-                <button className="navBtns">
-                  <StyledLink to="/">Logout</StyledLink>
+                <button className="navBtns" onClick={this.logout}>
+                  Logout
                 </button>
             </Nav>
           </Collapse>

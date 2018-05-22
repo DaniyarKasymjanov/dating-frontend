@@ -104,3 +104,6 @@ tr > td {
 tr > td:first-child {
   text-align: left;
 }
+.evalWrapper label {
+  color: black;
+}

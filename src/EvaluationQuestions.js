@@ -27,14 +27,18 @@ class EvaluationQuestions extends React.Component {
     } 
   }
   componentDidMount() {
-    // fetch('/getProfile', {
-    //   credentials: 'same-origin'
-    // })
-    // .then(res => res.json())
-    // .then(res => {
-    //   console.log(res);
-    //   // this.props.setEvaluationState(res);
-    // })
+    if(this.props.questions) this.prefillState(this.props.questions);
+  }
+  prefillState(questions) {
+    console.log('prefillState', questions)
+    const newState = questions.reduce((acc, curr, i) => ({
+      ...acc,
+      [`q${i + 1}Type`]: curr.type,
+      [`q${i + 1}Title`]: curr.title,
+      [`q${i + 1}Answers`]: curr.answers,
+      [`q${i + 1}Correct`]: curr.answer}),
+    {})
+    this.setState(newState, () => console.log(this.state));
   }
   q1Type = (type) => {
     // this.setState({q1Type:  type})
@@ -60,8 +64,36 @@ class EvaluationQuestions extends React.Component {
   }
 
   submitEvaluation = (event) => {
-    event.preventDefault()
-    this.props.submitEvaluation(this.state);
+    event.preventDefault();
+    const questions = this.state;
+    this.props.submitEvaluation({
+      questions: [
+        {
+        title: questions.q1Title,
+        answers: questions.q1Answers,
+        type: questions.q1Type,
+        answer: questions.q1Correct
+    },
+    {
+        title: questions.q2Title,
+        answers: questions.q2Answers,
+        type: questions.q2Type,
+        answer: questions.q2Correct
+    },
+    {
+        title: questions.q3Title,
+        answers: questions.q3Answers,
+        type: questions.q3Type,
+        answer: questions.q3Correct
+    },
+    {
+        title: questions.q4Title,
+        answers: questions.q4Answers,
+        type: questions.q4Type,
+        answer: questions.q4Correct
+    }
+    ]
+    });
   }
 
   renderQuestion1 = () => {
@@ -215,12 +247,12 @@ class EvaluationQuestions extends React.Component {
   render() {
     console.log(this.props)
     return (
-      <div>
+      <div className="evalWrapper">
         <form onSubmit={this.submitEvaluation}>
           <fieldset>
             <legend>Evaluation Question 1</legend>
-            <input required type="radio" name="question1" id="bool1" onChange={() => this.q1Type('bool')} /><label for="bool1">True Or False</label><br />
-            <input required type="radio" name="question1" id="multipleChoice1" onChange={() => this.q1Type('multiple')} /><label for="multipleChoice1">Multiple Choice</label><br />
+            <input required type="radio" name="question1" id="bool1" checked={this.state.q1Type === 'bool'} onChange={() => this.q1Type('bool')} /><label for="bool1">True Or False</label><br />
+            <input required type="radio" name="question1" id="multipleChoice1" checked={this.state.q1Type === 'multiple'} onChange={() => this.q1Type('multiple')} /><label for="multipleChoice1">Multiple Choice</label><br />
             {this.renderQuestion1()}
           </fieldset>
           <fieldset>
