@@ -11,11 +11,11 @@ class Home extends React.Component{
     }
   }
   handleRecent = () => {
-    // fetch('/main')
-    // .then( res => res.json())
-    // .then(resJSON => {
-    //   if(resJSON.success) this.setState({recentMembers:  resJSON.result})
-    // })
+    fetch('/main')
+    .then( res => res.json())
+    .then(resJSON => {
+      if(resJSON.success) this.setState({recentMembers:  resJSON.result})
+    })
   }
   componentDidMount(){
     this.handleRecent()

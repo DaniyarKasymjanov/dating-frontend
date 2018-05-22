@@ -33,6 +33,8 @@ class Profile extends React.Component {
         age: "",
         isLiked: false,
         isEditable: false,
+        profileImg: "",
+        backgroundImage: "",
         extraImages: [],
         showQuestions: false,
         editQuestions: false
@@ -47,6 +49,7 @@ class Profile extends React.Component {
       .then(res => res.json())
 
       .then(res => {
+        console.log(res)
         console.log(res.result.questions, "abcsdfkjdhsf")
         let infoData = res.result;
         this.setInfo({
@@ -59,8 +62,9 @@ class Profile extends React.Component {
           drinking: infoData.drinking,
           languages: ["eng"],
           lookingFor: infoData.lookingFor,
-          questions: infoData.questions
-
+          questions: infoData.questions,
+          profileImg: infoData.profileImg,
+          backgroundImage: infoData.backgroundImage
         })
         this.setProfileData({
           username: infoData.username,
@@ -146,11 +150,15 @@ class Profile extends React.Component {
   }
 
   uploadImage = (img, endPoint) => {
+    console.log('uploadImage', endPoint)
     let imgFile = this.state.profileData[img];
     var fileExtension = imgFile.name.split('.').pop();
-    fetch('/'+endPoint+'?extension=' + fileExtension, { method: "POST", body: imgFile })
+    return fetch('/'+endPoint+'?extension=' + fileExtension, { method: "POST", body: imgFile })
       .then(res => res.json())
-      .then((res) => this.setInfo({ [img]: res[img] }))
+      .then((res) => {
+        console.log(res)
+        this.setInfo({ [img]: '/' + res.imageName });
+      })
   }
 
   handleImageChange = (e, img) => {
@@ -173,15 +181,19 @@ class Profile extends React.Component {
   }
 }
   submitEdits = () => {
-    fetch('/editProfile', {
-      method: 'POST',
-      credentials:'same-origin',
-      body: JSON.stringify(this.state)//this needs to be changed so that I send all data organized
+    const editPromises = [];
+    if (this.state.profileData.extraImages.length > 0) editPromises.push(this.uploadImage("extraImages", "uploadExtraImages"));
+    if (this.state.profileData.backgroundImage) editPromises.push(this.uploadImage("backgroundImage", "uploadBackgroundImage"));
+    if (this.state.profileData.profileImg) editPromises.push(this.uploadImage("profileImg", "uploadProfileImg"));
+    Promise.all(editPromises)
+    .then(() => {
+      fetch('/editProfile', {
+        method: 'POST',
+        credentials:'same-origin',
+        body: JSON.stringify(this.state.info)//this needs to be changed so that I send all data organized
+      })
+      this.toggleEditable()
     })
-    if (this.state.profileData.extraImageFile) this.uploadImage("extraImages", "uploadExtraImg");
-    if (this.state.profileData.backgroundImgFile) this.uploadImage("backgroundImage", "uploadBackgroundImg");
-    if (this.state.profileData.profileImgFile) this.uploadImage("profileImg", "uploadProfileImg");
-    this.toggleEditable()
   }
 
   cancelEdits = () => {
