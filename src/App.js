@@ -33,8 +33,8 @@ class App extends Component {
   constructor() {
     super() 
     this.state = {
-      username : "adam",
-      password: "123",
+      username : "",
+      password: "",
       searchResults: [],
       fetchedSession: false
     }

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ModalHeader, Button } from "reactstrap";
+import { ModalHeader, Button, Card } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const Grid = styled.div`
@@ -9,7 +9,7 @@ const Grid = styled.div`
 
 const MainGrid = styled.div`
   display: grid;
-  grid-template-columns: auto 80%;
+  grid-template-columns: auto 70%;
   margin: 10px 5% 0;
   grid-gap: 10px;
   min-height: 85vh;
@@ -39,11 +39,12 @@ const LandingReg = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 10px 10%;
-  grid-gap: 50px;
+  grid-gap: 200px;
 `;
 
 const LandingLink = styled(Link)`
   color: black;
+  margin: 0px 70px;
 `
 
 const SpotlightGrid = styled.div`
@@ -58,7 +59,7 @@ const ModalHeaderFix = styled(ModalHeader)`
 `;
 
 const ProfileImage = styled.div`
-  max-width: 200px;
+  max-width: 300px;
   & > img {
     max-width: 100%;
   }
@@ -116,6 +117,19 @@ const LogoutButton = styled(Button)`
   }
 `;
 
+const NavLogoLink = styled(Link)`
+    && {
+    color: #0088cc;
+    &:hover {
+      color: #0088cc;
+      background-color: white;
+    }
+    background: white;
+    border: none;
+    text-decoration: none;
+  }
+`
+
 const H1 = styled.h1`
   && {
     border-bottom: 1px solid #DDD;
@@ -139,6 +153,13 @@ const H3L = styled.h3`
   margin-left: 9%;
 `;
 
+const H3Logo = styled.h3`
+  && {
+    color: #0088cc;
+  }
+  /* margin-left: 50%; */
+`;
+
 const StyledLink = styled(Link)`
   color: #0088cc;
   &:hover {
@@ -150,6 +171,11 @@ const StyledContent = styled.div`
   border: 0.5px solid #ddd;
 `;
 
+const StyledCard = styled(Card)`
+  &&{
+    border: 5px solid #0088cc;
+  }
+`
 
 export {
   Grid,
@@ -165,12 +191,15 @@ export {
   ProfileImage,
   FooterCSS,
   NavButton,
+  NavLogoLink,
   RegButton,
   LogoutButton,
   H1,
   H2,
   H3,
   H3L,
+  H3Logo,
   StyledLink,
-  StyledContent
+  StyledContent,
+  StyledCard
 };

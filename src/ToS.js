@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {H2, H3} from './Styled'
+import Footer from './Footer'
 
 class ToS extends Component {
   render() {
@@ -24,7 +25,7 @@ class ToS extends Component {
         <ol type="a">
           <li>
             Permission is granted to temporarily download one copy of the
-            materials (information or software) on Swoon's web site for
+            materials (information or software) on DecoDating's web site for
             personal, non-commercial transitory viewing only. This is the grant
             of a license, not a transfer of title, and under this license you
             may not:
@@ -36,7 +37,7 @@ class ToS extends Component {
               </li>
               <li>
                 attempt to decompile or reverse engineer any software contained
-                on Swoon's web site;
+                on DecoDating's web site;
               </li>
               <li>
                 remove any copyright or other proprietary notations from the
@@ -50,7 +51,7 @@ class ToS extends Component {
           </li>
           <li>
             This license shall automatically terminate if you violate any of
-            these restrictions and may be terminated by Swoon at any time. Upon
+            these restrictions and may be terminated by DecoDating at any time. Upon
             terminating your viewing of these materials or upon the termination
             of this license, you must destroy any downloaded materials in your
             possession whether in electronic or printed format.
@@ -61,12 +62,12 @@ class ToS extends Component {
 
         <ol type="a">
           <li>
-            The materials on Swoon's web site are provided "as is". Swoon makes
+            The materials on DecoDating's web site are provided "as is". DecoDating makes
             no warranties, expressed or implied, and hereby disclaims and
             negates all other warranties, including without limitation, implied
             warranties or conditions of merchantability, fitness for a
             particular purpose, or non-infringement of intellectual property or
-            other violation of rights. Further, Swoon does not warrant or make
+            other violation of rights. Further, DecoDating does not warrant or make
             any representations concerning the accuracy, likely results, or
             reliability of the use of the materials on its Internet web site or
             otherwise relating to such materials or on any sites linked to this
@@ -77,10 +78,10 @@ class ToS extends Component {
         <H3>4. Limitations</H3>
 
         <p>
-          In no event shall Swoon or its suppliers be liable for any damages
+          In no event shall DecoDating or its suppliers be liable for any damages
           (including, without limitation, damages for loss of data or profit, or
           due to business interruption,) arising out of the use or inability to
-          use the materials on Swoon's Internet site, even if Swoon or a Swoon
+          use the materials on DecoDating's Internet site, even if DecoDating or a DecoDating
           authorized representative has been notified orally or in writing of
           the possibility of such damage. Because some jurisdictions do not
           allow limitations on implied warranties, or limitations of liability
@@ -91,27 +92,27 @@ class ToS extends Component {
         <H3>5. Revisions and Errata</H3>
 
         <p>
-          The materials appearing on Swoon's web site could include technical,
-          typographical, or photographic errors. Swoon does not warrant that any
+          The materials appearing on DecoDating's web site could include technical,
+          typographical, or photographic errors. DecoDating does not warrant that any
           of the materials on its web site are accurate, complete, or current.
-          Swoon may make changes to the materials contained on its web site at
-          any time without notice. Swoon does not, however, make any commitment
+          DecoDating may make changes to the materials contained on its web site at
+          any time without notice. DecoDating does not, however, make any commitment
           to update the materials.
         </p>
 
         <H3>6. Links</H3>
 
         <p>
-          Swoon has not reviewed all of the sites linked to its Internet web
+          DecoDating has not reviewed all of the sites linked to its Internet web
           site and is not responsible for the contents of any such linked site.
-          The inclusion of any link does not imply endorsement by Swoon of the
+          The inclusion of any link does not imply endorsement by DecoDating of the
           site. Use of any such linked web site is at the user's own risk.
         </p>
 
         <H3>7. Site Terms of Use Modifications</H3>
 
         <p>
-          Swoon may revise these terms of use for its web site at any time
+          DecoDating may revise these terms of use for its web site at any time
           without notice. By using this web site you are agreeing to be bound by
           the then current version of these Terms and Conditions of Use.
         </p>
@@ -119,7 +120,7 @@ class ToS extends Component {
         <H3>8. Governing Law</H3>
 
         <p>
-          Any claim relating to Swoon's web site shall be governed by the laws
+          Any claim relating to DecoDating's web site shall be governed by the laws
           of the State of Quebec without regard to its conflict of law
           provisions.
         </p>
@@ -177,6 +178,7 @@ class ToS extends Component {
           principles in order to ensure that the confidentiality of personal
           information is protected and maintained.
         </p>
+        <Footer/>
       </div>
     );
   }

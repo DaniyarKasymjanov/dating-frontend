@@ -108,7 +108,7 @@ class Register extends React.Component {
                   <label>First Name:</label>
                 </td>
                 <td>
-                  <input id="usernameInput" required type="text" placeholder="Enter username" value={this.state.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
+                  <input className="regInput" id="usernameInput" required type="text" placeholder="Enter username" value={this.state.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
                     {!this.state.verifyUsername && (
                       <Tooltip placement="right" isOpen={this.state.isMounted} target="usernameInput">
                         Your username is already taken
@@ -121,7 +121,7 @@ class Register extends React.Component {
                   <label >Password:</label>
                 </td>
                 <td>
-                  <input required type="password" placeholder="Enter Password" value={this.state.password} onChange={this.handlePassword}></input>
+                  <input className="regInput" required type="password" placeholder="Enter Password" value={this.state.password} onChange={this.handlePassword}></input>
                 </td>
               </tr>
               <tr>
@@ -129,7 +129,7 @@ class Register extends React.Component {
                   <label >Re-enter Password:</label>
                 </td>
                 <td>
-                  <input id="passwordInput" required type="password" placeholder="Re-Enter Password" value={this.state.password2} onChange={this.handlePassword2} onBlur={this.passwordMatch}></input>
+                  <input className="regInput" id="passwordInput" required type="password" placeholder="Re-Enter Password" value={this.state.password2} onChange={this.handlePassword2} onBlur={this.passwordMatch}></input>
                     {this.renderPasswordValidation()}
                 </td>
               </tr>          
@@ -138,7 +138,7 @@ class Register extends React.Component {
                   <label >Birthday:</label>
                 </td>
                 <td>
-                  <input required type="date" name="birthday" value={this.state.birthday} onChange={this.handleBirthday}></input>
+                  <input className="regInput" required type="date" name="birthday" value={this.state.birthday} onChange={this.handleBirthday}></input>
                 </td>
               </tr>
               <tr>
@@ -146,7 +146,7 @@ class Register extends React.Component {
                   <label >City:</label>
                 </td>
                 <td>
-                  <input required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
+                  <input className="regInput" required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
                 </td>
               </tr>
               <tr>
@@ -154,10 +154,10 @@ class Register extends React.Component {
                   <label >Gender:</label>
                 </td>
                 <td>
-                  <select required value={this.state.gender} onChange={this.handleGender}>
-                    <option value="">--Select One--</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                  <select className="regInput" required value={this.state.gender} onChange={this.handleGender}>
+                    <option className="regInput" value="">--Select One--</option>
+                    <option className="regInput" value="Male">Male</option>
+                    <option className="regInput" value="Female">Female</option>
                   </select>
                 </td>
               </tr> 

@@ -15,7 +15,7 @@ import {
 } from 'reactstrap';
 import styled from 'styled-components';
 import Search from './Search'
-import {ModalHeaderFix, StyledLink, NavButton, H3, LogoutButton} from './Styled'
+import {ModalHeaderFix, StyledLink, NavButton, NavLogoLink, H3Logo, LogoutButton} from './Styled'
 
 const NavModal = styled(Modal)`
   && {
@@ -52,9 +52,9 @@ class NavBar extends React.Component{
     return(
       <div>
         <Navbar className="navBarCSS" color="white" light expand="md">
-        <Link className="NavLink" to="/">
-          <H3>DecoDating</H3>
-        </Link>
+        <NavLogoLink className="NavLink" to="/">
+          <H3Logo>DecoDating</H3Logo>
+        </NavLogoLink>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
