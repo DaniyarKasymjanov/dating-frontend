@@ -33,32 +33,7 @@ class Onboarding extends React.Component {
                     birthday: this.state.register.birthday,
                     city: this.state.register.city,
                     gender: this.state.register.gender,
-                    questions: [
-                        {
-                        title: questions.q1Title,
-                        answers: questions.q1Answers,
-                        type: questions.q1Type,
-                        answer: questions.q1Correct
-                    },
-                    {
-                        title: questions.q2Title,
-                        answers: questions.q2Answers,
-                        type: questions.q2Type,
-                        answer: questions.q2Correct
-                    },
-                    {
-                        title: questions.q3Title,
-                        answers: questions.q3Answers,
-                        type: questions.q3Type,
-                        answer: questions.q3Correct
-                    },
-                    {
-                        title: questions.q4Title,
-                        answers: questions.q4Answers,
-                        type: questions.q4Type,
-                        answer: questions.q4Correct
-                    }
-                ]
+                    questions
                 })  
             })
             .then(res => res.json())

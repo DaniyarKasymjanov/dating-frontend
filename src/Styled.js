@@ -23,6 +23,9 @@ const ProfileDisplayGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
+  padding-left: 30px;
+  padding-top: 25px;
+  border: 0.5px solid #DDD;
 `;
 
 const LandingGrid = styled.div`
@@ -45,7 +48,8 @@ const LandingLink = styled(Link)`
 `
 
 const SpotlightGrid = styled.div`
-  margin: 0 10px;
+  margin: 15px 10px;
+  
 `;
 const ModalHeaderFix = styled(ModalHeader)`
   && {
@@ -70,7 +74,8 @@ const ChatGrid = styled.div`
 `;
 
 const FooterCSS = styled.div`
-  margin: 120px 0 0 0;
+  margin: 120px 0 30px 0;
+  border-top: 0.5px solid #0088cc;
 `;
 
 const NavButton = styled(Button)`
@@ -101,6 +106,12 @@ const H3 = styled.h3`
     color: #0088cc;
   }
 `;
+const H3L = styled.h3`
+  && {
+    color: #0088cc;
+  }
+  margin-left: 9%;
+`;
 
 const StyledLink = styled(Link)`
   color: #0088cc;
@@ -130,6 +141,7 @@ export {
   H1,
   H2,
   H3,
+  H3L,
   StyledLink,
   StyledContent
 };

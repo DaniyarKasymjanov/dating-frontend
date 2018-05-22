@@ -10,7 +10,7 @@
   background-image: url(http://farm1.static.flickr.com/157/413149404_f5ebc842a6.jpg);
   position: relative;
   background-repeat: repeat;
-  animation: animate 11s linear infinite;
+  animation: animate 10s linear infinite;
 }
 @keyframes animate{
   from {
@@ -22,7 +22,6 @@
 }
 
 .profileImg{
-  width: 50%;
   border-radius: 50%;
   border: 0.5px solid #ddd;
   margin: 10px;
@@ -59,31 +58,13 @@
 }
 
 .regForm{
-  display: inline-block;
+  padding: 20px;
+  border: 8px solid white;
+  border-radius: 10px;
+  background: #ffffff7d;
 }
-.regTop{
-  border-left: 2px solid white;
-  border-right: 2px solid white;
-  border-top: 2px solid white;
-  border-radius: 15px 15px 0px 0px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 30px;
-  margin: 0 5px;
-}
-.regBody{
-  border-left: 2px solid white;
-  border-right: 2px solid white;
-  border-radius: 0px 0px 0px 0px;
-  margin: 0 5px;
-}
-.regBottom{
-  border-left: 2px solid white;
-  border-right: 2px solid white;
-  border-bottom: 2px solid white;
-  border-radius: 0px 0px 15px 15px;
-  padding-bottom: 30px;
-  margin: 0 5px;
+.regButton{
+  text-align: center;
 }
 
 .regInput{
@@ -110,4 +91,19 @@ ModalHeaderFix{
 
 label{
   color: white;
+}
+
+table{
+  width: 100%;
+}
+
+tr > td {
+  padding: 6px;
+}
+
+tr > td:first-child {
+  text-align: left;
+}
+.evalWrapper label {
+  color: black;
 }

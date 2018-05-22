@@ -20,6 +20,21 @@ class Home extends React.Component{
   componentDidMount(){
     this.handleRecent()
   }
+
+  calculateAge = (birthday) => {
+    var str = birthday;
+    var dob = str.replace(/-/g, "")
+    var year = Number(dob.substr(0, 4));
+    var month = Number(dob.substr(4, 2)) - 1;
+    var day = Number(dob.substr(6, 2));
+    var today = new Date();
+    var age = today.getFullYear() - year;
+    if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
+      age--;
+    }
+    return <div>Age: {age} </div>
+    this.setProfileData({ age: age })
+  }
   render(){
     return(
       <div>
@@ -38,7 +53,11 @@ class Home extends React.Component{
               
             </ProfileImage>
             )}
-            {this.state.recentMembers.map((obj)=> <div>{obj.username}, {obj.profileImage}, {obj.city}, {obj.age}</div>)}
+            {this.state.recentMembers.map((obj)=> <div>{obj.profileImage ? <img src = {obj.profileImage}/> : <img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/>}
+            <div>{obj.username}</div>
+            <div>{obj.city}</div>
+            <div>{this.calculateAge(obj.birthday)}</div>
+            </div>)}
           </ProfileDisplayGrid>
         </MainContentGrid>
       </MainGrid>

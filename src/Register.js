@@ -100,43 +100,61 @@ class Register extends React.Component {
     return (
       <div>
         <form onSubmit={this.stepTwo} className="regForm">
-        <div className="regTop">
-          <label >First Name:</label>
-          <input id="usernameInput" className="regInput" required type="text" placeholder="Enter username" value={this.state.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
-          {!this.state.verifyUsername && (
-          <Tooltip placement="right" isOpen={this.state.isMounted} target="usernameInput">
-            Your username is already taken
-          </Tooltip>
-          )}
-        </div>
-        <div className="regBody">
-        <label >Password:</label>
-          <input className="regInput" required type="password" placeholder="Enter Password" value={this.state.password} onChange={this.handlePassword}></input>
-        </div>
-        <div className="regBody"> 
-        <label >Re-enter Password:</label>
-          <input id="passwordInput"className="regInput" required type="password" placeholder="Re-Enter Password" value={this.state.password2} onChange={this.handlePassword2} onBlur={this.passwordMatch}></input>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                <label>First Name:</label>
+                </td>
+                <td>
+                <input id="usernameInput" required type="text" placeholder="Enter username" value={this.state.username} onChange={this.handleUsername} onBlur={this.verifyUsername}></input>
+                {!this.state.verifyUsername && (
+                  <Tooltip placement="right" isOpen={this.state.isMounted} target="usernameInput">
+                    Your username is already taken
+                  </Tooltip>
+                )}
+                </td>
+             </tr>
+              <tr>
+                <label >Password:</label>
+              </tr>
+              <td>
+                <input required type="password" placeholder="Enter Password" value={this.state.password} onChange={this.handlePassword}></input>
+              </td>
+                <tr>
+          <label >Re-enter Password:</label>
+          </tr>
+          <td>
+          <input id="passwordInput" required type="password" placeholder="Re-Enter Password" value={this.state.password2} onChange={this.handlePassword2} onBlur={this.passwordMatch}></input>
           {this.renderPasswordValidation()}
-        </div>
-        <div className="regBody">  
-        <label >Birthday:</label>
-          <input className="regInput" required type="date" name="birthday" value={this.state.birthday} onChange={this.handleBirthday}></input>
-        </div>
-        <div className="regBody">   
-        <label >City:</label>
-          <input className="regInput" required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
-        </div>
-        <div className="regBody">  
-        <label >Gender:</label>
-          <select className="regInput" required value={this.state.gender} onChange={this.handleGender}>
+          </td>
+                <tr>
+          <label >Birthday:</label>
+          </tr>
+          <td>
+          <input required type="date" name="birthday" value={this.state.birthday} onChange={this.handleBirthday}></input>
+          </td>
+        <tr>
+          <label >City:</label>
+          </tr>
+          <td>
+          <input required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
+          </td>
+        <tr>
+          <label >Gender:</label>
+          </tr>
+          <td>
+          <select required value={this.state.gender} onChange={this.handleGender}>
             <option value="">--Select One--</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
-        </div>
-        <div className="regBottom">
-            <Button className="regInput" size="sm" outline color="light" type="submit" disabled={!this.state.verifyUsername}>Next Step</Button>
-        </div>
+          </td>
+          <div>
+            <Button className="regButton" size="sm" outline color="light" type="submit" disabled={!this.state.verifyUsername}>Next Step</Button>
+            </div>  
+            </tbody>
+          </table>
         </form>
       </div>
 

@@ -15,6 +15,8 @@ import LandingPage from './LandingPage.js'
 import Messages from './Messages.js'
 import ChatHistory from './ChatHistory.js'
 import ToS from './ToS.js'
+import FAQ from './FAQ.js'
+import Contacts from './Contacts.js'
 import {Grid} from './Styled.js'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -108,9 +110,19 @@ class App extends Component {
     const receiverName = routeProps.match.params.receiverName;
     return this.state.fetchedSession ? <Messages username={this.state.username} receiverName={receiverName} /> : <div>Loading...</div>
   }
+
   renderToS = () => {
     return(<ToS/>)
   }
+
+  renderFAQ = () => {
+    return(<FAQ/>)
+  }
+
+  renderContacts = () => {
+    return(<Contacts/>)
+  }
+
 
   render() {
     console.log(this.props)
@@ -127,6 +139,8 @@ class App extends Component {
             <Route exact path="/profile/:username" render={this.renderUserProfile}/>
             <Route exact path="/main" render={this.renderHome}/>
             <Route exact path="/termofservices" render={this.renderToS}/>
+            <Route exact path="/faq" render={this.renderFAQ}/>
+            <Route exact path="/contacts" render={this.renderContacts}/>
             <Route exact path="/searchresults" render={this.renderSearchResults}/>
             <Route exact path="/messages/" render={this.renderMessagesLast}/>
             <Route exact path="/messages/:receiverName" render={this.renderMessages}/>
