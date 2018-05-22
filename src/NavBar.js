@@ -16,6 +16,7 @@ import {
 import styled from 'styled-components';
 import Search from './Search'
 import {ModalHeaderFix, StyledLink, NavButton, NavLogoLink, H3Logo, LogoutButton} from './Styled'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 const NavModal = styled(Modal)`
   && {
@@ -52,16 +53,16 @@ class NavBar extends React.Component{
     return(
       <div>
         <Navbar className="navBarCSS" color="white" light expand="md">
-        <NavLogoLink className="NavLink" to="/main">
-          <H3Logo>DecoDating</H3Logo>
-        </NavLogoLink>
+        
+          <H3Logo><span><i className="fas fa-heart"></i></span> DecoDating </H3Logo>
+        
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <button className="navBtns">
-                <StyledLink to="/main">Main</StyledLink>
+                <StyledLink to="/main">Main <span><i class="fas fa-home" fa-sm></i></span></StyledLink>
               </button>
-            <NavButton onClick={this.toggle} className="navSearchBtn">Search</NavButton>
+            <NavButton onClick={this.toggle} className="navSearchBtn">Search <span><i class="fas fa-search" fa-sm></i></span></NavButton>
               <NavModal isOpen={this.state.modal} toggle={this.toggle}>
               <ModalHeaderFix toggle={this.toggle}>Please filled in the form to find your next best match!</ModalHeaderFix>
               <ModalBody>
@@ -80,6 +81,7 @@ class NavBar extends React.Component{
                 </button>
                 <LogoutButton className="navBtns" onClick={this.logout}>
                   Logout
+                  <span> <i class="fas fa-sign-out-alt" fa-sm></i></span>
                 </LogoutButton>
             </Nav>
           </Collapse>

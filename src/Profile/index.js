@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import ProfileImages from './ProfileImages.js'
 import AnswerQuestions from './AnswerQuestions'
 import EvaluationQuestions from '../EvaluationQuestions.js';
+import Footer from '../Footer'
 
 class Profile extends React.Component {
   constructor() {
@@ -276,9 +277,13 @@ class Profile extends React.Component {
         <Modal isOpen={this.state.profileData.editQuestions} toggle={this.toggleEditQuestions}>
           <EvaluationQuestions questions={this.state.info.questions} submitEvaluation={this.updateQuestions} history={this.props.history} />
         </Modal>
-        <div>BackgroundImage:
-      <img src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
+        <div className="ProfileBackground">
+          <img style={{width:"100%"}}src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
           {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "backgroundImage")} />}
+          <div className="MainProfileImg">
+            <img src={this.state.info.profileImg ? this.state.info.profileImg : "http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"} />
+            {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "profileImg")} />}
+          </div>
         </div>
         {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
         <div>ProfileImage:
@@ -292,25 +297,30 @@ class Profile extends React.Component {
         {!this.props.ownProfile ?
 
           <div>Like
-
             {this.state.profileData.isLiked ? <input type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></input> : <input type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}></input>}</div> :
-          (this.state.profileData.isEditable ? (
+            (this.state.profileData.isEditable ? (
             <div>
               <button onClick={this.submitEdits}>Save</button>
               <button onClick={this.cancelEdits}>Cancel</button>
             </div>
-          ) : <button onClick={this.toggleEditable}>Edit</button>)
-        }
-        {this.renderInfo("city")}
-        {this.renderGender()}
-        {this.calculateAge()}
-        {this.renderInfo("education")}
-        <div>languages:{this.renderLanguages()}</div>
-        {this.renderInfo("smoking")}
-        {this.renderInfo("drinking")}
-        {this.renderInfo("aboutMe", "About Me")}
-        {this.renderInfo("lookingFor", "Looking For")}
+            ) : <button onClick={this.toggleEditable}>Edit</button>)
+          }
+
+          {this.calculateAge()}
+          {this.renderGender()}
+          {this.renderInfo("city")}
+          {this.renderInfo("education")}
+          <div>languages:{this.renderLanguages()}</div>
+          {this.renderInfo("smoking")}
+          {this.renderInfo("drinking")}
+        <div>
+          {this.renderInfo("aboutMe", <h1>About Me:</h1>)}
+        </div>
+        <div>
+          {this.renderInfo("lookingFor", <h1>Looking For:</h1>)}
+        </div>
         <ProfileImages handleExtraImageChange={this.handleExtraImageChange} deleteExtraImage={this.deleteExtraImage} isEditable={this.state.profileData.isEditable} extraImages={this.state.info.extraImages} />
+        <Footer/>
       </div>)
   }
 
