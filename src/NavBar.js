@@ -52,7 +52,7 @@ class NavBar extends React.Component{
     return(
       <div>
         <Navbar className="navBarCSS" color="white" light expand="md">
-        <NavLogoLink className="NavLink" to="/">
+        <NavLogoLink className="NavLink" to="/main">
           <H3Logo>DecoDating</H3Logo>
         </NavLogoLink>
           <NavbarToggler onClick={this.toggle} />

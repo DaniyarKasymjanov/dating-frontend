@@ -39,7 +39,7 @@ class Home extends React.Component{
     return(
       <div>
       <MainGrid>
-        <Spotlight username={this.props.username}/>
+        <Spotlight username={this.props.username} gender={this.props.gender} city={this.props.city} birthday={this.props.birthday}/>
         <MainContentGrid>
           <H1> Recent Members </H1>
           <ProfileDisplayGrid>

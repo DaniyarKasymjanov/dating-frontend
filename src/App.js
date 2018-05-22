@@ -36,7 +36,11 @@ class App extends Component {
       username : "",
       password: "",
       searchResults: [],
-      fetchedSession: false
+      fetchedSession: false,
+      city: "",
+      gender: "",
+      birthday: ""
+
     }
   }
   componentDidMount = () => {
@@ -45,10 +49,10 @@ class App extends Component {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
+        console.log(res, "APPPPPPPPPP");
         this.setState({ fetchedSession: true });
         if (res.success) {
-          this.setState({ username: res.user.username });
+          this.setState({ username: res.user.username, city: res.user.city, gender: res.user.gender, birthday: res.user.birthday });
           if (this.props.location.pathname === '/') this.props.history.push('/main');
         }
         else if (this.props.location.pathname !== '/') {
@@ -84,7 +88,7 @@ class App extends Component {
   }
 
   renderHome = () => {
-    return(<Home username={this.state.username}/>)
+    return(<Home username={this.state.username}  gender={this.state.gender} city={this.state.city} birthday={this.state.birthday}/>)
   }
 
   // renderLogin = () => {
@@ -99,15 +103,15 @@ class App extends Component {
     return(<EvaluationQuestions/>)
   }
   renderSpotLight = () => {
-    return(<Spotlight username={this.state.username}/>)
+    return(<Spotlight username={this.state.username} gender={this.state.gender} city={this.state.city} birthday={this.state.birthday}/>)
   }
 
   renderFavorites = () => {
-    return(<Favorites username={this.state.username}/>)
+    return(<Favorites username={this.state.username}  gender={this.state.gender} city={this.state.city} birthday={this.state.birthday}/>)
   }
 
   renderSearchResults = () => {
-    return(<SearchResults searchResults={this.state.searchResults} username={this.state.username}/>)
+    return(<SearchResults searchResults={this.state.searchResults} username={this.state.username}  gender={this.state.gender} city={this.state.city} birthday={this.state.birthday}/>)
   }
 
   renderMessagesLast = (routeProps) => {

@@ -37,19 +37,22 @@ class AnswerQuestions extends React.Component {
     console.log(this.state.response)
   }
 
-  getResults = () => {
+  getResults = (event) => {
+    event.preventDefault()
       fetch('/checkAnswers', {
         credentials: 'same-origin',
         method: "POST",
         body: JSON.stringify({answer: this.state.response, username: this.props.username})
       })
+      .then(res=> res.json())
       .then(res=> {
+        console.log(res)
         if(res.success) {
-          alert("You answered all the questions correctly, you can now see this users photos")
+          window.alert("You answered all the questions correctly, you can now see this users photos")
           this.setState({viewPhotos: true, showQuestions: false})
         }
         else if(res.success === false) {
-          alert("You answered a question incorrectly, better luck next time")
+          window.alert("You answered a question incorrectly, better luck next time")
           this.setState({viewPhotos: false, showQuestions: false})
         }
       })
@@ -61,10 +64,12 @@ class AnswerQuestions extends React.Component {
 
   renderQuestions = () => {
     console.log(this.props.questions)
-    return this.props.questions.map((question, index) => {
+    return (
+    <form onSubmit={this.getResults}>
+      {this.props.questions.map((question, index) => {
       return <div>
         <div>{question.title}</div>
-        <form onSubmit={this.getResults}>
+        
           {question.type === 'bool' && (
             <div>
               <input required name={index} type="radio" value="True" onClick={(event) => this.setResponse(event, index)} />True
@@ -74,10 +79,10 @@ class AnswerQuestions extends React.Component {
           {question.type === 'multiple' && question.answers.map((answer, idx) => (
             <div><input required type="radio" name={index} value={idx} onClick={(event) => this.setResponse(event, index)} />{answer}</div>
           ))}
-          <input type="submit"/>
-        </form>
       </div>
-    }
+    })}
+    <input type="submit"/>
+    </form>
     )
 
   }
