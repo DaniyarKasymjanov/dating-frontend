@@ -146,7 +146,7 @@ class Register extends React.Component {
                   <label >City:</label>
                 </td>
                 <td>
-                  <input className="regInput" required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
+                  <input className="regInput" id="autocomplete" required type="text" placeholder="Choose Your City" value={this.state.city} onChange={this.handleCity}></input>
                 </td>
               </tr>
               <tr>

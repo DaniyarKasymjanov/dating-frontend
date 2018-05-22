@@ -225,7 +225,7 @@ class Profile extends React.Component {
 
   renderInfo = (key, str) => {
     return (
-      <div className="capitalize">{str ? str : key}:
+      <div className="capitalize">{str ? str : key} :
       {this.state.profileData.isEditable ?
           <input value={this.state.info[key]} onChange={(e) => this.handleInfoChange(e, key)} /> :
           this.state.info[key]

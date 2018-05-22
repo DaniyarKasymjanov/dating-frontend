@@ -60,8 +60,10 @@ const ModalHeaderFix = styled(ModalHeader)`
 
 const ProfileImage = styled.div`
   max-width: 300px;
+  height: 150px;
   & > img {
     max-width: 100%;
+    height: 100%;
   }
 `;
 
@@ -72,6 +74,13 @@ const ChatGrid = styled.div`
   margin: 10px 5% 0;
   grid-gap: 10px;
 `;
+
+const  viewMultiple = styled.div`
+object-fit: cover;
+width: 100%;
+height: 300px;
+`;
+
 
 const FooterCSS = styled.div`
   margin: 120px 0 30px 0;
@@ -201,5 +210,6 @@ export {
   H3Logo,
   StyledLink,
   StyledContent,
-  StyledCard
+  StyledCard,
+  viewMultiple
 };
