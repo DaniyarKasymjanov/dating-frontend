@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal } from 'reactstrap'
+import { Link } from 'react-router-dom';
 import ProfileImages from './ProfileImages.js'
 import AnswerQuestions from './AnswerQuestions'
 import EvaluationQuestions from '../EvaluationQuestions.js';
@@ -285,7 +286,7 @@ class Profile extends React.Component {
           {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "profileImg")} />}
         </div>
         <div>{this.state.profileData.username}</div>
-
+        {!this.props.ownProfile && <Link to={"/messages/" + this.state.profileData.username}>Message</Link>}
         {this.props.ownProfile ? <button onClick={this.toggleEditQuestions}>Edit Questions</button> : <button onClick={this.toggleQuestions}>View Questions</button>}
 
         {!this.props.ownProfile ?

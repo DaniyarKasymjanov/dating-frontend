@@ -141,7 +141,7 @@ class App extends Component {
     if(!this.state.fetchedSession) return <div>Loading</div>;
     return (
       <div className="App">
-      <Route exact path="/search" render={this.renderSearch}/>
+      {/* <Route exact path="/search" render={this.renderSearch}/> */}
       {this.props.location.pathname !== '/' && (<NavBar username={this.state.username} handleSearch={this.handleSearch} history={this.props.history}/>)}
       <Grid>
           <Onboarding handleLogin={this.handleLogin} setUsername={this.setUsername} history={this.props.history} />
