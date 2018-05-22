@@ -21,6 +21,36 @@
   }
 }
 
+.login-box input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"]{
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: black;
+  font-size: 17px;
+}
+.login-box input[type="submit"] {
+  border: none;
+  outline: none;
+  height: 40px;
+  color: black;
+  font-size: 17px;
+  background: rgb(19, 113, 175);
+  cursor: pointer;
+  border-radius: 10px;
+}
+.login-box input[type="submit"]:hover {
+  background: rgb(37, 147, 221);
+  color: #fff;
+}
+
 .profileImg{
   border-radius: 50%;
   border: 0.5px solid #ddd;

@@ -27,6 +27,7 @@ class Onboarding extends React.Component {
             //event.preventDefault();
             fetch('/register', {
                 method: 'POST',
+                credentials: 'same-origin',
                 body: JSON.stringify({
                     username: this.state.register.username,
                     password: this.state.register.password,
@@ -37,7 +38,11 @@ class Onboarding extends React.Component {
                 })  
             })
             .then(res => res.json())
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res);
+                this.props.setUsername(res.username);
+                this.props.history.push('/main');
+            })
             // must set up redirect to recent members
    
         }
