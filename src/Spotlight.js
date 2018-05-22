@@ -1,28 +1,49 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { SpotlightGrid, StyledLink, StyledCard, ProfileImage, LogoutButton } from './Styled';
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
-class Spotlight extends Component{
-  render(){
-    console.log(this.props)
-    return(
+class Spotlight extends Component {
+  constructor() {
+    super()
+  }
+    calculateAge = (birthday) => {
+      console.log(birthday)
+      var str = birthday;
+      var dob = str.replace(/-/g, "")
+      var year = Number(dob.substr(0, 4));
+      var month = Number(dob.substr(4, 2)) - 1;
+      var day = Number(dob.substr(6, 2));
+      var today = new Date();
+      var age = today.getFullYear() - year;
+      if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
+        age--;
+      }
+      return <div>Age: {age} </div>
+    
+
+  }
+  render() {
+    console.log(this.props, "SPOTLIGHT")
+    return (
       <SpotlightGrid>
         <StyledCard>
-        <CardImg top width="100%" src="https://hypb.imgix.net/image/2016/03/rich-chigga-interview-000.jpg?q=75&w=1000&fit=max&auto=compress%2Cformat" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>
-            <StyledLink to={"/profile/" + this.props.username}>{this.props.username}</StyledLink>
-          </CardTitle>
-          <CardSubtitle>Age</CardSubtitle>
-          <CardText>Gender</CardText>
-          <CardText>City</CardText>
-          <LogoutButton>
-            <StyledLink to="/favorites"> Favorites</StyledLink>
-          </LogoutButton>
-        </CardBody>
-      </StyledCard>
-          {/* <div className="spotLightTop"></div>
+          {this.props.profileImage ? <CardImg top width="100%" src={this.props.profileImage}/> : <CardImg top width="100%" src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/>}
+          <CardBody>
+            <CardTitle>
+              <StyledLink to={"/profile/" + this.props.username}>{this.props.username}</StyledLink>
+            </CardTitle>
+            <CardSubtitle>{this.calculateAge(this.props.birthday)}</CardSubtitle> 
+          <CardText>Gender: {this.props.gender}</CardText>
+            <CardText>City : {this.props.city}</CardText>
+            <LogoutButton>
+              <StyledLink to="/favorites"> Favorites</StyledLink>
+            </LogoutButton>
+          </CardBody>
+        </StyledCard>
+        {/* <div className="spotLightTop"></div>
           <ProfileImage><img src="https://pixel.nymag.com/imgs/daily/vulture/2017/11/27/27-lil-pump.w710.h473.jpg"/></ProfileImage>
           <div>
             Age, Gender

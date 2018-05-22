@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import { MainGrid, MainContentGrid, ProfileDisplayGrid, ProfileImage, StyledContent, H1 } from './Styled';
 import Spotlight from './Spotlight';
 import Footer from './Footer'
+import { Link } from 'react-router-dom';
+
 
 class Home extends React.Component{
   constructor(props){
@@ -39,7 +41,7 @@ class Home extends React.Component{
     return(
       <div>
       <MainGrid>
-        <Spotlight username={this.props.username}/>
+        <Spotlight username={this.props.username} gender={this.props.gender} city={this.props.city} birthday={this.props.birthday} profileImage={this.props.profileImage}/>
         <MainContentGrid>
           <H1> Recent Members </H1>
           <ProfileDisplayGrid>
@@ -55,11 +57,18 @@ class Home extends React.Component{
             )} */}
 
             {this.state.recentMembers.map((obj)=>
-            <div>{ obj.profileImage ? <ProfileImage><img src = {obj.profileImage}/></ProfileImage> : <ProfileImage><img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/></ProfileImage>}
+            <div>
+            <Link to={"/profile/" + obj.username}>
+            <div>{ obj.profileImg ? <ProfileImage><img src = {obj.profileImg}/></ProfileImage> : <ProfileImage><img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/></ProfileImage>}
+            </div>
             <div>{obj.username}</div>
+            </Link>
+            <div>
             <div>{obj.city}</div>
             <div>{this.calculateAge(obj.birthday)}</div>
-            </div>)}
+            </div>
+            </div>
+            )}
           </ProfileDisplayGrid>
         </MainContentGrid>
       </MainGrid>

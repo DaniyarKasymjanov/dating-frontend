@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import { MainGrid, MainContentGrid, ProfileDisplayGrid, H1 } from "./Styled";
 import Spotlight from "./Spotlight";
 import Footer from "./Footer";
@@ -43,15 +44,19 @@ class Favorites extends React.Component {
     return (
       <div>
         <MainGrid>
-          <Spotlight username={this.props.username} />
+          <Spotlight profileImage={this.props.profileImage} username={this.props.username} gender={this.props.gender} city={this.props.city} birthday={this.props.birthday} />
           <MainContentGrid>
             <H1>Your Favorite Members</H1>
             <ProfileDisplayGrid>
-            {this.state.favoriteMembers.map((obj)=> <div>{obj.profileImage ? <img src = {obj.profileImage}/> : <img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/>}
-            <div>{obj.username}</div>
-            <div>{obj.city}</div>
-            <div>{this.calculateAge(obj.birthday)}</div>
-            </div>)}
+            {this.state.favoriteMembers.map((obj)=>
+            <Link to={"/profile/" + obj.username}>
+              <div>{obj.profileImg ? <img src = {obj.profileImg}/> : <img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/>}
+                <div>{obj.username}</div>
+                <div>{obj.city}</div>
+                <div>{this.calculateAge(obj.birthday)}</div>
+              </div>
+            </Link>
+            )}
             </ProfileDisplayGrid>
           </MainContentGrid>
         </MainGrid>

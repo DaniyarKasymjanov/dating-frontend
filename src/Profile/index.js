@@ -66,7 +66,7 @@ class Profile extends React.Component {
           questions: infoData.questions,
           profileImg: infoData.profileImg,
           backgroundImage: infoData.backgroundImage,
-          extraImages: infoData.extraImages
+          extraImages: infoData.extraImages ? infoData.extraImages : []
         })
         this.setProfileData({
           username: infoData.username,
