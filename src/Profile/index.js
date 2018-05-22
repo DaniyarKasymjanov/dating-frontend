@@ -64,11 +64,12 @@ class Profile extends React.Component {
           lookingFor: infoData.lookingFor,
           questions: infoData.questions,
           profileImg: infoData.profileImg,
-          backgroundImage: infoData.backgroundImage
+          backgroundImage: infoData.backgroundImage,
+          extraImages: infoData.extraImages
         })
         this.setProfileData({
           username: infoData.username,
-          isLiked : res.liked
+          isLiked: res.liked
         })
       })
 
@@ -92,7 +93,7 @@ class Profile extends React.Component {
   }
 
   setProfileData = (obj) => {
-    console.log("@!@!@!",obj)
+    console.log("@!@!@!", obj)
     this.setNestedState('profileData', obj);
   }
 
@@ -125,21 +126,22 @@ class Profile extends React.Component {
   }
 
   likeSwitch = () => {
-     //if(this.state.isLiked === "checked") {
+    //if(this.state.isLiked === "checked") {
     //this.setState({ isLiked: !this.state.isLiked })
     console.log("ASSD")
-    fetch(this.state.profileData.isLiked? '/unlike': '/like', {
+    fetch(this.state.profileData.isLiked ? '/unlike' : '/like', {
       credentials: 'same-origin',
       method: "POST",
       body: JSON.stringify({ username: this.state.profileData.username })//still need to send my username and the clicked username
     })
-    .then(e=> e.text())
-  //  .then(e=>console.log(e))
-    .then(e=>JSON.parse(e))
-    .then(res=> {
-      console.log("$$$",res)
-      let success = res.success
-      this.setProfileData({isLiked: success})})
+      .then(e => e.text())
+      //  .then(e=>console.log(e))
+      .then(e => JSON.parse(e))
+      .then(res => {
+        console.log("$$$", res)
+        let success = res.success
+        this.setProfileData({ isLiked: success })
+      })
   }
 
   toggleEditable = () => {
@@ -149,11 +151,25 @@ class Profile extends React.Component {
     this.setProfileData({ isEditable });
   }
 
+  uploadExtraImages = () => {
+    let imgFiles = this.state.profileData.extraImages
+    return Promise.all(this.state.profileData.extraImages.map(imgFile => {
+      let fileExtension = imgFile.name.split('.').pop();
+      return fetch('/uploadExtraImages?extension=' + fileExtension, { method: "POST", body: imgFile })
+      .then(res => res.json())
+      .then((res) => {
+        console.log(res)
+        return '/' + res.imageName;
+      })
+    }))
+    .then(res => this.setInfo({ extraImages: this.state.info.extraImages.concat(res).filter(img => !img.includes('data')) }));
+  }
+  
   uploadImage = (img, endPoint) => {
     console.log('uploadImage', endPoint)
     let imgFile = this.state.profileData[img];
     var fileExtension = imgFile.name.split('.').pop();
-    return fetch('/'+endPoint+'?extension=' + fileExtension, { method: "POST", body: imgFile })
+    return fetch('/' + endPoint + '?extension=' + fileExtension, { method: "POST", body: imgFile })
       .then(res => res.json())
       .then((res) => {
         console.log(res)
@@ -178,22 +194,23 @@ class Profile extends React.Component {
     fileReader.readAsDataURL(file);
     fileReader.onload = (e) => {
       this.setInfo({ extraImages: this.state.info.extraImages.concat(e.target.result) })
+    }
   }
-}
   submitEdits = () => {
     const editPromises = [];
-    if (this.state.profileData.extraImages.length > 0) editPromises.push(this.uploadImage("extraImages", "uploadExtraImages"));
+    if (this.state.profileData.extraImages.length > 0) editPromises.push(this.uploadExtraImages());
     if (this.state.profileData.backgroundImage) editPromises.push(this.uploadImage("backgroundImage", "uploadBackgroundImage"));
     if (this.state.profileData.profileImg) editPromises.push(this.uploadImage("profileImg", "uploadProfileImg"));
     Promise.all(editPromises)
-    .then(() => {
-      fetch('/editProfile', {
-        method: 'POST',
-        credentials:'same-origin',
-        body: JSON.stringify(this.state.info)//this needs to be changed so that I send all data organized
+      .then(() => {
+        fetch('/editProfile', {
+          method: 'POST',
+          credentials: 'same-origin',
+          body: JSON.stringify(this.state.info)//this needs to be changed so that I send all data organized
+        })
+        this.setProfileData({ extraImages: [] });
+        this.toggleEditable()
       })
-      this.toggleEditable()
-    })
   }
 
   cancelEdits = () => {
@@ -243,39 +260,39 @@ class Profile extends React.Component {
       method: 'POST',
       body: JSON.stringify(questions)
     })
-    .then(res => res.json())
-    .then(res => {
-      console.log(res);
-    })
-  } 
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+      })
+  }
 
   viewProfile = () => {
     return (
       <div>
         <Modal isOpen={this.state.profileData.showQuestions} toggle={this.toggleQuestions}>
-          <AnswerQuestions questions={this.state.info.questions} isEditable={this.isEditable} username={this.state.profileData.username} showQuestions={this.state.profileData.showQuestions}/>
+          <AnswerQuestions questions={this.state.info.questions} isEditable={this.isEditable} username={this.state.profileData.username} showQuestions={this.state.profileData.showQuestions} />
         </Modal>
         <Modal isOpen={this.state.profileData.editQuestions} toggle={this.toggleEditQuestions}>
           <EvaluationQuestions questions={this.state.info.questions} submitEvaluation={this.updateQuestions} history={this.props.history} />
         </Modal>
         <div>BackgroundImage:
       <img src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
-          {this.state.profileData.isEditable && <input type="file" onChange={(e)=> this.handleImageChange(e, "backgroundImage")} />}
+          {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "backgroundImage")} />}
         </div>
         {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
         <div>ProfileImage:
       <img src={this.state.info.profileImg ? this.state.info.profileImg : "http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"} />
-          {this.state.profileData.isEditable && <input type="file" onChange={(e)=> this.handleImageChange(e, "profileImg")} />}
+          {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "profileImg")} />}
         </div>
         <div>{this.state.profileData.username}</div>
 
         {this.props.ownProfile ? <button onClick={this.toggleEditQuestions}>Edit Questions</button> : <button onClick={this.toggleQuestions}>View Questions</button>}
 
         {!this.props.ownProfile ?
-        
+
           <div>Like
-            
-            {this.state.profileData.isLiked?<input type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></input>:<input type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}></input>}</div> :
+
+            {this.state.profileData.isLiked ? <input type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></input> : <input type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}></input>}</div> :
           (this.state.profileData.isEditable ? (
             <div>
               <button onClick={this.submitEdits}>Save</button>
