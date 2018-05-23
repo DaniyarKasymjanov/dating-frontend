@@ -76,9 +76,8 @@ const ChatGrid = styled.div`
   display: grid;
   grid-template-columns: auto 75%;
   grid-template-rows: auto 1fr;
-  margin-top: 20px;
+  margin: 10px 5% 0;
   grid-gap: 10px;
-  margin-left: 20px;
   text-align: left;
 `;
 
@@ -183,7 +182,6 @@ const LogoutButton = styled(Button)`
     &:hover {
       color: #0088cc;
       background-color: white;
-      text-decoration: none;
     }
     background: white;
     border: none;
