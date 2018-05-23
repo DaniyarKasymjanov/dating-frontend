@@ -5,7 +5,7 @@ import ProfileImages from './ProfileImages.js'
 import AnswerQuestions from './AnswerQuestions'
 import EvaluationQuestions from '../EvaluationQuestions.js';
 import Footer from '../Footer'
-import { MiniPicGrid, StyledModal, MessageButton, SCButton } from '../Styled'
+import { MiniPicGrid, StyledModal, MessageButton, RealMessageButton, SCButton, MessageLink } from '../Styled'
 
 class Profile extends React.Component {
   constructor() {
@@ -71,7 +71,7 @@ class Profile extends React.Component {
           aboutMe: infoData.aboutMe,
           smoking: infoData.smoking,
           drinking: infoData.drinking,
-          languages: [],
+          languages: ["English","French"],
           lookingFor: infoData.lookingFor,
           questions: infoData.questions,
           profileImg: infoData.profileImg,
@@ -147,7 +147,7 @@ class Profile extends React.Component {
 
   renderLanguages = () => {
     if (this.state.info.languages.length >= 1) {
-      return (this.state.info.languages.map(x => <div>{x}</div>))
+      return (this.state.info.languages.map(x =><span>{x} </span>))
     }
     return null
   }
@@ -254,7 +254,7 @@ class Profile extends React.Component {
   renderInfo = (key, str) => {
     return (
       <div className="capitalize">{str ? str : key}{(key !== 'aboutMe' && key !== 'lookingFor') && ':'} {this.state.profileData.isEditable ?
-        <input value={this.state.info[key]} onChange={(e) => this.handleInfoChange(e, key)} /> : this.state.info[key]
+        <span><input value={this.state.info[key]} onChange={(e) => this.handleInfoChange(e, key)} /></span> : this.state.info[key]
       }
       </div>
     );
@@ -322,10 +322,8 @@ class Profile extends React.Component {
         {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
         
         <div className="ProfileQuick">
-          <div style={{display:"flex"}}>{!this.props.ownProfile && <MessageButton><Link style={{color:"white", textDecoration:"none"}} to={"/messages/" + this.state.profileData.username}>Message</Link></MessageButton>}
-
+          <div style={{display:"flex"}}>{!this.props.ownProfile && <RealMessageButton><MessageLink to={"/messages/" + this.state.profileData.username}>Message</MessageLink></RealMessageButton>}
           {this.props.ownProfile ? <MessageButton onClick={this.toggleEditQuestions}>Edit Questions</MessageButton> : (!this.state.info.answered && <MessageButton onClick={this.toggleQuestions}>View Questions</MessageButton>)}
-          
           {!this.props.ownProfile ?
           <div>
             {this.state.profileData.isLiked ? <MessageButton type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}><span style={{color:"red"}}><i className="fas fa-heart"></i></span></MessageButton> : <MessageButton type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}><span><i className="fas fa-heart"></i></span></MessageButton>}</div> :
@@ -336,12 +334,10 @@ class Profile extends React.Component {
             </div>
             ) : <MessageButton onClick={this.toggleEditable}>Edit</MessageButton>)
           }
-          
           </div>
-          <h3 style={{textAlign: "left"}}>{this.state.profileData.username}</h3>
+          <h3 style={{textAlign: "left"}}><hr style={{borderTop: "3px double #0088cc"}}/>{this.state.profileData.username}</h3>
           <div className="ProfileInfo">
           <table >
-          
             <tbody>
               <tr>
                 <td> {this.calculateAge()}</td>
@@ -353,11 +349,7 @@ class Profile extends React.Component {
                 <td> {this.renderInfo("city")}</td>
                 <td> {this.renderInfo("drinking")}</td>
               </tr>
-              
-                
-              
             </tbody>
-            
           </table>
           <div> Languages: {this.renderLanguages()}</div>
           </div>
@@ -365,10 +357,10 @@ class Profile extends React.Component {
         </div>
         <div className="BottomContent">
           <div className="AboutMe">
-            <div className="">{this.renderUserInfo("aboutMe", <h3>About Me</h3>)}</div>
+            <div className="">{this.renderUserInfo("aboutMe", <h3>About Me<hr style={{borderTop: "1px solid #0088cc"}}/></h3>)}</div>
           </div>
           <div className="AboutMe">
-            {this.renderUserInfo("lookingFor", <h1>Looking For</h1>)} 
+            {this.renderUserInfo("lookingFor", <h3>Looking For <hr style={{borderTop: "1px solid #0088cc"}}/></h3>)} 
           </div>
         </div>
         <div className="ProfileImgWrapper">

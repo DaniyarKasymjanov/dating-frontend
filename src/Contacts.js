@@ -1,14 +1,17 @@
-import React from 'react'
-import Footer from './Footer'
+import React from "react";
+import Footer from "./Footer";
 
-class Contacts extends React.Component{
-  render(){
-    return(
+class Contacts extends React.Component {
+  render() {
+    return (
       <div>
-        <Footer/>
+        <div className="MainContacts">
+          sdfsfsffs
+        </div>
+        <Footer />
       </div>
-    )
+    );
   }
 }
 
-export default Contacts
+export default Contacts;
