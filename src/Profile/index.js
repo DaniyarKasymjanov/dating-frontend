@@ -310,50 +310,44 @@ class Profile extends React.Component {
               {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "profileImg")} />}
             </div>
           </div>
-          {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
+        
+        {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
+        
+        <div className="ProfileQuick">
+          <div style={{display:"flex"}}>{!this.props.ownProfile && <MessageButton><Link style={{color:"white", textDecoration:"none"}} to={"/messages/" + this.state.profileData.username}>Message</Link></MessageButton>}
 
-          <div className="ProfileQuick">
-            <div style={{ display: "flex" }}>{!this.props.ownProfile && <MessageButton><Link style={{ color: "white", textDecoration: "none" }} to={"/messages/" + this.state.profileData.username}>Message</Link></MessageButton>}
-
-              {this.props.ownProfile ? <MessageButton onClick={this.toggleEditQuestions}>Edit Questions</MessageButton> : (!this.state.info.answered && <MessageButton onClick={this.toggleQuestions}>View Questions</MessageButton>)}
-
-              {!this.props.ownProfile ?
-                <div>Like
-            {this.state.profileData.isLiked ? <input type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></input> : <input type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}></input>}</div> :
-                (this.state.profileData.isEditable ? (
-                  <div>
-                    <SCButton onClick={this.submitEdits}>Save</SCButton>
-                    <SCButton onClick={this.cancelEdits}>Cancel</SCButton>
-                  </div>
-                ) : <MessageButton onClick={this.toggleEditable}>Edit</MessageButton>)
-              }
-
+          {this.props.ownProfile ? <MessageButton onClick={this.toggleEditQuestions}>Edit Questions</MessageButton> : (!this.state.info.answered && <MessageButton onClick={this.toggleQuestions}>View Questions</MessageButton>)}
+          
+          {!this.props.ownProfile ?
+          <div>
+            {this.state.profileData.isLiked ? <MessageButton type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></MessageButton> : <MessageButton type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}><span><i className="fas fa-heart"></i></span></MessageButton>}</div> :
+            (this.state.profileData.isEditable ? (
+            <div>
+              <SCButton onClick={this.submitEdits}>Save</SCButton>
+              <SCButton onClick={this.cancelEdits}>Cancel</SCButton>
             </div>
-            <table className="ProfileInfo">
-              <h3>{this.state.profileData.username}</h3>
-              <tbody>
-                <tr>
-                  <td>{this.calculateAge()}</td>
-                  <td>{this.renderInfo("education")}</td>
-                  <td>{this.renderInfo("smoking")}</td>
-                </tr>
-                <tr>
-                  <td>{this.renderGender()}</td>
-                  <td>{this.renderInfo("city")}</td>
-                  <td>{this.renderInfo("drinking")}</td>
-                </tr>
-                <tr>
-                  <td>Languages: {this.renderLanguages()}</td>
-                </tr>
-              </tbody>
-            </table>
-            {/* {this.calculateAge()} */}
-            {/* {this.renderGender()} */}
-            {/* {this.renderInfo("city")} */}
-            {/* {this.renderInfo("education")} */}
-            {/* <div>languages:{this.renderLanguages()}</div> */}
-            {/* {this.renderInfo("smoking")} */}
-            {/* {this.renderInfo("drinking")} */}
+            ) : <MessageButton onClick={this.toggleEditable}>Edit</MessageButton>)
+          }
+          
+          </div>
+          <table className="ProfileInfo">
+          <h3>{this.state.profileData.username}</h3>
+            <tbody>
+              <tr>
+                <td>{this.calculateAge()}</td>
+                <td>{this.renderInfo("education")}</td>
+                <td>{this.renderInfo("smoking")}</td>
+              </tr>
+              <tr>
+                <td>{this.renderGender()}</td>
+                <td>{this.renderInfo("city")}</td>
+                <td>{this.renderInfo("drinking")}</td>
+              </tr>
+              <tr>
+                <td>Languages: {this.renderLanguages()}</td>
+              </tr>
+            </tbody>
+          </table>
           </div>
         </div>
         <div className="BottomContent">
