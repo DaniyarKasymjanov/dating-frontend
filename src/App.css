@@ -163,9 +163,9 @@ label{
 .MiniPicGrid{
   display:grid;
   grid-area: mini;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5px;
-  border: 1px solid black;
+  border: 0.5px solid black;
 }
 
 .ProfileQuick{
@@ -175,6 +175,8 @@ label{
 .ProfileInfo{
   width: 50%;
   text-align: left;
+  border: 0.5px solid #ddd;
+  margin: 10px 0px 10px 0px;
 }
 
 .AboutMe{
@@ -202,4 +204,15 @@ label{
 
 .Footer{
   grid-area: footer;
+}
+
+
+.viewQuestions{
+  margin:5px;
+  text-align: center;
+  color: #0088cc;
+}
+
+.AnswerQuestions{
+  border-radius: 15px;
 }

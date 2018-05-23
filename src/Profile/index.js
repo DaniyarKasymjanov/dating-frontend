@@ -5,7 +5,7 @@ import ProfileImages from './ProfileImages.js'
 import AnswerQuestions from './AnswerQuestions'
 import EvaluationQuestions from '../EvaluationQuestions.js';
 import Footer from '../Footer'
-import {MiniPicGrid} from '../Styled'
+import {MiniPicGrid, StyledModal, MessageButton, SCButton} from '../Styled'
 
 class Profile extends React.Component {
   constructor() {
@@ -269,15 +269,15 @@ class Profile extends React.Component {
   viewProfile = () => {
     return (
       <div className="MainProfileGrid">
-        <Modal isOpen={this.state.profileData.showQuestions} toggle={this.toggleQuestions}>
+        <StyledModal isOpen={this.state.profileData.showQuestions} toggle={this.toggleQuestions}>
           <AnswerQuestions questions={this.state.info.questions} isEditable={this.isEditable} username={this.state.profileData.username} showQuestions={this.state.profileData.showQuestions} />
-        </Modal>
-        <Modal isOpen={this.state.profileData.editQuestions} toggle={this.toggleEditQuestions}>
+        </StyledModal>
+        <StyledModal isOpen={this.state.profileData.editQuestions} toggle={this.toggleEditQuestions}>
           <EvaluationQuestions questions={this.state.info.questions} submitEvaluation={this.updateQuestions} history={this.props.history} />
-        </Modal>
+        </StyledModal>
         <div className="TopContent">
         <div className="ProfileBackground">
-          <img style={{width:"100%"}}src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
+          <img style={{width:"100%", borderBottom:"4px solid #ddd"}}src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
           {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "backgroundImage")} />}
           <div className="MainProfileImg">
             <img src={this.state.info.profileImg ? this.state.info.profileImg : "http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"} />
@@ -287,20 +287,24 @@ class Profile extends React.Component {
         {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
         
         <div className="ProfileQuick">
-          <div style={{display:"flex"}}><h3>{this.state.profileData.username}</h3>{!this.props.ownProfile && <Link to={"/messages/" + this.state.profileData.username}>Message</Link>}
-          {this.props.ownProfile ? <button onClick={this.toggleEditQuestions}>Edit Questions</button> : <button onClick={this.toggleQuestions}>View Questions</button>}
+          <div style={{display:"flex"}}>{!this.props.ownProfile && <MessageButton><Link style={{color:"white", textDecoration:"none"}} to={"/messages/" + this.state.profileData.username}>Message</Link></MessageButton>}
+
+          {this.props.ownProfile ? <MessageButton onClick={this.toggleEditQuestions}>Edit Questions</MessageButton> : <MessageButton onClick={this.toggleQuestions}>View Questions</MessageButton>}
+          
           {!this.props.ownProfile ?
           <div>Like
             {this.state.profileData.isLiked ? <input type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></input> : <input type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}></input>}</div> :
             (this.state.profileData.isEditable ? (
             <div>
-              <button onClick={this.submitEdits}>Save</button>
-              <button onClick={this.cancelEdits}>Cancel</button>
+              <SCButton onClick={this.submitEdits}>Save</SCButton>
+              <SCButton onClick={this.cancelEdits}>Cancel</SCButton>
             </div>
-            ) : <button onClick={this.toggleEditable}>Edit</button>)
+            ) : <MessageButton onClick={this.toggleEditable}>Edit</MessageButton>)
           }
+          
           </div>
           <table className="ProfileInfo">
+          <h3>{this.state.profileData.username}</h3>
             <tbody>
               <tr>
                 <td>{this.calculateAge()}</td>

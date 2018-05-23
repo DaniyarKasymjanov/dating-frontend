@@ -58,15 +58,14 @@ class Home extends React.Component{
 
             {this.state.recentMembers.map((obj)=>
             <div>
-            <Link to={"/profile/" + obj.username}>
-            <div>{ obj.profileImg ? <ProfileImage><img src = {obj.profileImg}/></ProfileImage> : <ProfileImage><img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/></ProfileImage>}
-            </div>
-            <div>{obj.username}</div>
-            </Link>
-            <div>
-            <div>{obj.city}</div>
-            <div>{this.calculateAge(obj.birthday)}</div>
-            </div>
+              <Link style={{textDecoration:"none"}}to={"/profile/" + obj.username}>
+                <div>{ obj.profileImg ? <ProfileImage><img src = {obj.profileImg}/></ProfileImage> : <ProfileImage><img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/></ProfileImage>}</div>
+                <div>{obj.username}</div>
+              </Link>
+              <div>
+                <div>{obj.city}</div>
+                <div>{this.calculateAge(obj.birthday)}</div>
+              </div>
             </div>
             )}
           </ProfileDisplayGrid>

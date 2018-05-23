@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ModalHeader, Button, Card } from "reactstrap";
+import { Modal, ModalHeader, Button, Card } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const Grid = styled.div`
@@ -24,7 +24,7 @@ const ProfileDisplayGrid = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
   padding: 25px 20px 25px 30px;
-  border: 0.5px solid #DDD;
+  border: 0.5px solid #ddd;
 `;
 
 const LandingGrid = styled.div`
@@ -45,11 +45,10 @@ const LandingReg = styled.div`
 const LandingLink = styled(Link)`
   color: black;
   margin: 0px 70px;
-`
+`;
 
 const SpotlightGrid = styled.div`
   margin: 15px 10px;
-  
 `;
 const ModalHeaderFix = styled(ModalHeader)`
   && {
@@ -77,12 +76,11 @@ const ChatGrid = styled.div`
   text-align: left;
 `;
 
-const  viewMultiple = styled.div`
-object-fit: cover;
-width: 100%;
-height: 300px;
+const viewMultiple = styled.div`
+  object-fit: cover;
+  width: 100%;
+  height: 300px;
 `;
-
 
 const FooterCSS = styled.div`
   margin: 120px 0 30px 0;
@@ -102,12 +100,43 @@ const NavButton = styled(Button)`
   }
 `;
 
+const MessageButton = styled(Button)`
+  && {
+    color: white;
+    &:hover {
+      color: #0088cc;
+      text-decoration: none;
+      background: white;
+      border: 2px solid #0088cc;
+    }
+    background: #0088cc;
+    border: 2px solid #0088cc;
+    margin: 5px 5px 5px 0px;
+    text-decoration: none;
+  }
+`;
+
+const SCButton = styled(Button)`
+  && {
+    color: red;
+    &:hover {
+      color: red;
+      text-decoration: none;
+      background: white;
+      border: 0.5px solid red;
+    }
+    background: white;
+    border: 2px solid red;
+    margin: 5px 5px 5px 0px;
+  }
+`;
+
 const RegButton = styled(Button)`
   && {
     color: white;
     &:hover {
       color: white;
-      background-color:#0088cc;
+      background-color: #0088cc;
       border: 2px solid #0088cc;
     }
     background: #0088cc;
@@ -127,9 +156,22 @@ const LogoutButton = styled(Button)`
     text-decoration: none;
   }
 `;
+const FavoriteButton = styled(Button)`
+  && {
+    color: #0088cc;
+    &:hover {
+      color: #0088cc;
+      background-color: white;
+      text-decoration: none;
+    }
+    background: white;
+    border: none;
+    text-decoration: none;
+  }
+`;
 
 const NavLogoLink = styled(Link)`
-    && {
+  && {
     color: #0088cc;
     &:hover {
       color: #0088cc;
@@ -139,11 +181,11 @@ const NavLogoLink = styled(Link)`
     border: none;
     text-decoration: none;
   }
-`
+`;
 
 const H1 = styled.h1`
   && {
-    border-bottom: 1px solid #DDD;
+    border-bottom: 1px solid #ddd;
     text-align: left;
   }
 `;
@@ -152,6 +194,13 @@ const H2 = styled.h2`
     color: #0088cc;
   }
 `;
+const H3Logo = styled.h3`
+  && {
+    color: #0088cc;
+  }
+  /* margin-left: 50%; */
+`;
+
 const H3 = styled.h3`
   && {
     color: #0088cc;
@@ -164,21 +213,23 @@ const H3L = styled.h3`
   margin-left: 9%;
 `;
 
-const H3Logo = styled.h3`
+const H3V = styled.h3`
   && {
-    color: #0088cc;
+    color: white;
+    text-align: center;
+    background:#0088cc;
+    padding: 10px;
   }
-  /* margin-left: 50%; */
 `;
 
 const H2E = styled.h2`
   && {
-    background:#0088cc;
+    background: #0088cc;
     color: white;
     border: 6px solid #0088cc;
     text-align: center;
   }
-`
+`;
 
 const StyledLink = styled(Link)`
   color: #0088cc;
@@ -192,8 +243,14 @@ const StyledContent = styled.div`
 `;
 
 const StyledCard = styled(Card)`
-  &&{
+  && {
     border: 5px solid #0088cc;
+  }
+`;
+
+const StyledModal = styled(Modal)`
+  && {
+    border-radius: 15px;
   }
 `
 
@@ -214,14 +271,19 @@ export {
   NavLogoLink,
   RegButton,
   LogoutButton,
+  MessageButton,
+  SCButton,
+  FavoriteButton,
   H1,
   H2,
+  H2E,
   H3,
   H3L,
-  H2E,
+  H3V,
   H3Logo,
   StyledLink,
   StyledContent,
   StyledCard,
+  StyledModal,
   viewMultiple
 };

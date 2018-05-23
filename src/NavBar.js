@@ -53,7 +53,7 @@ class NavBar extends React.Component{
     return(
       <div>
         <Navbar className="navBarCSS" color="white" light expand="md">
-          <H3Logo><span><i className="fas fa-heart"></i></span> DecoDating </H3Logo>
+          <H3Logo><Link style={{textDecoration:"none"}} to="/"><span><i className="fas fa-heart"></i></span> DecoDating </Link></H3Logo>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

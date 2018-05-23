@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { SpotlightGrid, StyledLink, StyledCard, ProfileImage, LogoutButton } from './Styled';
+import { SpotlightGrid, StyledLink, StyledCard, ProfileImage, FavoriteButton } from './Styled';
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
@@ -38,9 +38,9 @@ class Spotlight extends Component {
             <CardText>{this.calculateAge(this.props.birthday)}</CardText> 
             <CardText>Gender: {this.props.gender}</CardText>
             <CardText>City : {this.props.city}</CardText>
-            <LogoutButton>
+            <FavoriteButton>
               <StyledLink to="/favorites"> Favorites</StyledLink>
-            </LogoutButton>
+            </FavoriteButton>
           </CardBody>
         </StyledCard>
         {/* <div className="spotLightTop"></div>
