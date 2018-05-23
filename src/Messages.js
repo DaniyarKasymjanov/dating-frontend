@@ -172,7 +172,7 @@ class Messages extends Component{
         <Spotlight regusername={"regusername"} username={this.props.username} gender={this.props.gender} city={this.props.city} birthday={this.props.birthday} profileImage={this.props.profileImage}/>
       </MainContentGrid>
         <ChatWrapper name="SWAGGY">
-          <ChatHeader style={{color: "#005D8C"}}>{this.props.receiverName} <img src={this.state.profileImageReceiver}/></ChatHeader>
+          <ChatHeader style={{color: "#005D8C"}}> {this.props.receiverName} <img src={this.state.profileImageReceiver}/></ChatHeader>
           <ChatMessages id="startedFromTheUp" style={{backgroundColor: "white",border:"3px solid #005D8C",height:"72vh",overflow:"scroll"}} >
           <ChatMessagesGrid>
             <div></div>

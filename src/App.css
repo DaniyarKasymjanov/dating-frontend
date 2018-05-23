@@ -239,7 +239,7 @@ label{
 }
 .AboutMe{
   text-align: left;
-  width: 50%;
+  width: 80%;
   margin: 20px 20px 20px 67px;
 }
 
@@ -304,6 +304,8 @@ label{
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  transform: translate(-60px, -135px);
+  padding: 30px;
 }
 
 .MainContacts{

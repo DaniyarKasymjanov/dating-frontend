@@ -44,7 +44,7 @@ class Profile extends React.Component {
         backgroundImage: "",
         extraImages: [],
         showQuestions: false,
-        editQuestions: false
+        editQuestions: false,
       }
     }
   }
@@ -72,7 +72,7 @@ class Profile extends React.Component {
           aboutMe: infoData.aboutMe,
           smoking: infoData.smoking,
           drinking: infoData.drinking,
-          languages: ["English","French"],
+          languages: infoData.languages ? infoData.languages : [],
           lookingFor: infoData.lookingFor,
           questions: infoData.questions,
           profileImg: infoData.profileImg,
@@ -148,10 +148,25 @@ class Profile extends React.Component {
   }
 
   renderLanguages = () => {
-    if (this.state.info.languages.length >= 1) {
-      return (this.state.info.languages.map(x =><span>{x} </span>))
-    }
-    return null
+    // if (this.state.info.languages.length >= 1) {
+      return (
+        <div>
+          {this.state.info.languages.map((x) =>
+            <span>{x} {this.state.profileData.isEditable && <button onClick={() => this.setInfo({ languages: this.state.info.languages.filter(lang => lang !== x) })}>x</button>} </span>
+          )}
+          {this.state.profileData.isEditable && (
+          <span>
+            {this.state.info.languages.map((langInput, i) => <input type="text" value={langInput} onChange={(e) => {
+              const inputsCopy = [...this.state.info.languages];
+              inputsCopy[i] = e.target.value;
+              this.setInfo({ languages: inputsCopy });
+              }} />)}
+            <button onClick={() => this.setInfo({ languages: this.state.info.languages.concat('') })}>+</button>
+          </span>)}
+        </div>
+        )
+  // };
+    // return null
   }
 
   likeSwitch = () => {

@@ -20,7 +20,8 @@ const ImageWrapper = styled.div`
   }`;
 
   const ModalImages = styled.img`
-  filter: blur(${(props) => props.blur ? 10 : 0}px)
+  filter: blur(${(props) => props.blur ? 10 : 0}px);
+  max-width: 100%;
   `
 
   const WrapperBlurred = styled.div`
@@ -58,7 +59,9 @@ toggle = () => {
       if(this.props.viewImages || this.props.ownProfile) {
         return (
           <div className="MiniPicGrid">
-          
+          <Modal isOpen={this.state.modal} toggle={this.toggle}>
+            <ModalImages src={this.state.img}/>
+          </Modal>
           {this.props.extraImages.map((imgUrl, i) => 
             <ImageWrapper>
               {this.props.isEditable && <button onClick={() => this.props.deleteExtraImage(i)}>x</button> }
@@ -71,9 +74,6 @@ toggle = () => {
       else if(!this.props.viewImages) {
         return (
           <div className="MiniPicGrid">
-          <Modal isOpen={this.state.modal} toggle={this.toggle}>
-            <ModalImages blur src={this.state.img}/>
-          </Modal>
           {this.props.extraImages.map((imgUrl, i) => 
             <ImageWrapper>
               {this.props.isEditable && <button onClick={() => this.props.deleteExtraImage(i)}>x</button> }

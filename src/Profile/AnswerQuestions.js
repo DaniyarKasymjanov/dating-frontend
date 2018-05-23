@@ -40,6 +40,7 @@ class AnswerQuestions extends React.Component {
 
   getResults = (event) => {
     event.preventDefault()
+    console.log("get results")
       fetch('/checkAnswers', {
         credentials: 'same-origin',
         method: "POST",
