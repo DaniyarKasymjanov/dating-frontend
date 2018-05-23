@@ -23,7 +23,7 @@ const ProfileDisplayGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
-  padding: 25px 20px 0px 30px;
+  padding: 25px 20px 25px 30px;
   border: 0.5px solid #DDD;
 `;
 
@@ -60,8 +60,10 @@ const ModalHeaderFix = styled(ModalHeader)`
 
 const ProfileImage = styled.div`
   max-width: 300px;
+  height: 150px;
   & > img {
     max-width: 100%;
+    height: 100%;
   }
 `;
 
@@ -74,6 +76,13 @@ const ChatGrid = styled.div`
   margin-left: 20px;
   text-align: left;
 `;
+
+const  viewMultiple = styled.div`
+object-fit: cover;
+width: 100%;
+height: 300px;
+`;
+
 
 const FooterCSS = styled.div`
   margin: 120px 0 30px 0;
@@ -203,5 +212,6 @@ export {
   H3Logo,
   StyledLink,
   StyledContent,
-  StyledCard
+  StyledCard,
+  viewMultiple
 };
