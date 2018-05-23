@@ -218,7 +218,9 @@ label{
   grid-area: mini;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5px;
-  border: 0.5px solid black;
+  border: 0.5px solid #ddd;
+  max-height: 400px;
+  overflow: auto;
 }
 
 .ProfileQuick{
@@ -228,10 +230,13 @@ label{
 .ProfileInfo{
   width: 50%;
   text-align: left;
+  padding: 10px 10px 10px 0px;
   border: 0.5px solid #ddd;
-  margin: 10px 0px 10px 0px;
 }
 
+.ProfileInfo > table{
+  width: 100%;
+}
 .AboutMe{
   text-align: left;
   width: 60%;
@@ -295,4 +300,9 @@ label{
   border: 2px solid #0088cc;
   border-radius: 5px;
   padding: 8px 18px;
+}
+.ProfileImgWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }

@@ -259,6 +259,14 @@ class Profile extends React.Component {
       </div>
     );
   }
+  renderUserInfo = (key, str) => {
+    return (
+      <div className="capitalize">{str ? str : key}{(key !== 'aboutMe' && key !== 'lookingFor') && ':'} {this.state.profileData.isEditable ?
+        <textarea rows="5" cols="100" value={this.state.info[key]} onChange={(e) => this.handleInfoChange(e, key)} /> : this.state.info[key]
+      }
+      </div>
+    );
+  }
   renderGender = () => {
     return (
       <div className="capitalize">Gender: {this.state.profileData.isEditable ?
@@ -320,7 +328,7 @@ class Profile extends React.Component {
           
           {!this.props.ownProfile ?
           <div>
-            {this.state.profileData.isLiked ? <MessageButton type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></MessageButton> : <MessageButton type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}><span><i className="fas fa-heart"></i></span></MessageButton>}</div> :
+            {this.state.profileData.isLiked ? <MessageButton type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}><span style={{color:"red"}}><i className="fas fa-heart"></i></span></MessageButton> : <MessageButton type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}><span><i className="fas fa-heart"></i></span></MessageButton>}</div> :
             (this.state.profileData.isEditable ? (
             <div>
               <SCButton onClick={this.submitEdits}>Save</SCButton>
@@ -330,36 +338,42 @@ class Profile extends React.Component {
           }
           
           </div>
-          <table className="ProfileInfo">
-          <h3>{this.state.profileData.username}</h3>
+          <h3 style={{textAlign: "left"}}>{this.state.profileData.username}</h3>
+          <div className="ProfileInfo">
+          <table >
+          
             <tbody>
               <tr>
-                <td>{this.calculateAge()}</td>
-                <td>{this.renderInfo("education")}</td>
-                <td>{this.renderInfo("smoking")}</td>
+                <td> {this.calculateAge()}</td>
+                <td> {this.renderInfo("education")}</td>
+                <td> {this.renderInfo("smoking")}</td>
               </tr>
               <tr>
-                <td>{this.renderGender()}</td>
-                <td>{this.renderInfo("city")}</td>
-                <td>{this.renderInfo("drinking")}</td>
+                <td> {this.renderGender()}</td>
+                <td> {this.renderInfo("city")}</td>
+                <td> {this.renderInfo("drinking")}</td>
               </tr>
-              <tr>
-                <td>Languages: {this.renderLanguages()}</td>
-              </tr>
+              
+                
+              
             </tbody>
+            
           </table>
+          <div> Languages: {this.renderLanguages()}</div>
+          </div>
           </div>
         </div>
         <div className="BottomContent">
           <div className="AboutMe">
-            <div className="">{this.renderInfo("aboutMe", <h3>About Me</h3>)}</div>
+            <div className="">{this.renderUserInfo("aboutMe", <h3>About Me</h3>)}</div>
           </div>
           <div className="AboutMe">
-            {this.renderInfo("lookingFor", <h1>Looking For</h1>)}
+            {this.renderUserInfo("lookingFor", <h1>Looking For</h1>)} 
           </div>
         </div>
-        <div className="MiniPicGrid">
-          <ProfileImages ownProfile={this.props.ownProfile} viewImages={this.state.info.viewImages} handleExtraImageChange={this.handleExtraImageChange} deleteExtraImage={this.deleteExtraImage} isEditable={this.state.profileData.isEditable} extraImages={this.state.info.extraImages} />
+        <div className="ProfileImgWrapper">
+          {this.state.profileData.isEditable && <input type="file" onChange={(e)=> this.handleExtraImageChange(e)} />}
+          <ProfileImages isEditable={this.state.profileData.isEditable} ownProfile={this.props.ownProfile} viewImages={this.state.info.viewImages} deleteExtraImage={this.deleteExtraImage} extraImages={this.state.info.extraImages} />
         </div>
         <Footer className="Footer" />
       </div>)

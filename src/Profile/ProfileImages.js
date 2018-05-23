@@ -13,6 +13,7 @@ const ImageWrapper = styled.div`
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 1;
   }
   & > img {
     max-width: 100px;
@@ -56,31 +57,23 @@ toggle = () => {
   render(){
       if(this.props.viewImages || this.props.ownProfile) {
         return (
-          <Wrapper>
-          <Modal isOpen={this.state.modal} toggle={this.toggle}>
-            <ModalImages src={this.state.img}/>
-          </Modal>
-          <div>
-          {this.props.isEditable && <input type="file" onChange={(e)=> this.props.handleExtraImageChange(e)} />}
+          <div className="MiniPicGrid">
+          
           {this.props.extraImages.map((imgUrl, i) => 
             <ImageWrapper>
               {this.props.isEditable && <button onClick={() => this.props.deleteExtraImage(i)}>x</button> }
               <ModalImages src={imgUrl} onClick={()=>this.setState({modal:true, img: imgUrl})}/>
             </ImageWrapper>
           )}
-
           </div>
-        </Wrapper>
         )
       }
       else if(!this.props.viewImages) {
         return (
-          <Wrapper>
+          <div className="MiniPicGrid">
           <Modal isOpen={this.state.modal} toggle={this.toggle}>
             <ModalImages blur src={this.state.img}/>
           </Modal>
-          <div>
-          {this.props.isEditable && <input type="file" onChange={(e)=> this.props.handleExtraImageChange(e)} />}
           {this.props.extraImages.map((imgUrl, i) => 
             <ImageWrapper>
               {this.props.isEditable && <button onClick={() => this.props.deleteExtraImage(i)}>x</button> }
@@ -88,8 +81,7 @@ toggle = () => {
             </ImageWrapper>
           )}
 
-          </div>
-        </Wrapper>
+        </div>
         )
       }
   }
