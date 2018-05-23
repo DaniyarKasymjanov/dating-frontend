@@ -5,7 +5,7 @@ import ProfileImages from './ProfileImages.js'
 import AnswerQuestions from './AnswerQuestions'
 import EvaluationQuestions from '../EvaluationQuestions.js';
 import Footer from '../Footer'
-import {MiniPicGrid, StyledModal, MessageButton, SCButton} from '../Styled'
+import { MiniPicGrid, StyledModal, MessageButton, SCButton } from '../Styled'
 
 class Profile extends React.Component {
   constructor() {
@@ -166,7 +166,7 @@ class Profile extends React.Component {
       .then(e => JSON.parse(e))
       .then(res => {
         console.log("$$$", res)
-        if(res.success) {
+        if (res.success) {
           this.setProfileData({ isLiked: !this.state.profileData.isLiked })
           this.checkViewImages();
         }
@@ -310,14 +310,15 @@ class Profile extends React.Component {
           <EvaluationQuestions questions={this.state.info.questions} submitEvaluation={this.updateQuestions} history={this.props.history} />
         </Modal>
         <div className="TopContent">
-        <div className="ProfileBackground">
-          <img style={{width:"100%", borderBottom:"4px solid #ddd"}}src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
-          {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "backgroundImage")} />}
-          <div className="MainProfileImg">
-            <img src={this.state.info.profileImg ? this.state.info.profileImg : "http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"} />
-            {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "profileImg")} />}
+          <div className="ProfileBackground">
+            <img style={{ width: "100%", borderBottom: "4px solid #ddd" }} src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
+            {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "backgroundImage")} />}
+            <div className="MainProfileImg">
+              <img src={this.state.info.profileImg ? this.state.info.profileImg : "http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"} />
+              {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "profileImg")} />}
+            </div>
           </div>
-        </div>
+        
         {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
         
         <div className="ProfileQuick">

@@ -42,20 +42,24 @@ class Favorites extends React.Component {
   render() {
     console.log(this.state.favoriteMembers);
     return (
-      <div>
+      <div className="BackgroundImage">
         <MainGrid>
           <Spotlight profileImage={this.props.profileImage} username={this.props.username} gender={this.props.gender} city={this.props.city} birthday={this.props.birthday} />
           <MainContentGrid>
             <H1>Your Favorite Members</H1>
-            <ProfileDisplayGrid>
+            <ProfileDisplayGrid>              
             {this.state.favoriteMembers.map((obj)=>
-            <Link to={"/profile/" + obj.username}>
-              <div>{obj.profileImg ? <ProfileImage><img src = {obj.profileImg}/></ProfileImage> : <ProfileImage><img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/></ProfileImage>}
+            <div>
+            <Link style={{textDecoration:"none"}} to={"/profile/" + obj.username}>
+                <div>{obj.profileImg ? <ProfileImage><img src = {obj.profileImg}/></ProfileImage> : <ProfileImage><img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/></ProfileImage>}</div>
                 <div>{obj.username}</div>
+                </Link>
+                <div>
                 <div>{obj.city}</div>
                 <div>{this.calculateAge(obj.birthday)}</div>
+                </div>
               </div>
-            </Link>
+            
             )}
             </ProfileDisplayGrid>
           </MainContentGrid>
