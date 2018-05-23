@@ -68,7 +68,12 @@ class App extends Component {
       body: JSON.stringify(searchObj)
     })
     .then(res => res.json())
-    .then(resJON => this.setState({ searchResults: resJON }))
+    .then(resJSON => { 
+      console.log('SEARCH', resJSON)
+      this.setState({ searchResults: resJSON.result })
+      if(this.props.location.pathname !== '/searchresults')
+        this.props.history.push('/searchresults') 
+    })
   }
 
   handleLogin = obj => {
@@ -79,8 +84,10 @@ class App extends Component {
     })
     .then(res => res.json())
     .then(res => {
-      if(res.success) this.setState({ username: res.username });
+      if(res.success) this.setState({ username: res.result.username, city: res.result.city, gender: res.result.gender, birthday: res.result.birthday, profileImage: res.result.profileImg });
+      console.log(res)
       return res;
+      
     })
   }
 
@@ -98,7 +105,7 @@ class App extends Component {
 
   renderUserProfile = (routerData) => {
     let username = routerData.match.params.username
-    return(<Profile username={username} ownProfile={username === this.state.username} history={routerData.history} />)
+    return(<Profile ownUsername={this.state.username} username={username} ownProfile={username === this.state.username} history={routerData.history} />)
   }
   renderEvaluation = () => {
     return(<EvaluationQuestions/>)

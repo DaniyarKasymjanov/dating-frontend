@@ -50,11 +50,11 @@ class AnswerQuestions extends React.Component {
         console.log(res)
         if(res.success) {
           window.alert("You answered all the questions correctly, you can now see this users photos")
-          this.setState({viewPhotos: true, showQuestions: false})
+          this.props.setAnsweredCorrectly(res.success)
         }
         else if(res.success === false) {
           window.alert("You answered a question incorrectly, better luck next time")
-          this.setState({viewPhotos: false, showQuestions: false})
+          this.props.setAnsweredCorrectly(res.success)
         }
       })
   }
@@ -66,6 +66,7 @@ class AnswerQuestions extends React.Component {
   renderQuestions = () => {
     console.log(this.props.questions)
     return (
+      <div className="answerQuestions">
     <form onSubmit={this.getResults}>
     <H3V>View Questions</H3V>
       {this.props.questions.map((question, index) => {
@@ -86,6 +87,7 @@ class AnswerQuestions extends React.Component {
     })}
     <input type="submit"/>
     </form>
+    </div>
     )
 
   }

@@ -4,6 +4,20 @@ import Spotlight from './Spotlight';
 import Footer from './Footer'
 import { Link } from 'react-router-dom';
 
+export function calculateAge (birthday) {
+  var str = birthday;
+  var dob = str.replace(/-/g, "")
+  var year = Number(dob.substr(0, 4));
+  var month = Number(dob.substr(4, 2)) - 1;
+  var day = Number(dob.substr(6, 2));
+  var today = new Date();
+  var age = today.getFullYear() - year;
+  if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
+    age--;
+  }
+  return <div>Age: {age} </div>
+  this.setProfileData({ age: age })
+}
 
 class Home extends React.Component{
   constructor(props){
@@ -21,21 +35,6 @@ class Home extends React.Component{
   }
   componentDidMount(){
     this.handleRecent()
-  }
-
-  calculateAge = (birthday) => {
-    var str = birthday;
-    var dob = str.replace(/-/g, "")
-    var year = Number(dob.substr(0, 4));
-    var month = Number(dob.substr(4, 2)) - 1;
-    var day = Number(dob.substr(6, 2));
-    var today = new Date();
-    var age = today.getFullYear() - year;
-    if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
-      age--;
-    }
-    return <div>Age: {age} </div>
-    this.setProfileData({ age: age })
   }
   render(){
     return(
@@ -64,7 +63,7 @@ class Home extends React.Component{
               </Link>
               <div>
                 <div>{obj.city}</div>
-                <div>{this.calculateAge(obj.birthday)}</div>
+                <div>{calculateAge(obj.birthday)}</div>
               </div>
             </div>
             )}
