@@ -53,7 +53,7 @@ class NavBar extends React.Component{
     return(
       <div>
         <Navbar className="navBarCSS" color="white" light expand="md">
-          <H3Logo><span><i className="fas fa-heart"></i></span> DecoDating </H3Logo>
+          <H3Logo><Link style={{textDecoration:"none"}} to="/main"><span><i className="fas fa-heart"></i></span> DecoDating </Link></H3Logo>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -65,7 +65,7 @@ class NavBar extends React.Component{
                 <Search handleSearch={this.props.handleSearch} toggle={this.toggle} />
               </NavModal>
                 <button className="navBtns">
-                  <StyledLink to="/messages">Messages</StyledLink>
+                  <StyledLink to="/messages">Messages <span><i class="far fa-envelope"></i></span></StyledLink>
                 </button>
                 {/* <button className="navBtns">
                   <StyledLink to="/">Notification</StyledLink>

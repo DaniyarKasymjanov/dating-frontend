@@ -18,7 +18,8 @@ const ChatWrapper = styled.div`
 `;
 // background: url(${bgImg});
 const ChatMessages = styled.div`
-  
+  display: grid;
+  grid-template-rows: 1fr auto;
   border-radius: 4px;
 `;
 
@@ -50,7 +51,7 @@ const MessageContent = styled.div`
   font-size: 20px;
   color: #fff;
   max-width: 75%;
-  word-break: normal;
+  word-break: break-all;
 `;
 
 const Form = styled.form`
@@ -71,6 +72,11 @@ const Form = styled.form`
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
+`;
+
+const ChatMessagesGrid = styled.div`
+ display: grid;
+ grid-template-rows: 1fr auto;
 `;
 
 const socket = io();
@@ -106,7 +112,7 @@ class Messages extends Component{
     })
     .then(res => res.json())
     .then(res => {
-      if(res.success) return this.props.history.push(`/messages/${res.chats[0]}`);
+      if(res.success) return this.props.history.push(`/messages/${res.chats[res.chats.length-1]}`);
       this.setState({ isLoaded: true });
       var objDiv = document.getElementById("startedFromTheUp");
       objDiv.scrollTop = objDiv.scrollHeight;
@@ -168,11 +174,14 @@ class Messages extends Component{
         <ChatWrapper name="SWAGGY">
           <ChatHeader style={{color: "#005D8C"}}>{this.props.receiverName} <img src={this.state.profileImageReceiver}/></ChatHeader>
           <ChatMessages id="startedFromTheUp" style={{backgroundColor: "white",border:"3px solid #005D8C",height:"72vh",overflow:"scroll"}} >
-          {this.state.messages.map(messageObj => (
-            <MessageWrapper ownMessage={messageObj.username === this.props.username}>
-              <MessageContent>{messageObj.message}</MessageContent>
-            </MessageWrapper>
-          ))}
+          <ChatMessagesGrid>
+            <div></div>
+            {this.state.messages.map(messageObj => (
+              <MessageWrapper ownMessage={messageObj.username === this.props.username}>
+                <MessageContent>{messageObj.message}</MessageContent>
+              </MessageWrapper>
+            ))}
+          </ChatMessagesGrid>
           <Form onSubmit={this.handleSubmit}>
             <input type="text" style={{borderRadius:"5px",paddingLeft:"10px",paddingRight:"10px",marginRight:"10px",border : "1px solid #00334C"}} value={this.state.msgInput} onChange={this.handleMsgInput} />
             <button style={{borderRadius:"5px",paddingLeft:"50px",paddingRight:"50px",backgroundColor : "#00334C"}} type="submit">Send</button>

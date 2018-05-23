@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { SpotlightGrid, StyledLink, StyledCard, ProfileImage, LogoutButton } from './Styled';
+import { SpotlightGrid, StyledLink, StyledCard, ProfileImage, FavoriteButton } from './Styled';
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
@@ -21,7 +21,7 @@ class Spotlight extends Component {
       if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
         age--;
       }
-      return <div>Age: {age} </div>
+      return <CardText>Age: {age} Years Old</CardText>
     
 
   }
@@ -35,25 +35,14 @@ class Spotlight extends Component {
             <CardTitle>
               <StyledLink to={"/profile/" + this.props.username}>{this.props.username}</StyledLink>
             </CardTitle>
-            <CardText>{this.calculateAge(this.props.birthday)}</CardText> 
+            <CardText>{(()=>{if(this.props.birthday){return(this.calculateAge(this.props.birthday))}})()}</CardText> 
             <CardText>Gender: {this.props.gender}</CardText>
-            <CardText>City : {this.props.city}</CardText>
-            <LogoutButton>
-              <StyledLink to="/favorites"> Favorites</StyledLink>
-            </LogoutButton>
+            <CardText>City: {this.props.city}</CardText>
+            <FavoriteButton>
+              <StyledLink to="/favorites">Favorites <span><i className="fas fa-heart"></i></span></StyledLink>
+            </FavoriteButton>
           </CardBody>
         </StyledCard>
-        {/* <div className="spotLightTop"></div>
-          <ProfileImage><img src="https://pixel.nymag.com/imgs/daily/vulture/2017/11/27/27-lil-pump.w710.h473.jpg"/></ProfileImage>
-          <div>
-            Age, Gender
-            <div>City</div>
-          </div>
-          <StyledLink to={"/profile/" + this.props.username}>{this.props.username}</StyledLink>
-          <div>
-            <StyledLink to="/favorites"> Favorites</StyledLink>
-          </div>
-          <div className="spotLightBottom"></div> */}
       </SpotlightGrid>
     )
   }

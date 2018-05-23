@@ -84,8 +84,10 @@ class App extends Component {
     })
     .then(res => res.json())
     .then(res => {
-      if(res.success) this.setState({ username: res.result.username });
+      if(res.success) this.setState({ username: res.result.username, city: res.result.city, gender: res.result.gender, birthday: res.result.birthday, profileImage: res.result.profileImg });
+      console.log(res)
       return res;
+      
     })
   }
 
@@ -103,7 +105,7 @@ class App extends Component {
 
   renderUserProfile = (routerData) => {
     let username = routerData.match.params.username
-    return(<Profile username={username} ownProfile={username === this.state.username} history={routerData.history} />)
+    return(<Profile ownUsername={this.state.username} username={username} ownProfile={username === this.state.username} history={routerData.history} />)
   }
   renderEvaluation = () => {
     return(<EvaluationQuestions/>)
@@ -149,7 +151,7 @@ class App extends Component {
     return (
       <div className="App">
       {/* <Route exact path="/search" render={this.renderSearch}/> */}
-      {this.props.location.pathname !== '/' && (<NavBar username={this.state.username} handleSearch={this.handleSearch} history={this.props.history}/>)}
+      {this.props.location.pathname !== '/' && (<NavBar username={this.state.username} profileImage={this.state.profileImage} username={this.state.username} gender={this.state.gender} city={this.state.city} birthday={this.state.birthday} handleSearch={this.handleSearch} history={this.props.history}/>)}
       <Grid>
           <Onboarding handleLogin={this.handleLogin} setUsername={this.setUsername} history={this.props.history} />
           <div style={{backgroundImage: 'url("/chat-bg.png")'}}>

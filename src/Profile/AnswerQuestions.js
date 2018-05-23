@@ -1,6 +1,7 @@
 import React from 'react'
 import { Modal } from 'reactstrap'
 import styled from 'styled-components'
+import { H3Logo, H3V } from '../Styled';
 
 const Wrapper = styled.div`
   display: flex;
@@ -49,11 +50,11 @@ class AnswerQuestions extends React.Component {
         console.log(res)
         if(res.success) {
           window.alert("You answered all the questions correctly, you can now see this users photos")
-          this.setState({viewPhotos: true, showQuestions: false})
+          this.props.setAnsweredCorrectly(res.success)
         }
         else if(res.success === false) {
           window.alert("You answered a question incorrectly, better luck next time")
-          this.setState({viewPhotos: false, showQuestions: false})
+          this.props.setAnsweredCorrectly(res.success)
         }
       })
   }
@@ -65,24 +66,28 @@ class AnswerQuestions extends React.Component {
   renderQuestions = () => {
     console.log(this.props.questions)
     return (
+      <div className="answerQuestions">
     <form onSubmit={this.getResults}>
+    <H3V>View Questions</H3V>
       {this.props.questions.map((question, index) => {
-      return <div>
-        <div>{question.title}</div>
-        
-          {question.type === 'bool' && (
-            <div>
-              <input required name={index} type="radio" value="True" onClick={(event) => this.setResponse(event, index)} />True
-              <input required name={index} type="radio" value="False" onClick={(event) => this.setResponse(event, index)} />False
-            </div>
-          )}
-          {question.type === 'multiple' && question.answers.map((answer, idx) => (
-            <div><input required type="radio" name={index} value={idx} onClick={(event) => this.setResponse(event, index)} />{answer}</div>
-          ))}
-      </div>
+      return (
+          <div className="viewQuestions">
+            <h5 style={{margin:"5px"}}>Questions:  {question.title}</h5>
+              {question.type === 'bool' && (
+                <div>
+                  <input style={{margin:"5px"}} required name={index} type="radio" value="True" onClick={(event) => this.setResponse(event, index)} />True
+                  <input style={{margin:"5px"}} required name={index} type="radio" value="False" onClick={(event) => this.setResponse(event, index)} />False
+                </div>
+              )}
+              {question.type === 'multiple' && question.answers.map((answer, idx) => (
+                <div><input required type="radio" name={index} value={idx} onClick={(event) => this.setResponse(event, index)} />{answer}</div>
+              ))}
+        </div>
+      )
     })}
     <input type="submit"/>
     </form>
+    </div>
     )
 
   }

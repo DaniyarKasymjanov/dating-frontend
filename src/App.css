@@ -51,6 +51,23 @@
   color: #fff;
 }
 
+.Submit input[type="submit"]{
+  border: none;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 17px;
+  background: rgb(19, 113, 175);
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+.Submit input[type="submit"]:hover{
+  background: white;
+  color: rgb(19, 113, 175);
+  border: 2px solid rgb(19, 113, 175);
+}
+
 .profileImg{
   border-radius: 50%;
   border: 0.5px solid #ddd;
@@ -140,6 +157,7 @@ label{
   position: absolute;
   bottom: -35px;
   right: 0%;
+  border: 2px solid red;
 }
 .MainProfileImg{
   border: 3px solid #ddd;
@@ -156,16 +174,18 @@ label{
   position: absolute;
   bottom: 0;
   left: 0;
-  border-top: 5px solid white;
+  border: 2px solid red;
   background: #ffffffdb;
 }
 
 .MiniPicGrid{
   display:grid;
   grid-area: mini;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 5px;
-  border: 1px solid black;
+  border: 0.5px solid #ddd;
+  max-height: 400px;
+  overflow: auto;
 }
 
 .ProfileQuick{
@@ -175,8 +195,13 @@ label{
 .ProfileInfo{
   width: 50%;
   text-align: left;
+  padding: 10px 10px 10px 0px;
+  border: 0.5px solid #ddd;
 }
 
+.ProfileInfo > table{
+  width: 100%;
+}
 .AboutMe{
   text-align: left;
   width: 60%;
@@ -202,4 +227,21 @@ label{
 
 .Footer{
   grid-area: footer;
+}
+
+
+.viewQuestions{
+  margin:5px;
+  text-align: center;
+  color: #0088cc;
+}
+
+.AnswerQuestions{
+  border-radius: 15px;
+}
+
+.ProfileImgWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
