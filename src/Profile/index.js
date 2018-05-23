@@ -11,6 +11,7 @@ class Profile extends React.Component {
   constructor() {
     super();
     this.state = {
+      loaded : false,
       info: {
         birthday: '',
         city: '',
@@ -87,6 +88,7 @@ class Profile extends React.Component {
       .then((res) => {
         console.log(this.state.profileData.username, "MYUSER")
         this.checkViewImages();
+        this.setState({loaded : true})
 
       })
 
@@ -374,9 +376,15 @@ class Profile extends React.Component {
 
   render() {
     console.log(this.state)
-    return (
-      this.viewProfile()
-    )
+    if(this.state.loaded === true){
+      return (
+        this.viewProfile()
+      ) 
+    }else{
+      return (
+        <div>Loading...</div>
+      )
+    }
   }
 }
 

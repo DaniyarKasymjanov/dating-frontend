@@ -154,7 +154,7 @@ class App extends Component {
       {this.props.location.pathname !== '/' && (<NavBar username={this.state.username} profileImage={this.state.profileImage} username={this.state.username} gender={this.state.gender} city={this.state.city} birthday={this.state.birthday} handleSearch={this.handleSearch} history={this.props.history}/>)}
       <Grid>
           <Onboarding handleLogin={this.handleLogin} setUsername={this.setUsername} history={this.props.history} />
-          <div style={{backgroundImage: 'url("/chat-bg.png")'}}>
+          <div style={{backgroundColor: '#f1f1f1'}}>
           <Route exact path="/login" render={this.renderLogin}/>
             <Route exact path="/favorites" render={this.renderFavorites}/>
             <Route exact path="/spotlight" render={this.renderSpotLight}/>
