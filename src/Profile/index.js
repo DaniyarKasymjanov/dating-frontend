@@ -5,7 +5,7 @@ import ProfileImages from './ProfileImages.js'
 import AnswerQuestions from './AnswerQuestions'
 import EvaluationQuestions from '../EvaluationQuestions.js';
 import Footer from '../Footer'
-import {MiniPicGrid, StyledModal, MessageButton, SCButton} from '../Styled'
+import { MiniPicGrid, StyledModal, MessageButton, SCButton } from '../Styled'
 
 class Profile extends React.Component {
   constructor() {
@@ -166,7 +166,7 @@ class Profile extends React.Component {
       .then(e => JSON.parse(e))
       .then(res => {
         console.log("$$$", res)
-        if(res.success) {
+        if (res.success) {
           this.setProfileData({ isLiked: !this.state.profileData.isLiked })
           this.checkViewImages();
         }
@@ -302,58 +302,58 @@ class Profile extends React.Component {
           <EvaluationQuestions questions={this.state.info.questions} submitEvaluation={this.updateQuestions} history={this.props.history} />
         </Modal>
         <div className="TopContent">
-        <div className="ProfileBackground">
-          <img style={{width:"100%", borderBottom:"4px solid #ddd"}}src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
-          {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "backgroundImage")} />}
-          <div className="MainProfileImg">
-            <img src={this.state.info.profileImg ? this.state.info.profileImg : "http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"} />
-            {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "profileImg")} />}
-          </div>
-        </div>
-        {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
-        
-        <div className="ProfileQuick">
-          <div style={{display:"flex"}}>{!this.props.ownProfile && <MessageButton><Link style={{color:"white", textDecoration:"none"}} to={"/messages/" + this.state.profileData.username}>Message</Link></MessageButton>}
-
-          {this.props.ownProfile ? <MessageButton onClick={this.toggleEditQuestions}>Edit Questions</MessageButton> : (!this.state.info.answered && <MessageButton onClick={this.toggleQuestions}>View Questions</MessageButton>)}
-          
-          {!this.props.ownProfile ?
-          <div>Like
-            {this.state.profileData.isLiked ? <input type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></input> : <input type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}></input>}</div> :
-            (this.state.profileData.isEditable ? (
-            <div>
-              <SCButton onClick={this.submitEdits}>Save</SCButton>
-              <SCButton onClick={this.cancelEdits}>Cancel</SCButton>
+          <div className="ProfileBackground">
+            <img style={{ width: "100%", borderBottom: "4px solid #ddd" }} src={this.state.info.backgroundImage ? this.state.info.backgroundImage : "https://linkedinbackground.com/download/Lets-Go-On-A-Swing.jpg"} />
+            {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "backgroundImage")} />}
+            <div className="MainProfileImg">
+              <img src={this.state.info.profileImg ? this.state.info.profileImg : "http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"} />
+              {this.state.profileData.isEditable && <input type="file" onChange={(e) => this.handleImageChange(e, "profileImg")} />}
             </div>
-            ) : <MessageButton onClick={this.toggleEditable}>Edit</MessageButton>)
-          }
-          
           </div>
-          <table className="ProfileInfo">
-          <h3>{this.state.profileData.username}</h3>
-            <tbody>
-              <tr>
-                <td>{this.calculateAge()}</td>
-                <td>{this.renderInfo("education")}</td>
-                <td>{this.renderInfo("smoking")}</td>
-              </tr>
-              <tr>
-                <td>{this.renderGender()}</td>
-                <td>{this.renderInfo("city")}</td>
-                <td>{this.renderInfo("drinking")}</td>
-              </tr>
-              <tr>
-                <td>Languages: {this.renderLanguages()}</td>
-              </tr>
-            </tbody>
-          </table>
-          {/* {this.calculateAge()} */}
-          {/* {this.renderGender()} */}
-          {/* {this.renderInfo("city")} */}
-          {/* {this.renderInfo("education")} */}
-          {/* <div>languages:{this.renderLanguages()}</div> */}
-          {/* {this.renderInfo("smoking")} */}
-          {/* {this.renderInfo("drinking")} */}
+          {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
+
+          <div className="ProfileQuick">
+            <div style={{ display: "flex" }}>{!this.props.ownProfile && <MessageButton><Link style={{ color: "white", textDecoration: "none" }} to={"/messages/" + this.state.profileData.username}>Message</Link></MessageButton>}
+
+              {this.props.ownProfile ? <MessageButton onClick={this.toggleEditQuestions}>Edit Questions</MessageButton> : (!this.state.info.answered && <MessageButton onClick={this.toggleQuestions}>View Questions</MessageButton>)}
+
+              {!this.props.ownProfile ?
+                <div>Like
+            {this.state.profileData.isLiked ? <input type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></input> : <input type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}></input>}</div> :
+                (this.state.profileData.isEditable ? (
+                  <div>
+                    <SCButton onClick={this.submitEdits}>Save</SCButton>
+                    <SCButton onClick={this.cancelEdits}>Cancel</SCButton>
+                  </div>
+                ) : <MessageButton onClick={this.toggleEditable}>Edit</MessageButton>)
+              }
+
+            </div>
+            <table className="ProfileInfo">
+              <h3>{this.state.profileData.username}</h3>
+              <tbody>
+                <tr>
+                  <td>{this.calculateAge()}</td>
+                  <td>{this.renderInfo("education")}</td>
+                  <td>{this.renderInfo("smoking")}</td>
+                </tr>
+                <tr>
+                  <td>{this.renderGender()}</td>
+                  <td>{this.renderInfo("city")}</td>
+                  <td>{this.renderInfo("drinking")}</td>
+                </tr>
+                <tr>
+                  <td>Languages: {this.renderLanguages()}</td>
+                </tr>
+              </tbody>
+            </table>
+            {/* {this.calculateAge()} */}
+            {/* {this.renderGender()} */}
+            {/* {this.renderInfo("city")} */}
+            {/* {this.renderInfo("education")} */}
+            {/* <div>languages:{this.renderLanguages()}</div> */}
+            {/* {this.renderInfo("smoking")} */}
+            {/* {this.renderInfo("drinking")} */}
           </div>
         </div>
         <div className="BottomContent">
