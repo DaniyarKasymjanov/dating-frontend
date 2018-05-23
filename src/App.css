@@ -141,6 +141,41 @@ label{
   color: black;
 }
 
+.evalWrapper fieldset {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.evalWrapper fieldset:last-of-type {
+  border: none;
+}
+
+.answersWrapper {
+  text-align: left;
+  margin-left: 20px;
+}
+
+.answersWrapper select {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 6px;
+}
+
+.answersWrapper input[type="text"] {
+  margin: 8px;
+  margin-left: 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 6px;
+}
+
+.answersWrapper input[type="radio"] {
+  width: 15px;
+  height: 15px;
+  margin-right: 15px;
+}
+
 .NavLink{
   text-decoration: none;
 }
@@ -229,8 +264,35 @@ label{
   margin:5px;
   text-align: center;
   color: #0088cc;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.viewQuestions > div {
+  text-align: left;
+  padding: 5px;
+}
+
+.viewQuestions > div >input {
+  margin-right: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 .AnswerQuestions{
   border-radius: 15px;
+}
+
+.answerQuestionsBtn {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.answerQuestionsBtn > input {
+  color: white;
+  background: #0088cc;
+  border: 2px solid #0088cc;
+  border-radius: 5px;
+  padding: 8px 18px;
 }
