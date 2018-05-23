@@ -24,7 +24,7 @@ const ProfileDisplayGrid = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
   padding: 25px 20px 25px 30px;
-  border: 0.5px solid #ddd;
+  border: 0.5px solid #0088cc;
 `;
 
 const LandingGrid = styled.div`
@@ -217,7 +217,7 @@ const NavLogoLink = styled(Link)`
 
 const H1 = styled.h1`
   && {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #0088cc;
     text-align: left;
   }
 `;
