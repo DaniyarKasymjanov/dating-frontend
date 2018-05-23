@@ -1,8 +1,48 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import { Link } from 'react-router-dom';
-import {ChatGrid,ChatHistoryGrid, MainContentGrid} from './Styled.js';
+import styled from 'styled-components';
+import {ChatGrid,ChatHistoryGrid} from './Styled.js';
 import ChatHistory from './ChatHistory.js';
+
+const ChatWrapper = styled.div`
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+  max-width: 800px;
+`;
+
+const ChatHeader = styled.h2`
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+`;
+
+const MessageWrapper = styled.div`
+  text-align: ${(props) => props.ownMessage ? 'right' : 'left'};
+  margin-right: 40px;
+  margin-top: 15px;
+  & > div {
+    background: ${(props) => props.ownMessage ? '#2196F3' : 'grey'};
+  }
+`;
+
+const MessageContent = styled.div`
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  word-break: break-all;
+  max-width: 50%;
+`;
+
+const Form = styled.form`
+  width: 95%;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  & > input {
+    flex: 1;
+  }
+`;
 
 const socket = io();
   
@@ -16,6 +56,7 @@ class Messages extends Component{
     }
   }
   componentDidMount() {
+    console.log('componentDidMount', this.props.username)
     if(this.props.receiverName) this.getChat();
     else this.loadLatest();
   }
@@ -30,6 +71,7 @@ class Messages extends Component{
     });
   }
   getChat = () => {
+    console.log('getChat', this.props)
     fetch('/getChat', {
       method: 'POST',
       body: JSON.stringify({
@@ -39,6 +81,7 @@ class Messages extends Component{
     })
     .then(res => res.json())
     .then(res => {
+      console.log(res);
       if(res.success) this.handleChat(res.chat);
     });
   }
@@ -47,6 +90,7 @@ class Messages extends Component{
     this.setState({ messages: chat.messages });
     socket.emit('join', { chatID: chat._id })
     socket.on('receive_msg', (res) => {
+      console.log(res)
       this.setState({ messages: this.state.messages.concat(res) });
     });
   }
@@ -63,27 +107,25 @@ class Messages extends Component{
     if(this.state.isLoaded && this.state.messages.length === 0) {
       return (
         <div>
-          <MainContentGrid>
             <h1>No chats available. Select a user you want to message <Link to="/favorites">here</Link></h1>
-          </MainContentGrid>
         </div>
       );
     }
     return(
       <ChatGrid>
         <ChatHistory/>
-        <MainContentGrid>
-          <h1>Chat</h1>
+        <ChatWrapper>
+          <ChatHeader>Chat with {this.props.receiverName}</ChatHeader>
           {this.state.messages.map(messageObj => (
-            <div>
-              {messageObj.username}: {messageObj.message}
-            </div>
+            <MessageWrapper ownMessage={messageObj.username === this.props.username}>
+              <MessageContent>{messageObj.message}</MessageContent>
+            </MessageWrapper>
           ))}
-          <form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
             <input type="text" value={this.state.msgInput} onChange={this.handleMsgInput} />
             <button type="submit">Send</button>
-          </form>
-        </MainContentGrid>
+          </Form>
+        </ChatWrapper>
       </ChatGrid>
     )
   }
