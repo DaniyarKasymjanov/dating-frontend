@@ -51,6 +51,23 @@
   color: #fff;
 }
 
+.Submit input[type="submit"]{
+  border: none;
+  outline: none;
+  height: 40px;
+  color: #fff;
+  font-size: 17px;
+  background: rgb(19, 113, 175);
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+.Submit input[type="submit"]:hover{
+  background: white;
+  color: rgb(19, 113, 175);
+  border: 2px solid rgb(19, 113, 175);
+}
+
 .profileImg{
   border-radius: 50%;
   border: 0.5px solid #ddd;
@@ -140,6 +157,7 @@ label{
   position: absolute;
   bottom: -35px;
   right: 0%;
+  border: 2px solid red;
 }
 .MainProfileImg{
   border: 3px solid #ddd;
@@ -156,7 +174,7 @@ label{
   position: absolute;
   bottom: 0;
   left: 0;
-  border-top: 5px solid white;
+  border: 2px solid red;
   background: #ffffffdb;
 }
 

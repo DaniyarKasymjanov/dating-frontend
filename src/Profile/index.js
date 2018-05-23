@@ -315,7 +315,7 @@ class Profile extends React.Component {
         <div className="ProfileQuick">
           <div style={{display:"flex"}}>{!this.props.ownProfile && <MessageButton><Link style={{color:"white", textDecoration:"none"}} to={"/messages/" + this.state.profileData.username}>Message</Link></MessageButton>}
 
-          {this.props.ownProfile ? <MessageButton onClick={this.toggleEditQuestions}>Edit Questions</MessageButton> : (!this.state.info.answered && <button onClick={this.toggleQuestions}>View Questions</button>)}
+          {this.props.ownProfile ? <MessageButton onClick={this.toggleEditQuestions}>Edit Questions</MessageButton> : (!this.state.info.answered && <MessageButton onClick={this.toggleQuestions}>View Questions</MessageButton>)}
           
           {!this.props.ownProfile ?
           <div>Like
