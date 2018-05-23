@@ -89,9 +89,8 @@
 
 .regForm{
   padding: 20px;
-  border: 3px solid rgb(40, 13, 102);
   border-radius: 10px;
-  background: #ffffff88;
+  background: white;
   text-align: center;
   color: rgb(40, 13, 102);
 }
@@ -99,6 +98,10 @@
 .regInput{
   background: white;
   text-align: center;
+  border-radius: 5px;
+  border: 1px solid #cacbcc;
+  height: 40px;
+  font-size: 17px;
 }
 
 ModalHeaderFix{

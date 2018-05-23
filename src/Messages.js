@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
+import { Link } from 'react-router-dom';
 import {ChatGrid,ChatHistoryGrid, MainContentGrid} from './Styled.js';
 import ChatHistory from './ChatHistory.js';
 
@@ -11,6 +12,7 @@ class Messages extends Component{
     this.state = {
       msgInput: '',
       messages: [],
+      isLoaded: false
     }
   }
   componentDidMount() {
@@ -23,7 +25,8 @@ class Messages extends Component{
     })
     .then(res => res.json())
     .then(res => {
-      if(res.success) this.props.history.push(`/messages/${res.chats[0]}`);
+      if(res.success) return this.props.history.push(`/messages/${res.chats[0]}`);
+      this.setState({ isLoaded: true });
     });
   }
   getChat = () => {
@@ -57,6 +60,15 @@ class Messages extends Component{
     this.setState({ msgInput: '' });
   }
   render(){
+    if(this.state.isLoaded && this.state.messages.length === 0) {
+      return (
+        <div>
+          <MainContentGrid>
+            <h1>No chats available. Select a user you want to message <Link to="/favorites">here</Link></h1>
+          </MainContentGrid>
+        </div>
+      );
+    }
     return(
       <ChatGrid>
         <ChatHistory/>

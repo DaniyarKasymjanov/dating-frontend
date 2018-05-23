@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { MainGrid, MainContentGrid, ProfileDisplayGrid, ProfileImage, StyledContent, H1 } from './Styled';
+import { MainGrid, MainContentGrid, ProfileDisplayGrid, ProfileImage, StyledContent, H1, viewMultiple } from './Styled';
 import Spotlight from './Spotlight';
 import Footer from './Footer'
 import { Link } from 'react-router-dom';
@@ -41,7 +41,7 @@ class Home extends React.Component{
     return(
       <div className="BackgroundImage">
       <MainGrid>
-        <Spotlight username={this.props.username} gender={this.props.gender} city={this.props.city} birthday={this.props.birthday} profileImage={this.props.profileImage}/>
+        <Spotlight regusername={this.props.regusername} username={this.props.username} gender={this.props.gender} city={this.props.city} birthday={this.props.birthday} profileImage={this.props.profileImage}/>
         <MainContentGrid>
           <H1> Recent Members </H1>
           <ProfileDisplayGrid>

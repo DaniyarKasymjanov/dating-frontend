@@ -1,5 +1,6 @@
 import React from 'react'
 import { Modal } from 'reactstrap'
+import { Link } from 'react-router-dom';
 import ProfileImages from './ProfileImages.js'
 import AnswerQuestions from './AnswerQuestions'
 import EvaluationQuestions from '../EvaluationQuestions.js';
@@ -286,7 +287,7 @@ class Profile extends React.Component {
         {/* <div>backgroundImage:{this.state.info.backgroundImage ? <img src={'/' + this.state.info.backgroundImage} /> : null}</div> */}
         
         <div className="ProfileQuick">
-          <div style={{display:"flex"}}><h3>{this.state.profileData.username}</h3>
+          <div style={{display:"flex"}}><h3>{this.state.profileData.username}</h3>{!this.props.ownProfile && <Link to={"/messages/" + this.state.profileData.username}>Message</Link>}
           {this.props.ownProfile ? <button onClick={this.toggleEditQuestions}>Edit Questions</button> : <button onClick={this.toggleQuestions}>View Questions</button>}
           {!this.props.ownProfile ?
           <div>Like
