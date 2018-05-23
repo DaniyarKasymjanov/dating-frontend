@@ -84,7 +84,7 @@ class App extends Component {
     })
     .then(res => res.json())
     .then(res => {
-      if(res.success) this.setState({ username: res.username });
+      if(res.success) this.setState({ username: res.result.username });
       return res;
     })
   }
@@ -125,9 +125,9 @@ class App extends Component {
   }
 
   renderMessages = (routeProps) => {
-    console.log('renderMessages', this.state.username)
+    console.log('renderMessages', this.state.profileImage)
     const receiverName = routeProps.match.params.receiverName;
-    return this.state.fetchedSession ? <Messages username={this.state.username} receiverName={receiverName} /> : <div>Loading...</div>
+    return this.state.fetchedSession ? <Messages username={this.state.username}  gender={this.state.gender} city={this.state.city} birthday={this.state.birthday} profileImage={this.state.profileImage} receiverName={receiverName} /> : <div>Loading...</div>
   }
 
   renderToS = () => {
@@ -152,7 +152,7 @@ class App extends Component {
       {this.props.location.pathname !== '/' && (<NavBar username={this.state.username} handleSearch={this.handleSearch} history={this.props.history}/>)}
       <Grid>
           <Onboarding handleLogin={this.handleLogin} setUsername={this.setUsername} history={this.props.history} />
-          <div>
+          <div style={{backgroundImage: 'url("/chat-bg.png")'}}>
           <Route exact path="/login" render={this.renderLogin}/>
             <Route exact path="/favorites" render={this.renderFavorites}/>
             <Route exact path="/spotlight" render={this.renderSpotLight}/>

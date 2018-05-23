@@ -28,8 +28,8 @@ class Spotlight extends Component {
   render() {
     console.log(this.props, "SPOTLIGHT")
     return (
-      <SpotlightGrid>
-        <StyledCard>
+      <SpotlightGrid style={{color: "#005D8C"}}>
+        <StyledCard style={{border:"3px solid #005D8C"}}>
           {this.props.profileImage ? <CardImg top width="100%" src={this.props.profileImage}/> : <CardImg top width="100%" src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/>}
           <CardBody>
             <CardTitle>

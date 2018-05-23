@@ -4,43 +4,72 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {ChatGrid,ChatHistoryGrid} from './Styled.js';
 import ChatHistory from './ChatHistory.js';
+import bgImg from './images/chat-bg.png';
+import Spotlight from './Spotlight';
+import {MainContentGrid} from './Styled'
+
 
 const ChatWrapper = styled.div`
   max-height: calc(100vh - 100px);
   overflow: auto;
   max-width: 800px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+`;
+// background: url(${bgImg});
+const ChatMessages = styled.div`
+  
+  border-radius: 4px;
 `;
 
 const ChatHeader = styled.h2`
   padding-bottom: 10px;
-  border-bottom: 1px solid #ddd;
+  & > img{
+    max-width: 70px;
+    border-radius: 50%;
+  }
 `;
 
 const MessageWrapper = styled.div`
   text-align: ${(props) => props.ownMessage ? 'right' : 'left'};
+  margin : 5px;
+  margin-left: 40px;
   margin-right: 40px;
-  margin-top: 15px;
   & > div {
-    background: ${(props) => props.ownMessage ? '#2196F3' : 'grey'};
+    color: ${(props) => props.ownMessage ? '#FFFFFF' : '#2196F3'};
+    background: ${(props) => props.ownMessage ? '#2196F3' : '#EEEEEE'};
   }
 `;
 
 const MessageContent = styled.div`
   display: inline-block;
-  padding: 10px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
   border-radius: 10px;
+  font-size: 20px;
   color: #fff;
-  word-break: break-all;
-  max-width: 50%;
+  max-width: 75%;
+  word-break: normal;
 `;
 
 const Form = styled.form`
-  width: 95%;
+  margin: 0 40px;
   display: flex;
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   & > input {
     flex: 1;
+    height: 40px;
+    border: none;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+  & > button {
+    background: #2e93fb;
+    color: #fff;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 `;
 
@@ -52,13 +81,24 @@ class Messages extends Component{
     this.state = {
       msgInput: '',
       messages: [],
-      isLoaded: false
+      isLoaded: false,
+      profileImageReceiver: ""
     }
   }
   componentDidMount() {
     console.log('componentDidMount', this.props.username)
-    if(this.props.receiverName) this.getChat();
-    else this.loadLatest();
+    if(this.props.receiverName) {
+      this.getChat();
+      this.getProfileImg();
+    }
+    else {
+      this.loadLatest();
+    }
+  }
+  getProfileImg = () => {
+    fetch('/chatProfileImage?username=' + this.props.receiverName)
+    .then(res => res.json())
+    .then(res => {console.log(res); this.setState({profileImageReceiver: res.result})})
   }
   loadLatest = () => {
     fetch('/getChats', {
@@ -68,6 +108,8 @@ class Messages extends Component{
     .then(res => {
       if(res.success) return this.props.history.push(`/messages/${res.chats[0]}`);
       this.setState({ isLoaded: true });
+      var objDiv = document.getElementById("startedFromTheUp");
+      objDiv.scrollTop = objDiv.scrollHeight;
     });
   }
   getChat = () => {
@@ -83,6 +125,8 @@ class Messages extends Component{
     .then(res => {
       console.log(res);
       if(res.success) this.handleChat(res.chat);
+      var objDiv = document.getElementById("startedFromTheUp");
+      objDiv.scrollTop = objDiv.scrollHeight;
     });
   }
   handleChat = (chat) => {
@@ -92,6 +136,8 @@ class Messages extends Component{
     socket.on('receive_msg', (res) => {
       console.log(res)
       this.setState({ messages: this.state.messages.concat(res) });
+      var objDiv = document.getElementById("startedFromTheUp");
+      objDiv.scrollTop = objDiv.scrollHeight;
     });
   }
 
@@ -102,8 +148,11 @@ class Messages extends Component{
     event.preventDefault();
     socket.emit('send_msg', {username: this.props.username, message: this.state.msgInput });
     this.setState({ msgInput: '' });
+    var objDiv = document.getElementById("startedFromTheUp");
+    objDiv.scrollTop = objDiv.scrollHeight;
   }
   render(){
+
     if(this.state.isLoaded && this.state.messages.length === 0) {
       return (
         <div>
@@ -112,19 +161,23 @@ class Messages extends Component{
       );
     }
     return(
-      <ChatGrid>
-        <ChatHistory/>
-        <ChatWrapper>
-          <ChatHeader>Chat with {this.props.receiverName}</ChatHeader>
+      <ChatGrid  name="SWAGGY2">
+      <MainContentGrid  style={{marginTop : "42px"}}>      
+        <Spotlight regusername={"regusername"} username={this.props.username} gender={this.props.gender} city={this.props.city} birthday={this.props.birthday} profileImage={this.props.profileImage}/>
+      </MainContentGrid>
+        <ChatWrapper name="SWAGGY">
+          <ChatHeader style={{color: "#005D8C"}}>{this.props.receiverName} <img src={this.state.profileImageReceiver}/></ChatHeader>
+          <ChatMessages id="startedFromTheUp" style={{backgroundColor: "white",border:"3px solid #005D8C",height:"72vh",overflow:"scroll"}} >
           {this.state.messages.map(messageObj => (
             <MessageWrapper ownMessage={messageObj.username === this.props.username}>
               <MessageContent>{messageObj.message}</MessageContent>
             </MessageWrapper>
           ))}
           <Form onSubmit={this.handleSubmit}>
-            <input type="text" value={this.state.msgInput} onChange={this.handleMsgInput} />
-            <button type="submit">Send</button>
+            <input type="text" style={{borderRadius:"5px",paddingLeft:"10px",paddingRight:"10px",marginRight:"10px",border : "1px solid #00334C"}} value={this.state.msgInput} onChange={this.handleMsgInput} />
+            <button style={{borderRadius:"5px",paddingLeft:"50px",paddingRight:"50px",backgroundColor : "#00334C"}} type="submit">Send</button>
           </Form>
+        </ChatMessages>
         </ChatWrapper>
       </ChatGrid>
     )
