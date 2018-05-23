@@ -3,7 +3,7 @@ import { Route, Redirect, Link} from 'react-router-dom';
 import LandingPage from './LandingPage.js';
 import Register from './Register';
 import EvaluationQuestions from './EvaluationQuestions';
-
+import { Modal } from 'reactstrap'
 
 class Onboarding extends React.Component {
     constructor() {
@@ -57,7 +57,11 @@ class Onboarding extends React.Component {
             )
         }
         renderEvaluation = (routeProps) => {
-            return (<EvaluationQuestions submitEvaluation={this.submitOnboarding} history={routeProps.history} />)
+            return (
+            <Modal isOpen="true" >
+                <EvaluationQuestions submitEvaluation={this.submitOnboarding} history={routeProps.history} />
+            </Modal>
+                )
         }
 
         render() {

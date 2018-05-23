@@ -124,17 +124,10 @@ class EvaluationQuestions extends React.Component {
           <div>Question 1 Multiple Choice</div>
           <input required type="text" value={this.state.q1Title} onChange={(event) => this.setState({q1Title:  event.target.value })} />
           <div>Possible Answers</div>
-          <input required name="q11" value={this.state.q1Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q1Answers")}></input>
-          <input required name="q11" value={this.state.q1Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q1Answers")}></input>
-          <input required name="q11" value={this.state.q1Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q1Answers")}></input>
-          <input name="q11" value={this.state.q1Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q1Answers")}></input>
-          <div>Expected answer</div>
-
-          <input required type="radio" value="0" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
-          <input required type="radio" value="1" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
-          <input required type="radio" value="2" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
-          <input required type="radio" value="3" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
-
+          <input required type="text" name="q11" value={this.state.q1Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q1Answers")}/><input required type="radio" value="0" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
+          <input required type="text" name="q11" value={this.state.q1Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q1Answers")}/><input required type="radio" value="1" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
+          <input required type="text" name="q11" value={this.state.q1Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q1Answers")}/><input required type="radio" value="2" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
+          <input type="text" name="q11" value={this.state.q1Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q1Answers")}/><input required type="radio" value="3" name="q1" onChange={(event) => this.setState({q1Correct:  event.target.value})}/>
         </div>)
     }
     return null
@@ -161,17 +154,11 @@ class EvaluationQuestions extends React.Component {
           <div>Question 2 Multiple Choice</div>
           <input required type="text" value={this.state.q2Title} onChange={(event) => this.setState({q2Title:  event.target.value })} />
           <div>Possible Answers</div>
-          <input required value={this.state.q2Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q2Answers")}></input>
-          <input required value={this.state.q2Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q2Answers")}></input>
-          <input required value={this.state.q2Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q2Answers")}></input>
-          <input value={this.state.q2Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q2Answers")}></input>
-          <div>Expected answer</div>
-          <fieldset >
-          <input required type="radio" value="0" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
-          <input required type="radio" value="1" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
-          <input required type="radio" value="2" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
-          <input required type="radio" value="3" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
-          </fieldset>
+          <input required value={this.state.q2Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q2Answers")} type="text"/><input required type="radio" value="2" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
+          <input required value={this.state.q2Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q2Answers")} type="text"/><input required type="radio" value="2" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
+          <input required value={this.state.q2Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q2Answers")} type="text"/><input required type="radio" value="2" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
+          <input value={this.state.q2Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q2Answers")} type="text"/><input required type="radio" value="2" name="q2" onChange={(event) => this.setState({q2Correct:  event.target.value})}/>
+          
         </div>)
     }
     return null
@@ -198,17 +185,11 @@ class EvaluationQuestions extends React.Component {
           <div>Question 3 Multiple Choice</div>
           <input required type="text" value={this.state.q3Title} onChange={(event) => this.setState({q3Title:  event.target.value})} />
           <div>Possible Answers</div>
-          <input required value={this.state.q3Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q3Answers")}></input>
-          <input required value={this.state.q3Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q3Answers")}></input>
-          <input required value={this.state.q3Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q3Answers")}></input>
-          <input value={this.state.q3Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q3Answers")}></input>
-          <div>Expected answer</div>
-          <fieldset >
-          <input required type="radio" value="0" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
-          <input required type="radio" value="1" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
-          <input required type="radio" value="2" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
-          <input required type="radio" value="3" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
-          </fieldset>
+          <input required value={this.state.q3Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q3Answers")} type="text"/><input required type="radio" value="3" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
+          <input required value={this.state.q3Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q3Answers")} type="text"/><input required type="radio" value="3" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
+          <input required value={this.state.q3Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q3Answers")} type="text"/><input required type="radio" value="3" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
+          <input value={this.state.q3Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q3Answers")} type="text"/><input required type="radio" value="3" name="q3" onChange={(event) => this.setState({q3Correct:  event.target.value})}/>
+          
         </div>)
     }
     return null
@@ -235,17 +216,11 @@ class EvaluationQuestions extends React.Component {
           <div>Question 4 Multiple Choice</div>
           <input required type="text" value={this.state.q4Title} onChange={(event) => this.setState({q4Title:  event.target.value})} />
           <div>Possible Answers</div>
-          <input required value={this.state.q4Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q4Answers")}></input>
-          <input required value={this.state.q4Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q4Answers")}></input>
-          <input required value={this.state.q4Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q4Answers")}></input>
-          <input value={this.state.q4Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q4Answers")}></input>
-          <div>Expected answer</div>
-          <fieldset >
-          <input required type="radio" value="0" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
-          <input required type="radio" value="1" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
-          <input required type="radio" value="2" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
-          <input required type="radio" value="3" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
-          </fieldset>
+          <input required value={this.state.q4Answers[0]} onChange={(event) => this.setAnswers(event, 0, "q4Answers")} type="text"/><input required type="radio" value="4" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
+          <input required value={this.state.q4Answers[1]} onChange={(event) => this.setAnswers(event, 1, "q4Answers")} type="text"/><input required type="radio" value="4" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
+          <input required value={this.state.q4Answers[2]} onChange={(event) => this.setAnswers(event, 2, "q4Answers")} type="text"/><input required type="radio" value="4" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
+          <input value={this.state.q4Answers[3]} onChange={(event) => this.setAnswers(event, 3, "q4Answers")} type="text"/><input required type="radio" value="4" name="q4" onChange={(event) => this.setState({q4Correct:  event.target.value})}/>
+          
         </div>)
     }
     return null
@@ -259,27 +234,35 @@ class EvaluationQuestions extends React.Component {
           <H2E>Evaluation Questions</H2E>
           <fieldset style={{textAlign:"center", borderBottom:""}}>
             <h4>Question 1</h4>
-            <input required type="radio" name="question1" id="bool1" checked={this.state.q1Type === 'bool'} onChange={() => this.q1Type('bool')} /><label for="bool1">True Or False</label><br />
-            <input required type="radio" name="question1" id="multipleChoice1" checked={this.state.q1Type === 'multiple'} onChange={() => this.q1Type('multiple')} /><label for="multipleChoice1">Multiple Choice</label><br />
-            {this.renderQuestion1()}
+            <div className="answersWrapper">
+              <input required type="radio" name="question1" id="bool1" checked={this.state.q1Type === 'bool'} onChange={() => this.q1Type('bool')} /><label for="bool1">True Or False</label><br />
+              <input required type="radio" name="question1" id="multipleChoice1" checked={this.state.q1Type === 'multiple'} onChange={() => this.q1Type('multiple')} /><label for="multipleChoice1">Multiple Choice</label><br />
+              {this.renderQuestion1()}
+            </div>
           </fieldset>
           <fieldset style={{textAlign:"center"}}>
             <h4>Question 2</h4>
+							<div className="answersWrapper">
             <input required type="radio" name="question2" id="bool2" onChange={() => this.q2Type('bool')} /><label for="bool2">True Or False</label><br />
             <input required type="radio" name="question2" id="multipleChoice2" onChange={() => this.q2Type('multiple')} /><label for="multipleChoice2">Multiple Choice</label><br />
             {this.renderQuestion2()}
+						</div>
           </fieldset>
           <fieldset style={{textAlign:"center"}}>
             <h4>Question 3</h4>
+							<div className="answersWrapper">
             <input required type="radio" name="question3" id="bool3" onChange={() => this.q3Type('bool')} /><label for="bool3">True Or False</label><br />
             <input required type="radio" name="question3" id="multipleChoice3" onChange={() => this.q3Type('multiple')} /><label for="multipleChoice3">Multiple Choice</label><br />
             {this.renderQuestion3()}
+						</div>
           </fieldset>
           <fieldset style={{textAlign:"center"}}>
             <h4>Question 4</h4>
+							<div className="answersWrapper">
             <input required type="radio" name="question4" id="bool4" onChange={() => this.q4Type('bool')} /><label for="bool4">True Or False</label><br />
             <input required type="radio" name="question4" id="multipleChoice4" onChange={() => this.q4Type('multiple')} /><label for="multipleChoice4">Multiple Choice</label><br />
             {this.renderQuestion4()}
+						</div>
           </fieldset>
           <input  type="submit"/>
         </form>
