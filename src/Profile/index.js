@@ -318,8 +318,8 @@ class Profile extends React.Component {
           {this.props.ownProfile ? <MessageButton onClick={this.toggleEditQuestions}>Edit Questions</MessageButton> : (!this.state.info.answered && <MessageButton onClick={this.toggleQuestions}>View Questions</MessageButton>)}
           
           {!this.props.ownProfile ?
-          <div>Like
-            {this.state.profileData.isLiked ? <input type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></input> : <input type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}></input>}</div> :
+          <div>
+            {this.state.profileData.isLiked ? <MessageButton type="checkbox" name="Like" title="Select All" checked onClick={this.likeSwitch}></MessageButton> : <MessageButton type="checkbox" name="Like" title="Select All" onClick={this.likeSwitch}><span><i className="fas fa-heart"></i></span></MessageButton>}</div> :
             (this.state.profileData.isEditable ? (
             <div>
               <SCButton onClick={this.submitEdits}>Save</SCButton>
@@ -347,13 +347,6 @@ class Profile extends React.Component {
               </tr>
             </tbody>
           </table>
-          {/* {this.calculateAge()} */}
-          {/* {this.renderGender()} */}
-          {/* {this.renderInfo("city")} */}
-          {/* {this.renderInfo("education")} */}
-          {/* <div>languages:{this.renderLanguages()}</div> */}
-          {/* {this.renderInfo("smoking")} */}
-          {/* {this.renderInfo("drinking")} */}
           </div>
         </div>
         <div className="BottomContent">

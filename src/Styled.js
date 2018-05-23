@@ -45,6 +45,7 @@ const LandingReg = styled.div`
 const LandingLink = styled(Link)`
   color: black;
   margin: 0px 70px;
+  text-decoration: none;
 `;
 
 const SpotlightGrid = styled.div`
@@ -198,7 +199,7 @@ const H3Logo = styled.h3`
   && {
     color: #0088cc;
   }
-  /* margin-left: 50%; */
+  /* margin-left: 10%; */
 `;
 
 const H3 = styled.h3`
@@ -241,6 +242,17 @@ const StyledLink = styled(Link)`
   }
   text-decoration: none;
   margin: 3px;
+`;
+const StyledFooterLink = styled(Link)`
+  color: #0088cc;
+  &:hover {
+    color: #0088cc;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 15px;
+  }
+  text-decoration: none;
+  margin: 20px;
 `;
 
 const StyledContent = styled.div`
@@ -287,6 +299,7 @@ export {
   H3V,
   H3Logo,
   StyledLink,
+  StyledFooterLink,
   StyledContent,
   StyledCard,
   StyledModal,
