@@ -171,6 +171,15 @@ const H3Logo = styled.h3`
   /* margin-left: 50%; */
 `;
 
+const H2E = styled.h2`
+  && {
+    background:#0088cc;
+    color: white;
+    border: 6px solid #0088cc;
+    text-align: center;
+  }
+`
+
 const StyledLink = styled(Link)`
   color: #0088cc;
   &:hover {
@@ -209,6 +218,7 @@ export {
   H2,
   H3,
   H3L,
+  H2E,
   H3Logo,
   StyledLink,
   StyledContent,

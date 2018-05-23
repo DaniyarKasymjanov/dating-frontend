@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import {
+  ModalBody, 
+  ModalFooter,
+  Button
+} from 'reactstrap';
+import {ModalHeaderFix, NavButton, } from './Styled'
 
 class Search extends React.Component {
   constructor(){
@@ -10,15 +16,16 @@ class Search extends React.Component {
       maxAge: '',
       city: '',
       education: '',
-      smoker: '',
-      drinker: ''
+      smoking: '',
+      drinking: ''
     }
   }
   
   handleSearch = event => {
+    event.preventDefault();
     this.props.handleSearch(
       {
-        searchInput: this.state.searchInput,
+        searchInput: this.state.searchInput.split(' '),
         age: {
           from: this.state.minAge,
           to: this.state.maxAge,
@@ -27,8 +34,8 @@ class Search extends React.Component {
           gender: this.state.gender,
           city: this.state.city,
           education: this.state.education,
-          smoker: this.state.smoker,
-          drinker: this.state.drinker
+          smoking: this.state.smoking,
+          drinking: this.state.drinking
         }
       }
     )
@@ -56,26 +63,27 @@ class Search extends React.Component {
     console.log(event.target.value);
     this.setState({education: event.target.value})
   }
-  handleSmoker = event => {
+  handleSmoking = event => {
     console.log(event.target.value);
-    this.setState({smoker: event.target.value})
+    this.setState({smoking: event.target.value})
   }
-  handleDrinker = event => {
+  handleDrinking = event => {
     console.log(event.target.value);
-    this.setState({drinker: event.target.value})  
+    this.setState({drinking: event.target.value})  
   }
 
   render() {
     return (
-      <div>
-        <form>
+      <form onSubmit={this.handleSearch}>
+        <ModalHeaderFix toggle={this.props.toggle}>Please filled in the form to find your next best match!</ModalHeaderFix>
+          <ModalBody>
           <div className="searchDivs">
             Search: <input className="searchInputs" type="text" placeholder="Enter here" onChange={this.handleSearchInput} value={this.state.searchInput}/>
           </div>
           <div className="searchDivs">
             Gender: 
-            <input className="searchInputs" type="radio" name="gender" value="male" onChange={this.handleGender}/>Male
-            <input className="searchInputs" type="radio" name="gender" value="female" onChange={this.handleGender}/>Female
+            <input className="searchInputs" type="radio" name="gender" value="Male" onChange={this.handleGender}/>Male
+            <input className="searchInputs" type="radio" name="gender" value="Female" onChange={this.handleGender}/>Female
           </div>
           <div className="searchDivs">
             Age:
@@ -100,16 +108,20 @@ class Search extends React.Component {
           </div>
           <div className="searchDivs">
             Smoker:
-            <input className="searchInputs" type="radio" name="smoker" value="smoker" onChange={this.handleSmoker}/> Yes
-            <input className="searchInputs" type="radio" name="smoker" value="notsmoker" onChange={this.handleSmoker}/> No
+            <input className="searchInputs" type="radio" name="smoker" value="Yes" onChange={this.handleSmoking}/> Yes
+            <input className="searchInputs" type="radio" name="smoker" value="No" onChange={this.handleSmoking}/> No
           </div>
           <div className="searchDivs">
             Drinker:
-            <input className="searchInputs" type="radio" name="drinker" value="drinker" onChange={this.handleDrinker}/> Yes
-            <input className="searchInputs" type="radio" name="drinker" value="notdrinker" onChange={this.handleDrinker}/> No
+            <input className="searchInputs" type="radio" name="drinker" value="Yes" onChange={this.handleDrinking}/> Yes
+            <input className="searchInputs" type="radio" name="drinker" value="No" onChange={this.handleDrinking}/> No
           </div>
+          </ModalBody>
+          <ModalFooter>
+            <NavButton onClick={this.props.toggle} type="submit" className="navBtns">Enter</NavButton>{' '}
+            <Button onClick={this.props.toggle} type="button" className="navBtns">Cancel</Button>
+          </ModalFooter>
         </form>
-      </div>
     );
   }
 }

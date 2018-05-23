@@ -75,7 +75,7 @@ class AnswerQuestions extends React.Component {
             <div>
               <input required name={index} type="radio" value="True" onClick={(event) => this.setResponse(event, index)} />True
               <input required name={index} type="radio" value="False" onClick={(event) => this.setResponse(event, index)} />False
-          </div>
+            </div>
           )}
           {question.type === 'multiple' && question.answers.map((answer, idx) => (
             <div><input required type="radio" name={index} value={idx} onClick={(event) => this.setResponse(event, index)} />{answer}</div>

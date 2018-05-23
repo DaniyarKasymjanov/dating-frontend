@@ -68,7 +68,12 @@ class App extends Component {
       body: JSON.stringify(searchObj)
     })
     .then(res => res.json())
-    .then(resJON => this.setState({ searchResults: resJON }))
+    .then(resJSON => { 
+      console.log('SEARCH', resJSON)
+      this.setState({ searchResults: resJSON.result })
+      if(this.props.location.pathname !== '/searchresults')
+        this.props.history.push('/searchresults') 
+    })
   }
 
   handleLogin = obj => {

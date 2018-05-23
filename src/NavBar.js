@@ -53,9 +53,7 @@ class NavBar extends React.Component{
     return(
       <div>
         <Navbar className="navBarCSS" color="white" light expand="md">
-        
           <H3Logo><span><i className="fas fa-heart"></i></span> DecoDating </H3Logo>
-        
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -64,14 +62,7 @@ class NavBar extends React.Component{
               </button>
             <NavButton onClick={this.toggle} className="navSearchBtn">Search <span><i class="fas fa-search" fa-sm></i></span></NavButton>
               <NavModal isOpen={this.state.modal} toggle={this.toggle}>
-              <ModalHeaderFix toggle={this.toggle}>Please filled in the form to find your next best match!</ModalHeaderFix>
-              <ModalBody>
-                <Search handleSearch={this.props.handleSearch} />
-              </ModalBody>
-              <ModalFooter>
-                <NavButton onClick={this.toggle} onSubmit={this.props.handleSearch} className="navBtns">Enter</NavButton>{' '}
-                <Button onClick={this.toggle} className="navBtns">Cancel</Button>
-              </ModalFooter>
+                <Search handleSearch={this.props.handleSearch} toggle={this.toggle} />
               </NavModal>
                 <button className="navBtns">
                   <StyledLink to="/messages">Messages</StyledLink>
