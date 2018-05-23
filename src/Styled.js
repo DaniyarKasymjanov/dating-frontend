@@ -235,7 +235,12 @@ const StyledLink = styled(Link)`
   color: #0088cc;
   &:hover {
     color: #0088cc;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 15px;
   }
+  text-decoration: none;
+  margin: 3px;
 `;
 
 const StyledContent = styled.div`

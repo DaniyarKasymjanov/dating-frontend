@@ -65,7 +65,7 @@ class NavBar extends React.Component{
                 <Search handleSearch={this.props.handleSearch} toggle={this.toggle} />
               </NavModal>
                 <button className="navBtns">
-                  <StyledLink to="/messages">Messages</StyledLink>
+                  <StyledLink to="/messages">Messages <span><i class="far fa-envelope"></i></span></StyledLink>
                 </button>
                 {/* <button className="navBtns">
                   <StyledLink to="/">Notification</StyledLink>

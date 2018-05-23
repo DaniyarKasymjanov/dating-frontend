@@ -255,7 +255,7 @@ class EvaluationQuestions extends React.Component {
     console.log(this.props)
     return (
       <div className="evalWrapper">
-        <form onSubmit={this.submitEvaluation}>
+        <form className="Submit" onSubmit={this.submitEvaluation}>
           <H2E>Evaluation Questions</H2E>
           <fieldset style={{textAlign:"center", borderBottom:""}}>
             <h4>Question 1</h4>
@@ -281,7 +281,7 @@ class EvaluationQuestions extends React.Component {
             <input required type="radio" name="question4" id="multipleChoice4" onChange={() => this.q4Type('multiple')} /><label for="multipleChoice4">Multiple Choice</label><br />
             {this.renderQuestion4()}
           </fieldset>
-          <input className="evaluation-btn" type="submit"/>
+          <input  type="submit"/>
         </form>
       </div>
 

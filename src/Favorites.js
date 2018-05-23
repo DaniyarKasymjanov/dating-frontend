@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import { MainGrid, MainContentGrid, ProfileDisplayGrid, H1 } from "./Styled";
+import { MainGrid, MainContentGrid, ProfileDisplayGrid, H1, ProfileImage } from "./Styled";
 import Spotlight from "./Spotlight";
 import Footer from "./Footer";
 
@@ -50,7 +50,7 @@ class Favorites extends React.Component {
             <ProfileDisplayGrid>
             {this.state.favoriteMembers.map((obj)=>
             <Link to={"/profile/" + obj.username}>
-              <div>{obj.profileImg ? <img src = {obj.profileImg}/> : <img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/>}
+              <div>{obj.profileImg ? <ProfileImage><img src = {obj.profileImg}/></ProfileImage> : <ProfileImage><img src="http://swaleswillis.co.uk/wp-content/uploads/2017/04/face-placeholder.gif"/></ProfileImage>}
                 <div>{obj.username}</div>
                 <div>{obj.city}</div>
                 <div>{this.calculateAge(obj.birthday)}</div>
