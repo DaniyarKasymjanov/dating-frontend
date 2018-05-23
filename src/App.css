@@ -196,7 +196,7 @@ label{
   width: 50%;
   text-align: left;
   padding: 10px 10px 10px 0px;
-  border: 0.5px solid #ddd;
+  margin-bottom: 20px;
 }
 
 .ProfileInfo > table{
@@ -204,9 +204,8 @@ label{
 }
 .AboutMe{
   text-align: left;
-  width: 60%;
-  margin: 15px 20px;
-  position: relative;
+  width: 50%;
+  margin: 20px 20px 20px 67px;
 }
 
 .MainProfileGrid{
@@ -244,4 +243,8 @@ label{
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+.MainContacts{
+  background-color: #0088cc;
 }

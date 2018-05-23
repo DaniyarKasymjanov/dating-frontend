@@ -43,9 +43,14 @@ const LandingReg = styled.div`
 `;
 
 const LandingLink = styled(Link)`
-  color: black;
-  margin: 0px 70px;
-  text-decoration: none;
+  && {
+    color: black;
+    margin: 0px 70px;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 `;
 
 const SpotlightGrid = styled.div`
@@ -92,8 +97,10 @@ const NavButton = styled(Button)`
   && {
     color: white;
     &:hover {
-      color: white;
+      color: #0088cc;
+      background: white;
       text-decoration: none;
+      border: 2px solid #0088cc;
     }
     background: #0088cc;
     border: 2px solid #0088cc;
@@ -116,6 +123,31 @@ const MessageButton = styled(Button)`
     text-decoration: none;
   }
 `;
+const RealMessageButton = styled(Button)`
+  && {
+    color: white;
+    &:hover {
+      
+      text-decoration: none;
+      background: white;
+      border: 2px solid #0088cc;
+    }
+    background: #0088cc;
+    border: 2px solid #0088cc;
+    margin: 5px 5px 5px 0px;
+    text-decoration: none;
+  }
+`;
+
+const MessageLink = styled(Link)`
+  && {
+    color: white;
+    &:hover {
+      color: #0088cc;
+      text-decoration: none;
+    }
+  }
+`
 
 const SCButton = styled(Button)`
   && {
@@ -151,6 +183,7 @@ const LogoutButton = styled(Button)`
     &:hover {
       color: #0088cc;
       background-color: white;
+      text-decoration: none;
     }
     background: white;
     border: none;
@@ -242,12 +275,12 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   margin: 3px;
 `;
+
 const StyledFooterLink = styled(Link)`
   color: #0088cc;
   &:hover {
     color: #0088cc;
     text-decoration: none;
-    padding: 5px;
     border-radius: 15px;
   }
   text-decoration: none;
@@ -288,6 +321,8 @@ export {
   RegButton,
   LogoutButton,
   MessageButton,
+  RealMessageButton,
+  MessageLink,
   SCButton,
   FavoriteButton,
   H1,
