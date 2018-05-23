@@ -35,8 +35,8 @@ class Spotlight extends Component {
             <CardTitle>
               <StyledLink to={"/profile/" + this.props.username}>{this.props.username}</StyledLink>
             </CardTitle>
-            <CardSubtitle>{this.calculateAge(this.props.birthday)}</CardSubtitle> 
-          <CardText>Gender: {this.props.gender}</CardText>
+            <CardText>{this.calculateAge(this.props.birthday)}</CardText> 
+            <CardText>Gender: {this.props.gender}</CardText>
             <CardText>City : {this.props.city}</CardText>
             <LogoutButton>
               <StyledLink to="/favorites"> Favorites</StyledLink>

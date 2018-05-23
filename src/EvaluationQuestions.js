@@ -3,6 +3,8 @@ import { Route, Redirect, Link } from 'react-router-dom';
 import './App.css';
 import Register from './Register'
 import Onboarding from './Onboarding'
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {H2E} from './Styled'
 
 class EvaluationQuestions extends React.Component {
   constructor() {
@@ -24,7 +26,14 @@ class EvaluationQuestions extends React.Component {
       q4Title: "",
       q4Answers: [],
       q4Correct: "",
-    } 
+      modal: false
+    };
+    this.toggle = this.toggle.bind(this);
+  }
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
   }
   componentDidMount() {
     if(this.props.questions) this.prefillState(this.props.questions);
@@ -247,31 +256,32 @@ class EvaluationQuestions extends React.Component {
     return (
       <div className="evalWrapper">
         <form onSubmit={this.submitEvaluation}>
-          <fieldset>
-            <legend>Evaluation Question 1</legend>
+          <H2E>Evaluation Questions</H2E>
+          <fieldset style={{textAlign:"center", borderBottom:""}}>
+            <h4>Question 1</h4>
             <input required type="radio" name="question1" id="bool1" checked={this.state.q1Type === 'bool'} onChange={() => this.q1Type('bool')} /><label for="bool1">True Or False</label><br />
             <input required type="radio" name="question1" id="multipleChoice1" checked={this.state.q1Type === 'multiple'} onChange={() => this.q1Type('multiple')} /><label for="multipleChoice1">Multiple Choice</label><br />
             {this.renderQuestion1()}
           </fieldset>
-          <fieldset>
-            <legend>Evaluation Question 2</legend>
+          <fieldset style={{textAlign:"center"}}>
+            <h4>Question 2</h4>
             <input required type="radio" name="question2" id="bool2" onChange={() => this.q2Type('bool')} /><label for="bool2">True Or False</label><br />
             <input required type="radio" name="question2" id="multipleChoice2" onChange={() => this.q2Type('multiple')} /><label for="multipleChoice2">Multiple Choice</label><br />
             {this.renderQuestion2()}
           </fieldset>
-          <fieldset>
-            <legend>Evaluation Question 3</legend>
+          <fieldset style={{textAlign:"center"}}>
+            <h4>Question 3</h4>
             <input required type="radio" name="question3" id="bool3" onChange={() => this.q3Type('bool')} /><label for="bool3">True Or False</label><br />
             <input required type="radio" name="question3" id="multipleChoice3" onChange={() => this.q3Type('multiple')} /><label for="multipleChoice3">Multiple Choice</label><br />
             {this.renderQuestion3()}
           </fieldset>
-          <fieldset>
-            <legend>Evaluation Question 4</legend>
+          <fieldset style={{textAlign:"center"}}>
+            <h4>Question 4</h4>
             <input required type="radio" name="question4" id="bool4" onChange={() => this.q4Type('bool')} /><label for="bool4">True Or False</label><br />
             <input required type="radio" name="question4" id="multipleChoice4" onChange={() => this.q4Type('multiple')} /><label for="multipleChoice4">Multiple Choice</label><br />
             {this.renderQuestion4()}
           </fieldset>
-          <input type="submit"/>
+          <input className="evaluation-btn" type="submit"/>
         </form>
       </div>
 
