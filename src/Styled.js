@@ -11,7 +11,7 @@ const MainGrid = styled.div`
   display: grid;
   grid-template-columns: auto 70%;
   margin: 10px 5% 0;
-  grid-gap: 10px;
+  grid-gap: 10pxc;
   min-height: 85vh;
 `;
 
@@ -69,10 +69,12 @@ const ProfileImage = styled.div`
 
 const ChatGrid = styled.div`
   display: grid;
-  grid-template-columns: auto 85%;
+  grid-template-columns: auto 75%;
   grid-template-rows: auto 1fr;
-  margin: 10px 5% 0;
+  margin-top: 20px;
   grid-gap: 10px;
+  margin-left: 20px;
+  text-align: left;
 `;
 
 const  viewMultiple = styled.div`

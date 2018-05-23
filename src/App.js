@@ -51,7 +51,6 @@ class App extends Component {
       .then(res => res.json())
       .then(res => {
         console.log(res, "APPPPPPPPPP");
-        this.setState({ fetchedSession: true });
         if (res.success) {
           this.setState({ username: res.user.username, city: res.user.city, gender: res.user.gender, birthday: res.user.birthday, profileImage: res.user.profileImg });
           if (this.props.location.pathname === '/') this.props.history.push('/main');
@@ -59,6 +58,7 @@ class App extends Component {
         else if (this.props.location.pathname !== '/') {
           this.props.history.push('/');
         }
+        this.setState({ fetchedSession: true });
       });
   }
 
@@ -120,6 +120,7 @@ class App extends Component {
   }
 
   renderMessages = (routeProps) => {
+    console.log('renderMessages', this.state.username)
     const receiverName = routeProps.match.params.receiverName;
     return this.state.fetchedSession ? <Messages username={this.state.username} receiverName={receiverName} /> : <div>Loading...</div>
   }
