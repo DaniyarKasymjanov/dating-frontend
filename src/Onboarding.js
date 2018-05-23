@@ -40,7 +40,7 @@ class Onboarding extends React.Component {
             .then(res => res.json())
             .then(res => {
                 console.log(res);
-                this.props.setUsername(res.username);
+                this.props.setUserInfo(this.state.register);
                 this.props.history.push('/main');
             })
             // must set up redirect to recent members

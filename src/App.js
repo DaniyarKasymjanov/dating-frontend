@@ -91,9 +91,13 @@ class App extends Component {
     })
   }
 
-  setUsername = (username, password) => {
-    this.setState({username:username, password: password})
+  setUserInfo = infoObj => {
+    this.setState({ username: infoObj.username, city: infoObj.city, gender: infoObj.gender, birthday: infoObj.birthday, profileImage: '' })
   }
+
+  // setUsername = (username, password) => {
+  //   this.setState({username:username, password: password})
+  // }
 
   renderHome = () => {
     return(<Home username={this.state.username}  gender={this.state.gender} city={this.state.city} birthday={this.state.birthday} profileImage={this.state.profileImage}/>)
@@ -153,7 +157,7 @@ class App extends Component {
       {/* <Route exact path="/search" render={this.renderSearch}/> */}
       {this.props.location.pathname !== '/' && (<NavBar username={this.state.username} profileImage={this.state.profileImage} username={this.state.username} gender={this.state.gender} city={this.state.city} birthday={this.state.birthday} handleSearch={this.handleSearch} history={this.props.history}/>)}
       <Grid>
-          <Onboarding handleLogin={this.handleLogin} setUsername={this.setUsername} history={this.props.history} />
+          <Onboarding setUserInfo={this.setUserInfo} handleLogin={this.handleLogin} history={this.props.history} />
           <div style={{backgroundColor: '#f1f1f1'}}>
           <Route exact path="/login" render={this.renderLogin}/>
             <Route exact path="/favorites" render={this.renderFavorites}/>
