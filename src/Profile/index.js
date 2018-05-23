@@ -86,17 +86,21 @@ class Profile extends React.Component {
       })
       .then((res) => {
         console.log(this.state.profileData.username, "MYUSER")
-        if (this.state.profileData.isLiked) {
-          this.state.info.whoLikes.map((person) => {
-            if (person === this.props.ownUsername) {
-              this.setInfo({ viewImages: true })
-            }
-          })
-        }
+        this.checkViewImages();
 
       })
 
 
+  }
+
+  checkViewImages = () => {
+    if (this.state.profileData.isLiked) {
+      this.state.info.whoLikes.map((person) => {
+        if (person === this.props.ownUsername) {
+          this.setInfo({ viewImages: true })
+        }
+      })
+    }
   }
 
   setNestedState = (key, obj) => {
@@ -162,8 +166,10 @@ class Profile extends React.Component {
       .then(e => JSON.parse(e))
       .then(res => {
         console.log("$$$", res)
-        let success = res.success
-        this.setProfileData({ isLiked: success })
+        if(res.success) {
+          this.setProfileData({ isLiked: !this.state.profileData.isLiked })
+          this.checkViewImages();
+        }
       })
   }
 

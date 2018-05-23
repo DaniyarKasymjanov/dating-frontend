@@ -18,11 +18,8 @@ const ImageWrapper = styled.div`
     max-width: 100px;
   }`;
 
-  const ModalImagesBlurred = styled.img`
-  filter: blur(10px)
-  `
   const ModalImages = styled.img`
-  filter: blur(0px)
+  filter: blur(${(props) => props.blur ? 10 : 0}px)
   `
 
   const WrapperBlurred = styled.div`
@@ -68,7 +65,7 @@ toggle = () => {
           {this.props.extraImages.map((imgUrl, i) => 
             <ImageWrapper>
               {this.props.isEditable && <button onClick={() => this.props.deleteExtraImage(i)}>x</button> }
-              <ModalImages className="ModalImages"src={imgUrl} onClick={()=>this.setState({modal:true, img: imgUrl})}/>
+              <ModalImages src={imgUrl} onClick={()=>this.setState({modal:true, img: imgUrl})}/>
             </ImageWrapper>
           )}
 
@@ -80,14 +77,14 @@ toggle = () => {
         return (
           <Wrapper>
           <Modal isOpen={this.state.modal} toggle={this.toggle}>
-            <ModalImagesBlurred src={this.state.img}/>
+            <ModalImages blur src={this.state.img}/>
           </Modal>
           <div>
           {this.props.isEditable && <input type="file" onChange={(e)=> this.props.handleExtraImageChange(e)} />}
           {this.props.extraImages.map((imgUrl, i) => 
             <ImageWrapper>
               {this.props.isEditable && <button onClick={() => this.props.deleteExtraImage(i)}>x</button> }
-              <ModalImagesBlurred className="ModalImages"src={imgUrl} onClick={()=>this.setState({modal:true, img: imgUrl})}/>
+              <ModalImages blur className="ModalImages"src={imgUrl} onClick={()=>this.setState({modal:true, img: imgUrl})}/>
             </ImageWrapper>
           )}
 
