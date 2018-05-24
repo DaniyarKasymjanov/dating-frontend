@@ -58,10 +58,10 @@ class LandingPage extends React.Component {
             <LandingReg>
               <div>
                 <div style={{color:"white", textAlign:"left"}}>
-                  <h1>Welcome to the next biggest dating site.</h1>
+                  <h1>Welcome to the next biggest dating site!</h1>
                   <div> 
-                    Lorem ipsum dolor sit amet, mauris mattis nec non, scelerisque nullam placerat ante tincidunt, 
-                    curabitur vitae neque lacus velit et congue, tempor ipsum. Dictum scelerisque laoreet euismod velit et illum. 
+                    Single seeking a deeper connection based on more than musical preferences should give DecoDating a try. 
+                    Millions of people in the US and Canada have used DecoDating's questions based compatibility matching system to find long term relationships.
                   </div>
                 </div>
               </div>
