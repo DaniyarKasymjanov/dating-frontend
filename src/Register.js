@@ -166,7 +166,7 @@ class Register extends React.Component {
             </tbody>
           </table>
           <div>
-            <RegButton  type="submit" disabled={!this.state.verifyUsername}>Next Step</RegButton>
+            <RegButton size="sm"  type="submit" disabled={!this.state.verifyUsername}>Next Step</RegButton>
           </div> 
         </form>
       </div>

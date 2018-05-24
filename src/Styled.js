@@ -45,8 +45,9 @@ const LandingReg = styled.div`
 const LandingLink = styled(Link)`
   && {
     color: black;
-    margin: 0px 70px;
+    margin: 30px;
     text-decoration: none;
+    font-weight: 90px;
     &:hover {
       text-decoration: none;
     }
@@ -173,6 +174,7 @@ const RegButton = styled(Button)`
     }
     background: #0088cc;
     border: 2px solid #0088cc;
+    margin-top: 5px;
   }
 `;
 

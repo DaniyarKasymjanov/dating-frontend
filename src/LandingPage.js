@@ -71,11 +71,10 @@ class LandingPage extends React.Component {
             </LandingReg>
           </LandingGrid>
       </div>
-      <div>
-        <h2>Need more informations? Check out these links! </h2>
-        <LandingLink to="/termofservices"> Term of Services </LandingLink>
-        <LandingLink to="/faq"> Frequently Asked Questions </LandingLink>
-        <LandingLink to="/contacts"> Contacts </LandingLink>
+      <div style={{margin:"30px"}}>
+        <LandingLink to="/termofservices">Terms of Service</LandingLink>
+        <LandingLink to="/faq">Frequently Asked Questions</LandingLink>
+        <LandingLink to="/contacts">Contact </LandingLink>
       </div>
       </div>
     );
