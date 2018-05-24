@@ -30,7 +30,7 @@ const ProfileDisplayGrid = styled.div`
 const LandingGrid = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
-  background-color: rgb(102, 204, 255, 0.7);
+  background-color: rgba(102, 204, 255, 0.7);
   min-height: 85vh;
   margin-bottom: 10px;
 `;
@@ -300,6 +300,11 @@ const StyledModal = styled(Modal)`
     border-radius: 15px;
   }
 `
+const StyledContacts = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 10%;
+`
 
 export {
   Grid,
@@ -335,5 +340,6 @@ export {
   StyledContent,
   StyledCard,
   StyledModal,
+  StyledContacts,
   viewMultiple
 };

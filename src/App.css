@@ -198,11 +198,12 @@ label{
   border: 3px solid #ddd;
   position: absolute;
   bottom: 0;
-  left: 5%;
+  left: 7%;
   transform: translateY(50%);
 }
 .MainProfileImg > img {
   max-width: 260px;
+  max-height: 275px
 }
 .MainProfileImg > input {
   width: 100%;
@@ -217,10 +218,10 @@ label{
   display:grid;
   grid-area: mini;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 5px;
-  border: 0.5px solid #ddd;
+  grid-gap: 35px;
   max-height: 400px;
   overflow: auto;
+  padding: 20px;
 }
 
 .ProfileQuick{
@@ -310,4 +311,11 @@ label{
 
 .MainContacts{
   background-color: #0088cc;
+}
+
+.mugshot{
+  border-radius: 50%;
+  max-width: 200px;
+  max-height: 200px;
+  margin: 20px;
 }
